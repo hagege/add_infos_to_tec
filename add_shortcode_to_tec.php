@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Add infos to the events calendar
- * Plugin URI:  https://haurand.com/plugins/add_infos_tec
  * Description: provides a shortcode block to single events (TEC)
  * Version:     0.5
  * Author:      https://haurand.com
- * Author URI:  https://haurand.com/plugins/add_infos_tec
- * Text Domain: wporg
+ * Author URI:  https://haurand.com
+ * Plugin URI:  https://haurand.com/plugins/add_infos_tec
+ * Text Domain: add_infos_to_tec
  * Domain Path: /languages
  * License:     GPL2
  */
