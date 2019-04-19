@@ -131,12 +131,11 @@ function fs_beitrags_fuss_pi($atts) {
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
 			if (esc_attr(get_option('fs_alle_buttons')) == 1){
-				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
-				/* Example for language file:
+				// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
+				/* Example for language file:*/
 			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'text-domain' ) . '</a></p><br>';
-				*/
 			} else {
-      	$fs_ausgabe = $fs_ausgabe . '<a href=' . $werte['link'] . ' target="_blank">Read more</a><br>';
+      	$fs_ausgabe = $fs_ausgabe . '<a href=' . $werte['link'] . ' target="_blank">'. __( 'Read more', 'text-domain' ) . '</a><br>';
 			}
 		}
 		//
@@ -178,7 +177,7 @@ function fs_beitrags_fuss_pi($atts) {
 	          $vergleichswert = '';
 	          }
 	      }
-				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">More Events' . $vergleichswert . '</a></p>';
+				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. __( 'More Events', 'text-domain' ) . $vergleichswert . '</a></p>';
 			}
 		else {
 			// URL is incorrect !
@@ -189,7 +188,7 @@ function fs_beitrags_fuss_pi($atts) {
 	// Internal link (can also be an external link)
 	//
   if ( trim($werte['il']) != '') {
-     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $werte['il'] . ' target="_blank">Read more on this website</a></p>';
+     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $werte['il'] . ' target="_blank">' . __( 'Read more on this website', 'text-domain' ) . '</a></p>';
   }
 	//
 	// Output line below //
@@ -404,61 +403,62 @@ add_action(
 
 					<!-- Pfad -->
 	        <tr valign="top">
-					<th scope="row">Path e.g. Categories to "The Events Calendar" (e.g. http://beispielseite.de/events/category/):</th>
 					<!--
-	        <th scope="row"><?php echo __( 'Path e.g. categories to "The Events Calendar" (e.g. http://example.com/events/category/):', 'text-domain' ); ?></th>
+										<th scope="row">Path e.g. Categories to "The Events Calendar" (e.g. http://beispielseite.de/events/category/):</th>
 					-->
+	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'text-domain' ); ?></th>
+
 	        <td><input type="text" name="fs_option_pfad" size=50 value="<?php echo esc_url_raw( get_option('fs_option_pfad') ); ?>" /></td>
 	        </tr>
 
 					<!-- Buttons -->
 	        <tr valign="top">
-					<th scope="row">Button - Background color:</th>
+					<th scope="row"><?php echo __( 'Button - Background color:', 'text-domain' ); ?></th>
 	        <td><input type="text" name="fs_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_hintergrundfarbe_button') ); ?>" class="color" /></td>
 	        </tr>
 
 
 	        <tr valign="top">
-	        <th scope="row">Button - font color:</th>
+	        <th scope="row"><?php echo __( 'Button - font color:', 'text-domain' ); ?></th>
 	        <td><input type="text" name="fs_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_vordergrundfarbe_button') ); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row">Button - Background color when driving over the button (Hover):</th>
+	        <th scope="row"><?php echo __( 'Button - Background color when driving over the button (Hover):', 'text-domain' ); ?></th>
 	        <td><input type="text" name="fs_hover_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_hover_hintergrundfarbe_button') ); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row">Button - font color when driving over the button (Hover):</th>
+	        <th scope="row"><?php echo __( 'Button - font color when driving over the button (Hover):', 'text-domain' ); ?></th>
 	        <td><input type="text" name="fs_hover_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_hover_vordergrundfarbe_button') ); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-					<th scope="row">Rounded corners (values from 0 - 30):</th>
+					<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'text-domain' ); ?></th>
 					<td><input type="number" min="0" max="30" step="1" name="fs_runder_button" size=2 value="<?php echo esc_attr( get_option('fs_runder_button') ); ?>" /></td>
 					</tr>
 
 
 					<tr valign="top">
-	        <th scope="row">All links as buttons:</th>
+	        <th scope="row"><?php echo __( 'All links as buttons:', 'text-domain' ); ?></th>
 	        <td><input type="checkbox" name="fs_alle_buttons" value='1' <?php checked(get_option('fs_alle_buttons'), 1); ?> />
 	        </tr>
 
 					<!-- Diverses -->
 					<tr valign="top">
-	        <th scope="row">font for Copyright:</th>
+	        <th scope="row"><?php echo __( 'Font for Copyright:', 'text-domain' ); ?></th>
 	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('fs_schriftart'), true); ?>>italic
 					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('fs_schriftart'), true); ?>>bold
 					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, get_option('fs_schriftart'), true); ?>>normal</td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row">Horizontal line above the block:</th>
+	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'text-domain' ); ?></th>
 	        <td><input type="checkbox" name="fs_linie_oben" value='1' <?php checked(get_option('fs_linie_oben'), 1); ?> />
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row">Horizontal line below the block:</th>
+	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'text-domain' ); ?></th>
 	        <td><input type="checkbox" name="fs_linie_unten" value='1' <?php checked(get_option('fs_linie_unten'), 1); ?> />
 	        </tr>
 
