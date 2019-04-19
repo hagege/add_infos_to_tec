@@ -1,5 +1,5 @@
 === Add infos to the events calendar ===
-Contributors: @hage
+Contributors: hage
 Tags: The Events Calendar, shortcodes, info, button
 Donate link: https://haurand.com/plugins/add_infos_tec
 Requires at least: 4.0
