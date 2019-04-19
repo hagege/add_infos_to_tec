@@ -1,67 +1,60 @@
-=== Last Updated Shortcode ===
-Plugin URI: http://shinraholdings.com/plugins/last-updated-shortcode
-Contributors: bitacre
-Donate link: http://shinraholdings.com/donate
-Tags: shortcode, echo, display, last, time, date, update, updated, modified, changed
-Requires at least: 2.8
-Tested up to: 4.4
-Stable tag: 1.0.1
+=== Add infos to the events calendar ===
+Contributors: @hage
+Tags: The Events Calendar, shortcodes, info, button
+Donate link: https://haurand.com/plugins
+Requires at least: 4.0
+Tested up to: 5.1.1
+Requires PHP: 5.6
+Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Creates a shortcode to display the date/time when a post/page was last updated (with optional formatting).
+“Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
 
 == Description ==
-Creates the `[lastupdated]` shortcode to display the date and/or time of the last update to a post or page. If used without any arguments, it will display the date in the format configured in the Settings > General tab. It supports several optional arguments: format, before, and after. These options allow you to change how the date/time is formatted and if anything should appear before or after the date/time is displayed.
+“Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
+
+As a rule, the short code (description and examples see below) should be one of the last lines of a single event. However, the short code can also be used in principle in posts.
+
+Automatically displays the text from "Caption" (see Media, image details) in italics by default for an event or a post. A copyright notice should be entered in this field.
+
+Call Examples:
+[fuss link="https://externer_link.de" vl=""] --> always shows picture credits, then more info with the link to external website and at vl="" the link to "more events".
+[fuss vl=""] --> always shows picture credits, but no link to external website and at vl="" the link to "more events".
+vl = list of events
+[fuss] --> always shows picture credits, but no link to external website.
+[fuss link="https://externer_link.de" vl="nature"] --> always shows picture credits, then more info with the link to external website and at vl="Nature" the link to "more events: nature".
+(of course the category must exist in The Events Calendar (this is checked by a function). If the category does not exist, the event list will be shown.)
+[fuss vl="" il="http://internal_link.de/example"] --> always shows picture credits, but no link to external website and at vl="" the link to "more events" and at il="http://internal_link.de/example" the link to another external or internal webesite.
+
 
 == Installation ==
-1. Download the latest zip file and extract the `last-updated-shortcode` directory.
-2. Upload this directory inside your `/wp-content/plugins/` directory.
-3. Activate 'Literal Shortcode' on the 'Plugins' menu in WordPress.
-4. Insert the shortcode in a post or page to return the date/time it was last modified.
+1. Download "add_infos_to_tec.zip" to your local device.
+2. Unzip the file.
+3. Upload the folder "add_infos_to_tec" to "/wp-content/plugins/"
+4. Activate the plugin through the "Plugins" menu in WordPress.
 
 == Frequently Asked Questions ==
-= What is the shortcode? =
-You can use either `[lastupdated]` or `[lastupdate]`, they both work identically.
+= Who will answer my support request? =
+A webdevelopement staff member of haurand.com.
 
-= What formatting options can I use =
-You can use any of the special date variables listed at this WordPress [codex page](http://codex.wordpress.org/Formatting_Date_and_Time). If you want to insert plain text (like the word "at" for instance) escape each letter with a backslash, \l\i\k\e \t\h\i\s.
-
-= How do I insert this in theme files? =
-Just wrap the shortcode in `<?php do_shortcode(   ); ?>`. So to get the default display, just insert `<?php do_shortcode( [lastupdated] ); ?>`
-
-= Why did you make this? =
-Everyone likes a good shortcode!
+= Can this plugin also be used for other event plugins ? =
+Basically yes, but it cannot be checked automatically whether the selected category exists for the "vl" option.
 
 = Can I change the shortcode? =
-Yes, just open `last-updated-shortcode.php` and add or change what text you want to trigger the shortcode in on of the arrays near the bottom. If this gets any kind of popularity, I'll make that easier by adding an options page.
+Yes, just open `add_shortcode_to_tec.php` and add or change what text you want to trigger the shortcode in on of the arrays near the bottom. If this gets any kind of popularity, I'll make that easier by adding an options page.
 
 = Can you add this feature I just thought of? =
 Can I? Yes. Will I? Yes, if I think it would be a helpful addition. I'm trying to keep things clean and simple, but there's always room for improvement, so let me know if you think a feature is lacking!
 
-== Screenshots ==
 
-1. The default text that will be displayed when using the shortcode with no arguments [lastupdated].
+== Screenshots ==
+1. All options in the settings
+2. Use in a single event (backend)
+3. Representation of the event in the frontend
 
 == Changelog ==
-= 1.0.1 =
-* Purely cosmetic update for WordPress 4.4
-
-= 1.0.0 =
-* First released version. 
-* There may still be bugs, but I can't find any. 
+nothing
 
 == Upgrade Notice ==
-= 1.0.1 =
-Purely cosmetic update for WordPress 4.4.
-
-= 1.0.0 =
-First release, no upgrade notice (included to make the WordPress readme.txt validator happy).
-
-== Readme Generator ==
-* This plugin's readme.txt file was generated by the [bitacre Readme Generator](http://shinraholdings.com/project/readme-gen/) for WordPress Plugins.
-
-== Support ==
-* [Plugin Homepage](http://shinraholdings.com/plugins/last-updated-shortcode)
-* [plugins@shinraholdings.com](mailto:plugins@shinraholdings.com)
-
-== Donations ==
-[Donations](http://shinraholdings.com/donate) are graciously accepted to support the continued development and maintenance of this and other plugins. We currently accept Paypal and kind words.
+nothing
