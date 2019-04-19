@@ -4,7 +4,7 @@
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
  * Description: provides a shortcode block to single events (TEC)
  * Version:     0.5
- * Author:      gerhards@haurand.com
+ * Author:      https://haurand.com
  * Author URI:  https://haurand.com/plugins/add_infos_tec
  * Text Domain: wporg
  * Domain Path: /languages
