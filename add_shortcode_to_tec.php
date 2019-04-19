@@ -395,7 +395,7 @@ add_action(
 
 					<!-- Pfad -->
 	        <tr valign="top">
-					<th scope="row">Pfad z. B. Kategorien zu "The Events Calendar" (z. B. http://beispielseite.de/events/kategorie/):</th>
+					<th scope="row">Path e.g. Categories to "The Events Calendar" (e.g. http://beispielseite.de/events/category/):</th>
 					<!--
 	        <th scope="row"><?php echo __( 'Path e.g. categories to "The Events Calendar" (e.g. http://example.com/events/category/):', 'text-domain' ); ?></th>
 					-->
@@ -438,8 +438,8 @@ add_action(
 					<!-- Diverses -->
 					<tr valign="top">
 	        <th scope="row">font for Copyright:</th>
-	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('fs_schriftart'), true); ?>>kursiv
-					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('fs_schriftart'), true); ?>>fett
+	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('fs_schriftart'), true); ?>>italic
+					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('fs_schriftart'), true); ?>>bold
 					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, get_option('fs_schriftart'), true); ?>>normal</td>
 	        </tr>
 
