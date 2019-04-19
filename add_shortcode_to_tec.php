@@ -46,7 +46,7 @@ add_action('plugins_loaded','meine_textdomain_laden');
 // variables
 	$ausgabe = '
 <!--
-Plugin: post Shortcode
+Plugin: Add Infos to TEC
 Plugin URI: https://haurand.com
 -->
 ';
@@ -323,8 +323,8 @@ add_action(
 	function post_shortcode_create_menu() {
 
 		//create new top-level menu: add_menu_page
-		add_submenu_page('Post Shortcode Plugin Settings', 'Post Shortcode Settings', 'administrator', __FILE__, 'post_shortcode_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Post Shortcode Plugin Settings', 'Post Shortcode Settings', 'manage_options', 'post_shortcode_settings_page', 'post_shortcode_settings_page');
+		add_submenu_page('Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'administrator', __FILE__, 'post_shortcode_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+		add_options_page( 'Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'manage_options', 'post_shortcode_settings_page', 'post_shortcode_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'register_post_shortcode_settings' );
 		// check nonce - not ready
@@ -361,7 +361,7 @@ add_action(
 	function post_shortcode_settings_page() {
 	?>
 	<div class="wrap">
-	<h1>Post Shortcode</h1>
+	<h1>Add Infos to TEC</h1>
 	<hr>
 
 	<form method="post" action="options.php">
