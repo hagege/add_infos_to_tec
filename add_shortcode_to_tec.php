@@ -328,11 +328,20 @@ add_action(
 		//call register settings function
 		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
 		// check nonce - not ready
-		// if ( ! empty( $_POST ) &&  check_admin_referer(  'ps_formular', 'ps_feld' ) ) {
+		/*
+		if ( ! isset( $_POST['name_of_nonce_field'] ) || ! wp_verify_nonce( $_POST['ps_feld'], 'add_infos_to_tec_formular' )
+		) {
+   		print 'Sorry, your nonce did not verify.';
+   		exit;
+		} else {
+			print 'Anything ok.';
+		}
+		*/
+		// if ( ! empty( $_POST ) &&  check_admin_referer(  'add_infos_to_tec_formular', 'ps_feld' ) ) {
 		// 		echo  'Fehler !!!';
 		// }
 
-	}
+}
 
 	// Settings in the Plugin List
 	function plugin_settings_link( $links ) {
@@ -372,7 +381,7 @@ add_action(
 				 wp_die( __('You do not have permissions to perform this action', 'ps_feld') );
 			}
 			// absichern (nonce) //
-			// wp_nonce_field('ps_formular', 'ps_feld');
+			// wp_nonce_field('add_infos_to_tec_formular', 'ps_feld');
 
 			// Optionen setzen, falls die Optionen noch nicht existieren
 			if ( get_option('fs_option_pfad') == false ) {
@@ -458,7 +467,7 @@ add_action(
 			submit_button();
 			// Überprüfung klappt noch nicht - fehlerhafte Ausführung
 			/*
-			if ( ! empty( $_POST ) &&  check_admin_referer(  'ps_formular', 'ps_feld' ) ) {
+			if ( ! empty( $_POST ) &&  check_admin_referer(  'add_infos_to_tec_formular', 'ps_feld' ) ) {
    				submit_button();
 				} else {
 					submit_button();
