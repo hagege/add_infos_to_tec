@@ -131,12 +131,12 @@ function fs_beitrags_fuss_pi($atts) {
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
 			if (esc_attr(get_option('fs_alle_buttons')) == 1){
-				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Mehr Infos</a></p><br>';
+				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
 				/* Example for language file:
-			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Mehr Infos', 'text-domain' ) . '</a></p><br>';
+			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'text-domain' ) . '</a></p><br>';
 				*/
 			} else {
-      	$fs_ausgabe = $fs_ausgabe . '<a href=' . $werte['link'] . ' target="_blank">Mehr Infos</a><br>';
+      	$fs_ausgabe = $fs_ausgabe . '<a href=' . $werte['link'] . ' target="_blank">Read more</a><br>';
 			}
 		}
 		//
@@ -178,7 +178,7 @@ function fs_beitrags_fuss_pi($atts) {
 	          $vergleichswert = '';
 	          }
 	      }
-				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">Weitere Veranstaltungen' . $vergleichswert . '</a></p>';
+				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">More Events' . $vergleichswert . '</a></p>';
 			}
 		else {
 			// URL is incorrect !
@@ -189,7 +189,7 @@ function fs_beitrags_fuss_pi($atts) {
 	// Internal link (can also be an external link)
 	//
   if ( trim($werte['il']) != '') {
-     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $werte['il'] . ' target="_blank">Mehr Infos auf dieser Seite</a></p>';
+     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $werte['il'] . ' target="_blank">Read more on this website</a></p>';
   }
 	//
 	// Output line below //
@@ -328,9 +328,9 @@ add_action(
 		//call register settings function
 		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
 		// check nonce - not ready
-		if ( ! empty( $_POST ) &&  check_admin_referer(  'ps_formular', 'ps_feld' ) ) {
-				echo  'Fehler !!!';
-		}
+		// if ( ! empty( $_POST ) &&  check_admin_referer(  'ps_formular', 'ps_feld' ) ) {
+		// 		echo  'Fehler !!!';
+		// }
 
 	}
 
@@ -372,7 +372,7 @@ add_action(
 				 wp_die( __('You do not have permissions to perform this action', 'ps_feld') );
 			}
 			// absichern (nonce) //
-			wp_nonce_field('ps_formular', 'ps_feld');
+			// wp_nonce_field('ps_formular', 'ps_feld');
 
 			// Optionen setzen, falls die Optionen noch nicht existieren
 			if ( get_option('fs_option_pfad') == false ) {
