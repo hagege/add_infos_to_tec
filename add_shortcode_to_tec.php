@@ -318,15 +318,15 @@ add_action(
 	}
 
 
-	add_action('admin_menu', 'post_shortcode_create_menu');
+	add_action('admin_menu', 'add_infos_to_tec_create_menu');
 
-	function post_shortcode_create_menu() {
+	function add_infos_to_tec_create_menu() {
 
 		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'administrator', __FILE__, 'post_shortcode_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'manage_options', 'post_shortcode_settings_page', 'post_shortcode_settings_page');
+		add_submenu_page('Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+		add_options_page( 'Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
 		//call register settings function
-		add_action( 'admin_init', 'register_post_shortcode_settings' );
+		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
 		// check nonce - not ready
 		if ( ! empty( $_POST ) &&  check_admin_referer(  'ps_formular', 'ps_feld' ) ) {
 				echo  'Fehler !!!';
@@ -336,7 +336,7 @@ add_action(
 
 	// Settings in the Plugin List
 	function plugin_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=post_shortcode_settings_page">'	. __( 'Einstellungen' ) . '</a>';
+		$settings_link = '<a href="options-general.php?page=add_infos_to_tec_settings_page">'	. __( 'Settings' ) . '</a>';
 		array_push( $links, $settings_link );
 		return $links;
 	}
@@ -344,7 +344,7 @@ add_action(
 		'plugin_action_links_' . plugin_basename( __FILE__ ),	'plugin_settings_link'
 	);
 
-	function register_post_shortcode_settings() {
+	function register_add_infos_to_tec_settings() {
 		//register our settings
 		register_setting( 'event-shortcode-settings-group', 'fs_option_pfad' );
 		register_setting( 'event-shortcode-settings-group', 'fs_hintergrundfarbe_button' );
@@ -358,7 +358,7 @@ add_action(
 		register_setting( 'event-shortcode-settings-group', 'fs_runder_button' );
 	}
 
-	function post_shortcode_settings_page() {
+	function add_infos_to_tec_settings_page() {
 	?>
 	<div class="wrap">
 	<h1>Add Infos to TEC</h1>
