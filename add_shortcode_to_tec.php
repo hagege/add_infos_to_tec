@@ -322,8 +322,8 @@ add_action(
 	function add_infos_to_tec_create_menu() {
 
 		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings', 'Add Infos to TEC Settings', 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
+		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
 		// check nonce - not ready
