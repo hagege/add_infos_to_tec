@@ -447,9 +447,9 @@ add_action(
 					<!-- Diverses -->
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Font for Copyright:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('fs_schriftart'), true); ?>>italic
-					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('fs_schriftart'), true); ?>>bold
-					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, get_option('fs_schriftart'), true); ?>>normal</td>
+	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('fs_schriftart'), true); ?>><?php echo __( 'italic', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('fs_schriftart'), true); ?>><?php echo __( 'bold', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, get_option('fs_schriftart'), true); ?>><?php echo __( 'normal', 'add_infos_to_tec' ); ?></td>
 	        </tr>
 
 					<tr valign="top">
