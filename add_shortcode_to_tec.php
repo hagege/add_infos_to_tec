@@ -373,7 +373,6 @@ add_action(
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
-					echo 'hier bin ich';
 			    $deprecated = null;
 			    $autoload = 'no';
 					$add_infos_to_tec_options = array(
