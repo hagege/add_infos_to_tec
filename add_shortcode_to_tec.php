@@ -115,8 +115,8 @@ function fs_beitrags_fuss_pi($atts) {
 		// Output line above //
 		//
 		$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-		$fs_l_o = esc_attr(get_option($add_infos_to_tec_options['fs_linie_oben']));
-		if (esc_attr(get_option($add_infos_to_tec_options['fs_linie_oben'])) == '1') {
+		$fs_l_o = esc_attr($add_infos_to_tec_options['fs_linie_oben']);
+		if (esc_attr($add_infos_to_tec_options['fs_linie_oben']) == '1') {
 			  // echo 'Linie oben: ' . var_dump($l_o); //
 				$fs_ausgabe = $fs_ausgabe . '<hr>';
 				// echo 'Ausgabe: ' . var_dump($fs_ausgabe); //
@@ -125,13 +125,13 @@ function fs_beitrags_fuss_pi($atts) {
 		// linking
 		//
 		// Get path from the settings: //
-		$veranstaltungen = esc_url_raw( get_option($add_infos_to_tec_options['fs_option_pfad']) );
+		$veranstaltungen = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
 		// Save file path
 		// Categories used by TEC
     $kategorien = cliff_get_events_taxonomies();
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
-			if (esc_attr(get_option($add_infos_to_tec_options['fs_alle_buttons'])) == 1){
+			if (esc_attr($add_infos_to_tec_options['fs_alle_buttons']) == 1){
 				// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
 				/* Example for language file:*/
 			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'add_infos_to_tec' ) . '</a></p><br>';
@@ -142,7 +142,7 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// font
 		//
-		$fs_schriftart_kennzeichen =  esc_attr(get_option($add_infos_to_tec_options['fs_schriftart']));
+		$fs_schriftart_kennzeichen =  esc_attr($add_infos_to_tec_options['fs_schriftart']);
 		$fs_schriftart_ein = '';
 		$fs_schriftart_aus = '';
 		if ($fs_schriftart_kennzeichen == 1) {
@@ -190,7 +190,7 @@ function fs_beitrags_fuss_pi($atts) {
 	//
 	// Output line below //
 	//
-	if (esc_attr(get_option($add_infos_to_tec_options['fs_linie_unten'])) == 1) {
+	if (esc_attr($add_infos_to_tec_options['fs_linie_unten']) == 1) {
 			$fs_ausgabe = $fs_ausgabe . '<hr>';
 	}
 	return $fs_ausgabe;
@@ -436,7 +436,7 @@ add_action(
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'All links as buttons:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php checked($add_infos_to_tec_options['fs_alle_buttons'], '1'); ?>>
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php checked($add_infos_to_tec_options['fs_alle_buttons'], 1); ?> />
 	        </tr>
 
 					<!-- Diverses -->
@@ -449,12 +449,12 @@ add_action(
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_oben'], '1'); ?>>
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_oben'], 1); ?> />
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_unten'], '1'); ?>>
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_unten'], 1); ?> />
 	        </tr>
 
 	    </table>
