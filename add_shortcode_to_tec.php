@@ -271,12 +271,11 @@ foreach( $shortcodes as $shortcode ) add_shortcode( $shortcode, 'fs_beitrags_fus
 // -------------------------------------------------- //
 // Start: Add new Dashboard-Widget
 // -------------------------------------------------- //
+/* not used yet */
 function fs_add_dashboard_widget() {
   wp_add_dashboard_widget(
     'mein_dashboard_widget',
-    __('Dashboard-Widget for "Add infos to the events calendar" - Plugin',
-    'textdomaine'
-    ),
+    __('Dashboard-Widget for "Add infos to the events calendar" - Plugin', 'add_infos_to_tec'),
     'fs_dashboard_widget_html'
     );
   }
@@ -288,10 +287,11 @@ add_action(
   // Ausgabe des Inhaltes des Dashboard-Widgets
   function fs_dashboard_widget_html($post,$callback_args){
     esc_html_e(
-    'First Dashboard-Widget for "Add infos to the events calendar" - Plugin :-)',
-    'textdomaine'
+    __('First Dashboard-Widget for "Add infos to the events calendar" - Plugin', 'add_infos_to_tec'),
+    'add_infos_to_tec'
     );
   }
+
 
 // -------------------------------------------------- //
 // Ende: Add new Dashboard-Widget
@@ -322,8 +322,8 @@ add_action(
 	function add_infos_to_tec_create_menu() {
 
 		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
+		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
 		// check nonce - not ready
