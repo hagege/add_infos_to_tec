@@ -371,7 +371,7 @@ add_action(
 			// get plugin options from the database
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
 			// Set options if the options do not yet exist
-			if (empty( get_option('add_infos_to_tec_settings'))) {
+			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 					echo 'hier bin ich';
 			    $deprecated = null;
