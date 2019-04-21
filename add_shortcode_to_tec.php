@@ -376,8 +376,7 @@ add_action(
 			if ( !current_user_can( 'manage_options' ) ){
 				 wp_die( __('You do not have permissions to perform this action', 'ps_feld') );
 			}
-			// absichern (nonce) //
-			// wp_nonce_field('add_infos_to_tec_formular', 'ps_feld');
+
 
 			// Optionen setzen, falls die Optionen noch nicht existieren
 			if ( get_option('fs_option_pfad') == false ) {
@@ -397,7 +396,11 @@ add_action(
 			}
 			?>
 	    <table class="form-table">
-
+				<?php
+					// absichern (nonce) //
+					wp_nonce_field('add_infos_to_tec_formular', 'ps_feld');
+					// echo $_POST['ps_feld'];
+				?>
 					<!-- Pfad -->
 	        <tr valign="top">
 					<!-- here I want to check if a folder existsin further versions of plugin -->
@@ -468,7 +471,10 @@ add_action(
 					submit_button();
 					echo  'Fehler !!!';
 				}
-				*/
+			*/
+			// check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld');
+			// process form data, e.g. update fields
+			// you can use it in a IF statement if you want, not mandatory because there is not "false" return, only true or die().
  		 ?>
 			</form>
 	</div>
