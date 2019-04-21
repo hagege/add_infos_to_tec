@@ -381,12 +381,13 @@ add_action(
 			// Optionen setzen, falls die Optionen noch nicht existieren
 			if ( get_option('add_infos_to_tec_settings[fs_option_pfad]') == false ) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
+					echo 'hier bin ich';
 			    $deprecated = null;
 			    $autoload = 'no';
 					$add_infos_to_tec_options = array(
 							'fs_option_pfad' => 'http://beispielseite.de/events/category/',
 							'fs_hintergrundfarbe_button' => '#77BCC7',
-							'fs_vordergrundfarbe_button' => '#ffffff',
+							'fs_vordergrundfarbe_button' => '#000000',
 							'fs_hover_hintergrundfarbe_button' => '#F9B81E',
 							'fs_hover_vordergrundfarbe_button' => '#ffffff',
 							'fs_runder_button' => '5',
