@@ -61,12 +61,12 @@ function fs_style_fuss_plugin_scripts() {
 		wp_enqueue_style( 'custom_style',  $script);
 
 		// Variables for button design
-		$button_hintergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_hintergrundfarbe_button']) );
-		$button_vordergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_vordergrundfarbe_button']) );
-		$button_hover_hintergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_hover_hintergrundfarbe_button']) );
-		$button_hover_vordergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_hover_vordergrundfarbe_button']) );
-		$button_rund = esc_attr( get_option(add_infos_to_tec_settings['fs_runder_button']) );
-
+		$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
+		$button_hintergrund = esc_attr( $add_infos_to_tec_options['fs_hintergrundfarbe_button']);
+		$button_vordergrund = esc_attr( $add_infos_to_tec_options['fs_vordergrundfarbe_button']);
+		$button_hover_hintergrund = esc_attr( $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button']);
+		$button_hover_vordergrund = esc_attr( $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button']);
+		$button_rund = esc_attr( $add_infos_to_tec_options['fs_runder_button']);
 		$custom_css= "
 			a.fuss_button-beitrag {
 			    color: {$button_vordergrund}!important;
@@ -114,8 +114,9 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Output line above //
 		//
-		$fs_l_o = esc_attr(get_option(add_infos_to_tec_settings['fs_linie_oben']));
-		if (esc_attr(get_option(add_infos_to_tec_settings['fs_linie_oben'])) == '1') {
+		$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
+		$fs_l_o = esc_attr(get_option($add_infos_to_tec_options['fs_linie_oben']));
+		if (esc_attr(get_option($add_infos_to_tec_options['fs_linie_oben'])) == '1') {
 			  // echo 'Linie oben: ' . var_dump($l_o); //
 				$fs_ausgabe = $fs_ausgabe . '<hr>';
 				// echo 'Ausgabe: ' . var_dump($fs_ausgabe); //
@@ -124,13 +125,13 @@ function fs_beitrags_fuss_pi($atts) {
 		// linking
 		//
 		// Get path from the settings: //
-		$veranstaltungen = esc_url_raw( get_option(add_infos_to_tec_settings['fs_option_pfad']) );
+		$veranstaltungen = esc_url_raw( get_option($add_infos_to_tec_options['fs_option_pfad']) );
 		// Save file path
 		// Categories used by TEC
     $kategorien = cliff_get_events_taxonomies();
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
-			if (esc_attr(get_option(add_infos_to_tec_settings['fs_alle_buttons'])) == 1){
+			if (esc_attr(get_option($add_infos_to_tec_options['fs_alle_buttons'])) == 1){
 				// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
 				/* Example for language file:*/
 			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'add_infos_to_tec' ) . '</a></p><br>';
@@ -141,7 +142,7 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// font
 		//
-		$fs_schriftart_kennzeichen =  esc_attr(get_option(add_infos_to_tec_settings['fs_schriftart']));
+		$fs_schriftart_kennzeichen =  esc_attr(get_option($add_infos_to_tec_options['fs_schriftart']));
 		$fs_schriftart_ein = '';
 		$fs_schriftart_aus = '';
 		if ($fs_schriftart_kennzeichen == 1) {
@@ -189,7 +190,7 @@ function fs_beitrags_fuss_pi($atts) {
 	//
 	// Output line below //
 	//
-	if (esc_attr(get_option(add_infos_to_tec_settings['fs_linie_unten'])) == 1) {
+	if (esc_attr(get_option($add_infos_to_tec_options['fs_linie_unten'])) == 1) {
 			$fs_ausgabe = $fs_ausgabe . '<hr>';
 	}
 	return $fs_ausgabe;
@@ -369,7 +370,7 @@ add_action(
 			}
 			// get plugin options from the database
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-			// Optionen setzen, falls die Optionen noch nicht existieren
+			// Set options if the options do not yet exist
 			if (empty( get_option('add_infos_to_tec_settings'))) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 					echo 'hier bin ich';
