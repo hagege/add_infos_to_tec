@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Add infos to the events calendar\n"
+"POT-Creation-Date: 2019-04-21 08:44+0200\n"
+"PO-Revision-Date: 2019-04-21 08:44+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: add_shortcode_to_tec.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: add_shortcode_to_tec.php:136 add_shortcode_to_tec.php:138
+msgid "Read more"
+msgstr "Mehr lesen"
+
+#: add_shortcode_to_tec.php:180
+msgid "More Events"
+msgstr "Mehr Veranstaltungen"
+
+#: add_shortcode_to_tec.php:191
+msgid "Read more on this website"
+msgstr "Lesen Sie mehr auf dieser Website"
+
+#: add_shortcode_to_tec.php:278
+msgid "Dashboard-Widget for \"Add infos to the events calendar\" - Plugin"
+msgstr "Dashboard-Widget für \"Add infos to the events calendar\" - Plugin"
+
+#: add_shortcode_to_tec.php:290
+msgid ""
+"First Dashboard-Widget for \"Add infos to the events calendar\" - Plugin"
+msgstr ""
+"Erstes Dashboard-Widget für \"Infos zum Veranstaltungskalender hinzufügen\" "
+"- Plugin"
+
+#: add_shortcode_to_tec.php:325 add_shortcode_to_tec.php:326
+msgid "Add Infos to TEC Settings"
+msgstr "Add Infos to TEC Einstellungen"
+
+#: add_shortcode_to_tec.php:347
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: add_shortcode_to_tec.php:380
+msgid "You do not have permissions to perform this action"
+msgstr "Du hast keine Berechtigungen, um diese Aktion auszuführen"
+
+#: add_shortcode_to_tec.php:409
+msgid ""
+"Path e.g. categories to The Events Calendar (e.g. http://example.com/events/"
+"category/):"
+msgstr ""
+"Ordner für Kategorien von \"The Events Calendar\" (e.g. http://example.com/"
+"events/category/):"
+
+#: add_shortcode_to_tec.php:416
+msgid "Button - Background color:"
+msgstr "Button-Hintergrundfarbe:"
+
+#: add_shortcode_to_tec.php:422
+msgid "Button - font color:"
+msgstr "Button-Schriftfarbe:"
+
+#: add_shortcode_to_tec.php:427
+msgid "Button - Background color when driving over the button (Hover):"
+msgstr "Button-Hintergrundfarbe beim Überfahren der Taste (Hover):"
+
+#: add_shortcode_to_tec.php:432
+msgid "Button - font color when driving over the button (Hover):"
+msgstr "Button-Schriftfarbe beim Überfahren des Buttons (Hover):"
+
+#: add_shortcode_to_tec.php:437
+msgid "Rounded corners (values from 0 - 30):"
+msgstr "Abgerundete Ecken (Werte von 0-30):"
+
+#: add_shortcode_to_tec.php:443
+msgid "All links as buttons:"
+msgstr "Alle Links als Buttons:"
+
+#: add_shortcode_to_tec.php:449
+msgid "Font for Copyright:"
+msgstr "Schriftzug für Copyright:"
+
+#: add_shortcode_to_tec.php:450
+msgid "italic"
+msgstr "kursiv"
+
+#: add_shortcode_to_tec.php:451
+msgid "bold"
+msgstr "fett"
+
+#: add_shortcode_to_tec.php:452
+msgid "normal"
+msgstr "normal"
+
+#: add_shortcode_to_tec.php:456
+msgid "Horizontal line above the block:"
+msgstr "Horizontale Linie über dem Block:"
+
+#: add_shortcode_to_tec.php:461
+msgid "Horizontal line below the block:"
+msgstr "Horizontale Linie unterhalb des Blocks:"
+
+#. Plugin Name of the plugin/theme
+msgid "Add infos to the events calendar"
+msgstr "Add infos to the events calendar"
+
+#. Plugin URI of the plugin/theme
+msgid "https://haurand.com/plugins/add_infos_tec"
+msgstr "https://haurand.com/plugins/add_infos_tec"
+
+#. Description of the plugin/theme
+msgid "provides a shortcode block to single events (TEC)"
+msgstr ""
+"stellt einen Shortcodeblock für einzelne Ereignisse zur Verfügung (TEC)"
+
+#. Author of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://haurand.com"
+msgstr "https://haurand.com"
+
+#~ msgid ""
+#~ "First Dashboard-Widget for \"Add infos to the events calendar\" - "
+#~ "Plugin :-)"
+#~ msgstr ""
+#~ "Erstes Dashboard-Widget für \"Add infos to the events calendar\" - "
+#~ "Plugin :-)"
