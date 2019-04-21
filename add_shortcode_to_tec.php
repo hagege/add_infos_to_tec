@@ -28,8 +28,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-// Load language files - currently still switched off
-/*
+// Load language files
+
 function meine_textdomain_laden() {
 	load_plugin_textdomain(
 	'add_infos_to_tec',
@@ -38,7 +38,7 @@ function meine_textdomain_laden() {
 	);
 }
 add_action('plugins_loaded','meine_textdomain_laden');
-*/
+
 
 
 // $retrieved_nonce = $_REQUEST['_wpnonce'];
