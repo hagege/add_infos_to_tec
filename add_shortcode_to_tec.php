@@ -3,7 +3,7 @@
  * Plugin Name: Add infos to the events calendar
  * Description: provides a shortcode block to single events (TEC)
  * Version:     0.5
- * Author:      https://haurand.com
+ * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
  * Text Domain: add_infos_to_tec
@@ -85,7 +85,7 @@ function fs_style_fuss_plugin_scripts() {
 add_action( 'wp_enqueue_scripts', 'fs_style_fuss_plugin_scripts' );
 
 /*----------------------------------------------------------------*/
-// Start: get the color settings from style_fuss.css
+// End: get the color settings from style_fuss.css
 // for the design of the buttons
 /*----------------------------------------------------------------*/
 
@@ -161,8 +161,9 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Events with category
 		//
-		if ($veranstaltungen != 'Achtung') {
-	    if ( $werte['vl'] != 'nein' ) {
+
+		//
+    if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {
 	        /* Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood"). */
 	        $vergleichswert = $werte['vl'];
@@ -179,11 +180,6 @@ function fs_beitrags_fuss_pi($atts) {
 	      }
 				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. __( 'More Events', 'add_infos_to_tec' ) . $vergleichswert . '</a></p>';
 			}
-		else {
-			// URL is incorrect !
-			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz">' . $veranstaltungen . '</p>';
-		}
-	}
 	//
 	// Internal link (can also be an external link)
 	//
@@ -199,6 +195,7 @@ function fs_beitrags_fuss_pi($atts) {
 	return $fs_ausgabe;
 }
 add_shortcode('fuss', 'fs_beitrags_fuss_pi');
+
 
 
 
@@ -403,9 +400,7 @@ add_action(
 
 					<!-- Pfad -->
 	        <tr valign="top">
-					<!--
-										<th scope="row">Path e.g. Categories to "The Events Calendar" (e.g. http://beispielseite.de/events/category/):</th>
-					-->
+					<!-- here I want to check if a folder existsin further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>
 
 	        <td><input type="text" name="fs_option_pfad" size=50 value="<?php echo esc_url_raw( get_option('fs_option_pfad') ); ?>" /></td>

@@ -3,7 +3,7 @@
  * Plugin Name: Add infos to the events calendar
  * Description: provides a shortcode block to single events (TEC)
  * Version:     0.5
- * Author:      https://haurand.com
+ * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
  * Text Domain: add_infos_to_tec
