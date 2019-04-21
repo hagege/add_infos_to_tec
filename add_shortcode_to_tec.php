@@ -61,11 +61,11 @@ function fs_style_fuss_plugin_scripts() {
 		wp_enqueue_style( 'custom_style',  $script);
 
 		// Variables for button design
-		$button_hintergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_hintergrundfarbe_button]') );
-		$button_vordergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_vordergrundfarbe_button]') );
-		$button_hover_hintergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]') );
-		$button_hover_vordergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]') );
-		$button_rund = esc_attr( get_option('add_infos_to_tec_settings[fs_runder_button]') );
+		$button_hintergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_hintergrundfarbe_button']) );
+		$button_vordergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_vordergrundfarbe_button']) );
+		$button_hover_hintergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_hover_hintergrundfarbe_button']) );
+		$button_hover_vordergrund = esc_attr( get_option(add_infos_to_tec_settings['fs_hover_vordergrundfarbe_button']) );
+		$button_rund = esc_attr( get_option(add_infos_to_tec_settings['fs_runder_button']) );
 
 		$custom_css= "
 			a.fuss_button-beitrag {
@@ -114,8 +114,8 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Output line above //
 		//
-		$fs_l_o = esc_attr(get_option('add_infos_to_tec_settings[fs_linie_oben ]'));
-		if (esc_attr(get_option('add_infos_to_tec_settings[fs_linie_oben]')) == '1') {
+		$fs_l_o = esc_attr(get_option(add_infos_to_tec_settings['fs_linie_oben']));
+		if (esc_attr(get_option(add_infos_to_tec_settings['fs_linie_oben'])) == '1') {
 			  // echo 'Linie oben: ' . var_dump($l_o); //
 				$fs_ausgabe = $fs_ausgabe . '<hr>';
 				// echo 'Ausgabe: ' . var_dump($fs_ausgabe); //
@@ -124,13 +124,13 @@ function fs_beitrags_fuss_pi($atts) {
 		// linking
 		//
 		// Get path from the settings: //
-		$veranstaltungen = esc_url_raw( get_option('add_infos_to_tec_settings[fs_option_pfad]') );
+		$veranstaltungen = esc_url_raw( get_option(add_infos_to_tec_settings['fs_option_pfad']) );
 		// Save file path
 		// Categories used by TEC
     $kategorien = cliff_get_events_taxonomies();
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
-			if (esc_attr(get_option('add_infos_to_tec_settings[fs_alle_buttons]')) == 1){
+			if (esc_attr(get_option(add_infos_to_tec_settings['fs_alle_buttons'])) == 1){
 				// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
 				/* Example for language file:*/
 			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'add_infos_to_tec' ) . '</a></p><br>';
@@ -141,7 +141,7 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// font
 		//
-		$fs_schriftart_kennzeichen =  esc_attr(get_option('add_infos_to_tec_settings[fs_schriftart]'));
+		$fs_schriftart_kennzeichen =  esc_attr(get_option(add_infos_to_tec_settings['fs_schriftart']));
 		$fs_schriftart_ein = '';
 		$fs_schriftart_aus = '';
 		if ($fs_schriftart_kennzeichen == 1) {
@@ -189,7 +189,7 @@ function fs_beitrags_fuss_pi($atts) {
 	//
 	// Output line below //
 	//
-	if (esc_attr(get_option('add_infos_to_tec_settings[fs_linie_unten]')) == 1) {
+	if (esc_attr(get_option(add_infos_to_tec_settings['fs_linie_unten'])) == 1) {
 			$fs_ausgabe = $fs_ausgabe . '<hr>';
 	}
 	return $fs_ausgabe;
@@ -351,16 +351,7 @@ add_action(
 
 	function register_add_infos_to_tec_settings() {
 		//register our settings
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_option_pfad]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_hintergrundfarbe_button]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_vordergrundfarbe_button]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_schriftart]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_linie_oben]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_linie_unten]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_alle_buttons]' );
-		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_runder_button]' );
+		register_setting( 'add_infos_to_tec_settings-group', 'add_infos_to_tec_settings' );
 	}
 
 	function add_infos_to_tec_settings_page() {
@@ -370,8 +361,8 @@ add_action(
 	<hr>
 
 	<form method="post" action="options.php">
-	    <?php settings_fields( 'event-shortcode-settings-group' ); ?>
-	    <?php do_settings_sections( 'event-shortcode-settings-group' );
+	    <?php settings_fields( 'add_infos_to_tec_settings-group' ); ?>
+	    <?php do_settings_sections( 'add_infos_to_tec_settings-group' );
 			// Check that user has proper security level
 			if ( !current_user_can( 'manage_options' ) ){
 				 wp_die( __('You do not have permissions to perform this action', 'ps_feld') );
@@ -379,7 +370,7 @@ add_action(
 
 
 			// Optionen setzen, falls die Optionen noch nicht existieren
-			if ( get_option('add_infos_to_tec_settings[fs_option_pfad]') == false ) {
+			if (empty( get_option('add_infos_to_tec_settings'))) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 					echo 'hier bin ich';
 			    $deprecated = null;
