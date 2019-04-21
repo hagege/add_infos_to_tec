@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: provides a shortcode block to single events (TEC)
- * Version:     0.5
+ * Version:     0.5.1
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -61,11 +61,11 @@ function fs_style_fuss_plugin_scripts() {
 		wp_enqueue_style( 'custom_style',  $script);
 
 		// Variables for button design
-		$button_hintergrund = esc_attr( get_option('fs_hintergrundfarbe_button') );
-		$button_vordergrund = esc_attr( get_option('fs_vordergrundfarbe_button') );
-		$button_hover_hintergrund = esc_attr( get_option('fs_hover_hintergrundfarbe_button') );
-		$button_hover_vordergrund = esc_attr( get_option('fs_hover_vordergrundfarbe_button') );
-		$button_rund = esc_attr( get_option('fs_runder_button') );
+		$button_hintergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_hintergrundfarbe_button]') );
+		$button_vordergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_vordergrundfarbe_button]') );
+		$button_hover_hintergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]') );
+		$button_hover_vordergrund = esc_attr( get_option('add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]') );
+		$button_rund = esc_attr( get_option('add_infos_to_tec_settings[fs_runder_button]') );
 
 		$custom_css= "
 			a.fuss_button-beitrag {
@@ -114,8 +114,8 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Output line above //
 		//
-		$fs_l_o = esc_attr(get_option('fs_linie_oben '));
-		if (esc_attr(get_option('fs_linie_oben ')) == '1') {
+		$fs_l_o = esc_attr(get_option('add_infos_to_tec_settings[fs_linie_oben ]'));
+		if (esc_attr(get_option('add_infos_to_tec_settings[fs_linie_oben]')) == '1') {
 			  // echo 'Linie oben: ' . var_dump($l_o); //
 				$fs_ausgabe = $fs_ausgabe . '<hr>';
 				// echo 'Ausgabe: ' . var_dump($fs_ausgabe); //
@@ -124,13 +124,13 @@ function fs_beitrags_fuss_pi($atts) {
 		// linking
 		//
 		// Get path from the settings: //
-		$veranstaltungen = esc_url_raw( get_option('fs_option_pfad') );
+		$veranstaltungen = esc_url_raw( get_option('add_infos_to_tec_settings[fs_option_pfad]') );
 		// Save file path
 		// Categories used by TEC
     $kategorien = cliff_get_events_taxonomies();
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
-			if (esc_attr(get_option('fs_alle_buttons')) == 1){
+			if (esc_attr(get_option('add_infos_to_tec_settings[fs_alle_buttons]')) == 1){
 				// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
 				/* Example for language file:*/
 			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'add_infos_to_tec' ) . '</a></p><br>';
@@ -141,7 +141,7 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// font
 		//
-		$fs_schriftart_kennzeichen =  esc_attr(get_option('fs_schriftart'));
+		$fs_schriftart_kennzeichen =  esc_attr(get_option('add_infos_to_tec_settings[fs_schriftart]'));
 		$fs_schriftart_ein = '';
 		$fs_schriftart_aus = '';
 		if ($fs_schriftart_kennzeichen == 1) {
@@ -189,7 +189,7 @@ function fs_beitrags_fuss_pi($atts) {
 	//
 	// Output line below //
 	//
-	if (esc_attr(get_option('fs_linie_unten')) == 1) {
+	if (esc_attr(get_option('add_infos_to_tec_settings[fs_linie_unten]')) == 1) {
 			$fs_ausgabe = $fs_ausgabe . '<hr>';
 	}
 	return $fs_ausgabe;
@@ -351,16 +351,16 @@ add_action(
 
 	function register_add_infos_to_tec_settings() {
 		//register our settings
-		register_setting( 'event-shortcode-settings-group', 'fs_option_pfad' );
-		register_setting( 'event-shortcode-settings-group', 'fs_hintergrundfarbe_button' );
-		register_setting( 'event-shortcode-settings-group', 'fs_vordergrundfarbe_button' );
-		register_setting( 'event-shortcode-settings-group', 'fs_hover_hintergrundfarbe_button' );
-		register_setting( 'event-shortcode-settings-group', 'fs_hover_vordergrundfarbe_button' );
-		register_setting( 'event-shortcode-settings-group', 'fs_schriftart' );
-		register_setting( 'event-shortcode-settings-group', 'fs_linie_oben' );
-		register_setting( 'event-shortcode-settings-group', 'fs_linie_unten' );
-		register_setting( 'event-shortcode-settings-group', 'fs_alle_buttons' );
-		register_setting( 'event-shortcode-settings-group', 'fs_runder_button' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_option_pfad]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_hintergrundfarbe_button]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_vordergrundfarbe_button]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_schriftart]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_linie_oben]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_linie_unten]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_alle_buttons]' );
+		register_setting( 'event-shortcode-settings-group', 'add_infos_to_tec_settings[fs_runder_button]' );
 	}
 
 	function add_infos_to_tec_settings_page() {
@@ -379,20 +379,23 @@ add_action(
 
 
 			// Optionen setzen, falls die Optionen noch nicht existieren
-			if ( get_option('fs_option_pfad') == false ) {
+			if ( get_option('add_infos_to_tec_settings[fs_option_pfad]') == false ) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 			    $deprecated = null;
 			    $autoload = 'no';
-			    add_option( 'fs_option_pfad', 'http://beispielseite.de/events/category/', $deprecated, $autoload );
-					add_option( 'fs_hintergrundfarbe_button', '#77BCC7', $deprecated, $autoload );
-					add_option( 'fs_vordergrundfarbe_button', '#ffffff', $deprecated, $autoload );
-					add_option( 'fs_hover_hintergrundfarbe_button', '#F9B81E', $deprecated, $autoload );
-					add_option( 'fs_hover_vordergrundfarbe_button', '#ffffff', $deprecated, $autoload );
-					add_option( 'fs_runder_button', '5', $deprecated, $autoload );
-					add_option( 'fs_alle_buttons', '0', $deprecated, $autoload );
-					add_option( 'fs_schriftart', '1', $deprecated, $autoload );
-					add_option( 'fs_linie_oben', '1', $deprecated, $autoload );
-					add_option( 'fs_linie_unten', '0', $deprecated, $autoload );
+					$add_infos_to_tec_options = array(
+							'fs_option_pfad' => 'http://beispielseite.de/events/category/',
+							'fs_hintergrundfarbe_button' => '#77BCC7',
+							'fs_vordergrundfarbe_button' => '#ffffff',
+							'fs_hover_hintergrundfarbe_button' => '#F9B81E',
+							'fs_hover_vordergrundfarbe_button' => '#ffffff',
+							'fs_runder_button' => '5',
+							'fs_alle_buttons' => '0',
+							'fs_schriftart' => '1',
+							'fs_linie_oben' => '1',
+							'fs_linie_unten' => '0'
+						)
+					add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
 			}
 			?>
 	    <table class="form-table">
@@ -406,58 +409,58 @@ add_action(
 					<!-- here I want to check if a folder existsin further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>
 
-	        <td><input type="text" name="fs_option_pfad" size=50 value="<?php echo esc_url_raw( get_option('fs_option_pfad') ); ?>" /></td>
+	        <td><input type="text" name="fs_option_pfad" size=50 value="<?php echo esc_url_raw( get_option('add_infos_to_tec_settings[fs_option_pfad]') ); ?>" /></td>
 	        </tr>
 
 					<!-- Buttons -->
 	        <tr valign="top">
 					<th scope="row"><?php echo __( 'Button - Background color:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_hintergrundfarbe_button') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_hintergrundfarbe_button]') ); ?>" class="color" /></td>
 	        </tr>
 
 
 	        <tr valign="top">
 	        <th scope="row"><?php echo __( 'Button - font color:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_vordergrundfarbe_button') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_vordergrundfarbe_button]') ); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Button - Background color when driving over the button (Hover):', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_hover_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_hover_hintergrundfarbe_button') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_hover_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]') ); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Button - font color when driving over the button (Hover):', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_hover_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('fs_hover_vordergrundfarbe_button') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_hover_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]') ); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
 					<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'add_infos_to_tec' ); ?></th>
-					<td><input type="number" min="0" max="30" step="1" name="fs_runder_button" size=2 value="<?php echo esc_attr( get_option('fs_runder_button') ); ?>" /></td>
+					<td><input type="number" min="0" max="30" step="1" name="fs_runder_button" size=2 value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_runder_button]') ); ?>" /></td>
 					</tr>
 
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'All links as buttons:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="fs_alle_buttons" value='1' <?php checked(get_option('fs_alle_buttons'), 1); ?> />
+	        <td><input type="checkbox" name="fs_alle_buttons" value='1' <?php checked(get_option('add_infos_to_tec_settings[fs_alle_buttons]'), 1); ?> />
 	        </tr>
 
 					<!-- Diverses -->
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Font for Copyright:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('fs_schriftart'), true); ?>><?php echo __( 'italic', 'add_infos_to_tec' ); ?>
-					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('fs_schriftart'), true); ?>><?php echo __( 'bold', 'add_infos_to_tec' ); ?>
-					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, get_option('fs_schriftart'), true); ?>><?php echo __( 'normal', 'add_infos_to_tec' ); ?></td>
+	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('add_infos_to_tec_settings[fs_schriftart]'), true); ?>><?php echo __( 'italic', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('add_infos_to_tec_settings[fs_schriftart]'), true); ?>><?php echo __( 'bold', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, get_option('add_infos_to_tec_settings[fs_schriftart]'), true); ?>><?php echo __( 'normal', 'add_infos_to_tec' ); ?></td>
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="fs_linie_oben" value='1' <?php checked(get_option('fs_linie_oben'), 1); ?> />
+	        <td><input type="checkbox" name="fs_linie_oben" value='1' <?php checked(get_option('add_infos_to_tec_settings[fs_linie_oben]'), 1); ?> />
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="fs_linie_unten" value='1' <?php checked(get_option('fs_linie_unten'), 1); ?> />
+	        <td><input type="checkbox" name="fs_linie_unten" value='1' <?php checked(get_option('add_infos_to_tec_settings[fs_linie_unten]'), 1); ?> />
 	        </tr>
 
 	    </table>
