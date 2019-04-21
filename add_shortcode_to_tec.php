@@ -394,9 +394,15 @@ add_action(
 							'fs_schriftart' => '1',
 							'fs_linie_oben' => '1',
 							'fs_linie_unten' => '0'
-						)
+						);
 					add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
 			}
+			else
+			{
+					$add_infos_to_tec_options = get_option('add_infos_to_tec_settings');
+			}
+
+
 			?>
 	    <table class="form-table">
 				<?php
@@ -409,62 +415,63 @@ add_action(
 					<!-- here I want to check if a folder existsin further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>
 
-	        <td><input type="text" name="fs_option_pfad" size=50 value="<?php echo esc_url_raw( get_option('add_infos_to_tec_settings[fs_option_pfad]') ); ?>" /></td>
+	        <td><input type="text" name="fs_option_pfad" size=50 value="<?php echo esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']); ?>" /></td>
 	        </tr>
 
 					<!-- Buttons -->
 	        <tr valign="top">
 					<th scope="row"><?php echo __( 'Button - Background color:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_hintergrundfarbe_button]') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_hintergrundfarbe_button" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 
 	        <tr valign="top">
 	        <th scope="row"><?php echo __( 'Button - font color:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_vordergrundfarbe_button]') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_vordergrundfarbe_button" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Button - Background color when driving over the button (Hover):', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_hover_hintergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_hover_hintergrundfarbe_button" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Button - font color when driving over the button (Hover):', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="text" name="fs_hover_vordergrundfarbe_button" value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]') ); ?>" class="color" /></td>
+	        <td><input type="text" name="fs_hover_vordergrundfarbe_button" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
 					<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'add_infos_to_tec' ); ?></th>
-					<td><input type="number" min="0" max="30" step="1" name="fs_runder_button" size=2 value="<?php echo esc_attr( get_option('add_infos_to_tec_settings[fs_runder_button]') ); ?>" /></td>
+					<td><input type="number" min="0" max="30" step="1" name="fs_runder_button" size=2 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_runder_button']); ?>" /></td>
 					</tr>
 
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'All links as buttons:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="fs_alle_buttons" value='1' <?php checked(get_option('add_infos_to_tec_settings[fs_alle_buttons]'), 1); ?> />
+	        <td><input type="checkbox" name="fs_alle_buttons" value='1' <?php checked($add_infos_to_tec_options['fs_alle_buttons'], 1); ?> />
 	        </tr>
 
 					<!-- Diverses -->
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Font for Copyright:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, get_option('add_infos_to_tec_settings[fs_schriftart]'), true); ?>><?php echo __( 'italic', 'add_infos_to_tec' ); ?>
-					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, get_option('add_infos_to_tec_settings[fs_schriftart]'), true); ?>><?php echo __( 'bold', 'add_infos_to_tec' ); ?>
-					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, get_option('add_infos_to_tec_settings[fs_schriftart]'), true); ?>><?php echo __( 'normal', 'add_infos_to_tec' ); ?></td>
+	        <td><input type="radio" name="fs_schriftart" value="1" <?php checked(1, $add_infos_to_tec_options['fs_schriftart'], true); ?>><?php echo __( 'italic', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="fs_schriftart" value="2" <?php checked(2, $add_infos_to_tec_options['fs_schriftart'], true); ?>><?php echo __( 'bold', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="fs_schriftart" value="3" <?php checked(3, $add_infos_to_tec_options['fs_schriftart'], true); ?>><?php echo __( 'normal', 'add_infos_to_tec' ); ?></td>
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="fs_linie_oben" value='1' <?php checked(get_option('add_infos_to_tec_settings[fs_linie_oben]'), 1); ?> />
+	        <td><input type="checkbox" name="fs_linie_oben" value='1' <?php checked($add_infos_to_tec_options['fs_linie_oben'], 1); ?> />
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="fs_linie_unten" value='1' <?php checked(get_option('add_infos_to_tec_settings[fs_linie_unten]'), 1); ?> />
+	        <td><input type="checkbox" name="fs_linie_unten" value='1' <?php checked($add_infos_to_tec_options['fs_linie_unten'], 1); ?> />
 	        </tr>
 
 	    </table>
 			<?php
+			update_option('add_infos_to_tec_settings', $add_infos_to_tec_options);
 			submit_button();
 			// Überprüfung klappt noch nicht - fehlerhafte Ausführung
 			/*
