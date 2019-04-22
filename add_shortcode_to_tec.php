@@ -475,8 +475,7 @@ add_action(
 
 	    </table>
 			<?php
-			// update_option('add_infos_to_tec_settings', $add_infos_to_tec_options);
-			@submit_button();
+			submit_button();
 			// Überprüfung klappt noch nicht - fehlerhafte Ausführung
 			/*
 			if ( ! empty( $_POST ) &&  check_admin_referer(  'add_infos_to_tec_formular', 'ps_feld' ) ) {
