@@ -49,6 +49,7 @@ No, if the plugin is deleted, the shortcode remains in the posts and events. In 
 = Where can I find the path to the categories of The Events Calendar ?
 Select "Events" -> "Event Categories" from the menu. You will then see the categories on the right. Move the cursor to "View" of a category and copy the URL e.g. with CTRL C. Then you will get e.g. the following URL: http://beispielseite.de/events/category/lesungen/
 Then copy the URL in the settings of "Add Infos to the events calendar" into the field with the path, but without the category (lesungen), so that you get the following URL for the example: http://localhost/leer/events/category/
+If there is enough interest, I have planned in a next version to have the URL read out automatically.
 
 == Screenshots ==
 1. All options in the settings
