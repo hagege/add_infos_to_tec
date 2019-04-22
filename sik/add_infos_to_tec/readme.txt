@@ -46,6 +46,10 @@ Basically yes, but it cannot be checked automatically whether the selected categ
 = Are the shortcodes deleted when the plugin is deleted ?
 No, if the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
 
+= Where can I find the path to the categories of The Events Calendar ?
+Select "Events" -> "Event Categories" from the menu. You will then see the categories on the right. Move the cursor to "View" of a category and copy the URL e.g. with CTRL C. Then you will get e.g. the following URL: http://beispielseite.de/events/category/lesungen/
+Then copy the URL in the settings of "Add Infos to the events calendar" into the field with the path, but without the category (lesungen), so that you get the following URL for the example: http://localhost/leer/events/category/
+
 == Screenshots ==
 1. All options in the settings
 2. Use in a single event (backend)
