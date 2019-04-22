@@ -398,7 +398,7 @@ add_action(
 				 wp_die( __('You do not have permissions to perform this action') );
 			}
 			// absichern (nonce) //
-			$nonce_field = wp_nonce_field('add_infos_to_tec_formular', 'ait_tec');
+			$nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
 			echo $ps_feld . 'nonce: ' . $nonce_field;
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
