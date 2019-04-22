@@ -325,25 +325,14 @@ add_action(
 		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
-		// check nonce - not ready
-		/*
-		if ( ! isset( $_POST['name_of_nonce_field'] ) || ! wp_verify_nonce( $_POST['ps_feld'], 'add_infos_to_tec_formular' )
-		) {
-   		print 'Sorry, your nonce did not verify.';
-   		exit;
-		} else {
-			print 'Anything ok.';
-		}
-		*/
-		// if ( ! empty( $_POST ) &&  check_admin_referer(  'add_infos_to_tec_formular', 'ps_feld' ) ) {
-		// 		echo  'Fehler !!!';
-		// }
-
 }
 
 	// Settings in the Plugin List
 	function plugin_settings_link( $links ) {
 		$settings_link = '<a href="options-general.php?page=add_infos_to_tec_settings_page">'	. __( 'Settings' ) . '</a>';
+		if (check_admin_referer( 'plugin_settings_link', 'ait_tec' )){
+			echo 'Anything ok.';
+		};
 		array_push( $links, $settings_link );
 		return $links;
 	}
@@ -374,6 +363,7 @@ add_action(
 
 	function add_infos_to_tec_settings_page() {
 		// stimmt noch nicht:
+		// check_admin_referer( 'add_infos_to_tec_settings_page', 'ait_tec' );
 		// check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld');
 		/*
 		if (check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld')){
@@ -408,7 +398,7 @@ add_action(
 				 wp_die( __('You do not have permissions to perform this action') );
 			}
 			// absichern (nonce) //
-			$nonce_field = wp_nonce_field('add_infos_to_tec_formular', $ps_feld);
+			$nonce_field = wp_nonce_field('add_infos_to_tec_formular', 'ait_tec');
 			echo $ps_feld . 'nonce: ' . $nonce_field;
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
