@@ -379,8 +379,12 @@ add_action(
 	<hr>
 
 	<form method="post" action="options.php">
-	    <?php settings_fields( 'add_infos_to_tec_settings-group' ); ?>
-	    <?php do_settings_sections( 'add_infos_to_tec_settings-group' );
+	    <?php
+			// absichern (nonce) //
+			wp_nonce_field('add_infos_to_tec_formular', 'ps_feld');
+			// echo $_POST['ps_feld'];
+			settings_fields( 'add_infos_to_tec_settings-group' );
+	    do_settings_sections( 'add_infos_to_tec_settings-group' );
 			// Check that user has proper security level
 			if ( !current_user_can( 'manage_options' ) ){
 				 wp_die( __('You do not have permissions to perform this action', 'ps_feld') );
@@ -409,11 +413,6 @@ add_action(
 			$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 			?>
 	    <table class="form-table">
-				<?php
-					// absichern (nonce) //
-					wp_nonce_field('add_infos_to_tec_formular', 'ps_feld');
-					// echo $_POST['ps_feld'];
-				?>
 					<!-- Pfad -->
 	        <tr valign="top">
 					<!-- here I want to check if a folder exists in further versions of plugin -->
