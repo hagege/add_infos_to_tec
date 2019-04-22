@@ -393,7 +393,6 @@ add_action(
 	    do_settings_sections( 'add_infos_to_tec_settings-group' );
 			// get plugin options from the database
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-			$ps_feld = $add_infos_to_tec_options['fs_hintergrundfarbe_button'];
 			// Check that user has proper security level
 			if ( !current_user_can( 'manage_options' ) ){
 				 wp_die( __('You do not have permissions to perform this action') );
