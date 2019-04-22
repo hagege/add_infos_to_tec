@@ -374,6 +374,7 @@ add_action(
 
 	function add_infos_to_tec_settings_page() {
 		// stimmt noch nicht:
+		// check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld');
 		/*
 		if (check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld')){
 				print 'Anything ok.';

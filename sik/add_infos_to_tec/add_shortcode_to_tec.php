@@ -373,20 +373,42 @@ add_action(
 
 
 	function add_infos_to_tec_settings_page() {
+		// stimmt noch nicht:
+		/*
+		if (check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld')){
+				print 'Anything ok.';
+		}
+		*/
+		// process form data, e.g. update fields
+		// you can use it in a IF statement if you want, not mandatory because there is not "false" return, only true or die().
+		/*
+		if ( isset( $_POST['ps_feld'] ) && wp_verify_nonce( $_POST['ps_feld'], 'add_infos_to_tec_formular' )
+		) {
+			print 'Sorry, your nonce did not verify.';
+			exit;
+		} else {
+			print 'Anything ok.';
+		}
+		*/
 	?>
 	<div class="wrap">
 	<h1>Add Infos to TEC</h1>
 	<hr>
 
 	<form method="post" action="options.php">
-	    <?php settings_fields( 'add_infos_to_tec_settings-group' ); ?>
-	    <?php do_settings_sections( 'add_infos_to_tec_settings-group' );
-			// Check that user has proper security level
-			if ( !current_user_can( 'manage_options' ) ){
-				 wp_die( __('You do not have permissions to perform this action', 'ps_feld') );
-			}
+	    <?php
+			settings_fields( 'add_infos_to_tec_settings-group' );
+	    do_settings_sections( 'add_infos_to_tec_settings-group' );
 			// get plugin options from the database
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
+			$ps_feld = $add_infos_to_tec_options['fs_hintergrundfarbe_button'];
+			// Check that user has proper security level
+			if ( !current_user_can( 'manage_options' ) ){
+				 wp_die( __('You do not have permissions to perform this action') );
+			}
+			// absichern (nonce) //
+			$nonce_field = wp_nonce_field('add_infos_to_tec_formular', $ps_feld);
+			echo $ps_feld . 'nonce: ' . $nonce_field;
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
@@ -409,11 +431,6 @@ add_action(
 			$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 			?>
 	    <table class="form-table">
-				<?php
-					// absichern (nonce) //
-					wp_nonce_field('add_infos_to_tec_formular', 'ps_feld');
-					// echo $_POST['ps_feld'];
-				?>
 					<!-- Pfad -->
 	        <tr valign="top">
 					<!-- here I want to check if a folder exists in further versions of plugin -->
@@ -475,20 +492,7 @@ add_action(
 
 	    </table>
 			<?php
-			// update_option('add_infos_to_tec_settings', $add_infos_to_tec_options);
-			@submit_button();
-			// Überprüfung klappt noch nicht - fehlerhafte Ausführung
-			/*
-			if ( ! empty( $_POST ) &&  check_admin_referer(  'add_infos_to_tec_formular', 'ps_feld' ) ) {
-   				submit_button();
-				} else {
-					submit_button();
-					echo  'Fehler !!!';
-				}
-			*/
-			// check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld');
-			// process form data, e.g. update fields
-			// you can use it in a IF statement if you want, not mandatory because there is not "false" return, only true or die().
+			submit_button();
  		 ?>
 			</form>
 	</div>
