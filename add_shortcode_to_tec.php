@@ -389,7 +389,16 @@ add_action(
 						);
 					add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
 			}
-
+			// workaround to prevent the item from not being created and create a notice
+			if (empty( $add_infos_to_tec_options['fs_alle_buttons'])) {
+				 $add_infos_to_tec_options['fs_alle_buttons']=0;
+			}
+			if (empty( $add_infos_to_tec_options['fs_linie_oben'])) {
+				 $add_infos_to_tec_options['fs_linie_oben']=0;
+			}
+			if (empty( $add_infos_to_tec_options['fs_linie_unten'])) {
+				 $add_infos_to_tec_options['fs_linie_unten']=0;
+			}
 			?>
 	    <table class="form-table">
 				<?php
@@ -435,7 +444,7 @@ add_action(
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'All links as buttons:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php checked($add_infos_to_tec_options['fs_alle_buttons'], 1); ?> />
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php checked($add_infos_to_tec_options['fs_alle_buttons'], 1, true); ?> />
 	        </tr>
 
 					<!-- Diverses -->
@@ -448,12 +457,12 @@ add_action(
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_oben'], 1); ?> />
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_oben'], 1, true); ?> />
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_unten'], 1); ?> />
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_unten'], 1, true); ?> />
 	        </tr>
 
 	    </table>

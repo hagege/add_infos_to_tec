@@ -25,4 +25,10 @@ if ( get_option('add_infos_to_tec_settings['fs_option_pfad']') == false ) {
 
 // Zeile 64 ff.:
 $button_hintergrund = esc_attr( get_option('add_infos_to_tec_settings['fs_hintergrundfarbe_button']') );
+
+
+
+<td><input type="text" name="fs_option_pfad" size=50 value="<?php echo esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']); ?>" /></td>
+</tr>
+
 ?>
