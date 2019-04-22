@@ -318,6 +318,7 @@ add_action(
 
 	add_action('admin_menu', 'add_infos_to_tec_create_menu');
 
+// create settings
 	function add_infos_to_tec_create_menu() {
 
 		//create new top-level menu: add_menu_page
@@ -327,7 +328,7 @@ add_action(
 		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
 }
 
-	// Settings in the Plugin List
+// Settings in the Plugin List
 	function plugin_settings_link( $links ) {
 		$settings_link = '<a href="options-general.php?page=add_infos_to_tec_settings_page">'	. __( 'Settings' ) . '</a>';
 		if (check_admin_referer( 'plugin_settings_link', 'ait_tec' )){
@@ -340,13 +341,13 @@ add_action(
 		'plugin_action_links_' . plugin_basename( __FILE__ ),	'plugin_settings_link'
 	);
 
+//register our settings
 	function register_add_infos_to_tec_settings() {
-		//register our settings
 		register_setting( 'add_infos_to_tec_settings-group', 'add_infos_to_tec_settings' );
 	}
 
 
-	// workaround to prevent the item from not being created (checked) and create a notice
+// workaround to prevent the item from not being created (checked) and create a notice
 	function ait_test_array($ait_options) {
 		if (empty( $ait_options['fs_alle_buttons'])) {
 			 $ait_options['fs_alle_buttons'] = 0;
@@ -360,7 +361,7 @@ add_action(
 		return $ait_options;
 	}
 
-
+// page with settings
 	function add_infos_to_tec_settings_page() {
 		// stimmt noch nicht:
 		// check_admin_referer( 'add_infos_to_tec_settings_page', 'ait_tec' );
@@ -399,7 +400,7 @@ add_action(
 			}
 			// absichern (nonce) //
 			$nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
-			echo $ps_feld . 'nonce: ' . $nonce_field;
+			// echo $ps_feld . 'nonce: ' . $nonce_field;
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
@@ -422,7 +423,7 @@ add_action(
 			$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 			?>
 	    <table class="form-table">
-					<!-- Pfad -->
+					<!-- path-->
 	        <tr valign="top">
 					<!-- here I want to check if a folder exists in further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>
