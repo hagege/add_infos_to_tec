@@ -115,6 +115,7 @@ function fs_beitrags_fuss_pi($atts) {
 		// Output line above //
 		//
 		$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
+		$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 		$fs_l_o = esc_attr($add_infos_to_tec_options['fs_linie_oben']);
 		if (esc_attr($add_infos_to_tec_options['fs_linie_oben']) == '1') {
 			  // echo 'Linie oben: ' . var_dump($l_o); //
@@ -355,6 +356,22 @@ add_action(
 		register_setting( 'add_infos_to_tec_settings-group', 'add_infos_to_tec_settings' );
 	}
 
+
+	// workaround to prevent the item from not being created (checked) and create a notice
+	function ait_test_array($ait_options) {
+		if (empty( $ait_options['fs_alle_buttons'])) {
+			 $ait_options['fs_alle_buttons'] = 0;
+		}
+		if (empty( $ait_options['fs_linie_oben'])) {
+			 $ait_options['fs_linie_oben'] = 0;
+		}
+		if (empty( $ait_options['fs_linie_unten'])) {
+			 $ait_options['fs_linie_unten'] = 0;
+		}
+		return $ait_options;
+	}
+
+
 	function add_infos_to_tec_settings_page() {
 	?>
 	<div class="wrap">
@@ -389,16 +406,7 @@ add_action(
 						);
 					add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
 			}
-			// workaround to prevent the item from not being created and create a notice
-			if (empty( $add_infos_to_tec_options['fs_alle_buttons'])) {
-				 $add_infos_to_tec_options['fs_alle_buttons']=0;
-			}
-			if (empty( $add_infos_to_tec_options['fs_linie_oben'])) {
-				 $add_infos_to_tec_options['fs_linie_oben']=0;
-			}
-			if (empty( $add_infos_to_tec_options['fs_linie_unten'])) {
-				 $add_infos_to_tec_options['fs_linie_unten']=0;
-			}
+			$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 			?>
 	    <table class="form-table">
 				<?php
