@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired when the plugin is uninstalled.
  *
@@ -19,9 +18,10 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://github.com/afragen/the-events-calendar-category-colors
+ * @link       https://haurand.com/
+ * @since      0.51
  *
- * @package    Fragen\Category_Colors\Main
+ * @package    add_infos_to_tec
  */
 
 // If uninstall not called from WordPress, then exit.
@@ -30,13 +30,4 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // Optionen wieder löschen
-delete_option( 'fs_option_pfad' );
-delete_option( 'fs_hintergrundfarbe_button' );
-delete_option( 'fs_vordergrundfarbe_button' );
-delete_option( 'fs_hover_hintergrundfarbe_button' );
-delete_option( 'fs_hover_vordergrundfarbe_button' );
-delete_option( 'fs_runder_button', '5' );
-delete_option( 'fs_alle_buttons', '0' );
-delete_option( 'fs_schriftart', '1' );
-delete_option( 'fs_linie_oben', '1' );
-delete_option( 'fs_linie_unten', '0' );
+// delete_option( 'add_infos_to_tec_settings' );

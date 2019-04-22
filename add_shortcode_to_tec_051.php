@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: provides a shortcode block to single events (TEC)
- * Version:     0.6
+ * Version:     0.5.1
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -29,6 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 // Load language files
+
 function meine_textdomain_laden() {
 	load_plugin_textdomain(
 	'add_infos_to_tec',
@@ -40,6 +41,15 @@ add_action('plugins_loaded','meine_textdomain_laden');
 
 
 
+// $retrieved_nonce = $_REQUEST['_wpnonce'];
+// if (!wp_verify_nonce($retrieved_nonce, 'delete_my_action' ) ) die( 'Failed security check' );
+// variables
+	$ausgabe = '
+<!--
+Plugin: Add Infos to TEC
+Plugin URI: https://haurand.com
+-->
+';
 /*----------------------------------------------------------------*/
 // Start: get the color settings from style_fuss.css
 // for the design of the buttons
@@ -70,7 +80,7 @@ function fs_style_fuss_plugin_scripts() {
 				text-decoration: none!important;
 			}";
 		wp_add_inline_style( 'custom_style', $custom_css );
-    // not used: wp_enqueue_script( 'style_fuss' ); //
+    // wp_enqueue_script( 'style_fuss' ); //
 }
 add_action( 'wp_enqueue_scripts', 'fs_style_fuss_plugin_scripts' );
 
@@ -105,7 +115,6 @@ function fs_beitrags_fuss_pi($atts) {
 		// Output line above //
 		//
 		$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-		// workaround to prevent the item from not being created (checked) and create a notice, if WP_DEBUG is true:
 		$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 		$fs_l_o = esc_attr($add_infos_to_tec_options['fs_linie_oben']);
 		if (esc_attr($add_infos_to_tec_options['fs_linie_oben']) == '1') {
@@ -124,6 +133,8 @@ function fs_beitrags_fuss_pi($atts) {
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
 			if (esc_attr($add_infos_to_tec_options['fs_alle_buttons']) == 1){
+				// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">Read more</a></p><br>';
+				/* Example for language file:*/
 			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'add_infos_to_tec' ) . '</a></p><br>';
 			} else {
       	$fs_ausgabe = $fs_ausgabe . '<a href=' . $werte['link'] . ' target="_blank">'. __( 'Read more', 'add_infos_to_tec' ) . '</a><br>';
@@ -259,7 +270,7 @@ foreach( $shortcodes as $shortcode ) add_shortcode( $shortcode, 'fs_beitrags_fus
 // -------------------------------------------------- //
 // Start: Add new Dashboard-Widget
 // -------------------------------------------------- //
-/* not used yet
+/* not used yet */
 function fs_add_dashboard_widget() {
   wp_add_dashboard_widget(
     'mein_dashboard_widget',
@@ -279,7 +290,7 @@ add_action(
     'add_infos_to_tec'
     );
   }
-*/
+
 
 // -------------------------------------------------- //
 // Ende: Add new Dashboard-Widget
@@ -288,6 +299,8 @@ add_action(
 // -------------------------------------------------- //
 // Start: admin area
 // -------------------------------------------------- //
+
+	// create custom plugin settings menu
 
 // WP Color Picker
 	add_action( 'admin_enqueue_scripts', 'farbwaehler_laden' );
@@ -305,7 +318,7 @@ add_action(
 
 	add_action('admin_menu', 'add_infos_to_tec_create_menu');
 
-// create custom plugin settings menu
+// create settings
 	function add_infos_to_tec_create_menu() {
 
 		//create new top-level menu: add_menu_page
@@ -318,7 +331,9 @@ add_action(
 // Settings in the Plugin List
 	function plugin_settings_link( $links ) {
 		$settings_link = '<a href="options-general.php?page=add_infos_to_tec_settings_page">'	. __( 'Settings' ) . '</a>';
-		// check_admin_referer( 'plugin_settings_link', 'ait_tec' );
+		if (check_admin_referer( 'plugin_settings_link', 'ait_tec' )){
+			echo 'Anything ok.';
+		};
 		array_push( $links, $settings_link );
 		return $links;
 	}
@@ -332,7 +347,7 @@ add_action(
 	}
 
 
-// workaround to prevent the item from not being created (option checked()) - would create a notice, if WP_DEBUG is true
+// workaround to prevent the item from not being created (checked) and create a notice
 	function ait_test_array($ait_options) {
 		if (empty( $ait_options['fs_alle_buttons'])) {
 			 $ait_options['fs_alle_buttons'] = 0;
@@ -348,6 +363,25 @@ add_action(
 
 // page with settings
 	function add_infos_to_tec_settings_page() {
+		// stimmt noch nicht:
+		// check_admin_referer( 'add_infos_to_tec_settings_page', 'ait_tec' );
+		// check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld');
+		/*
+		if (check_admin_referer( 'add_infos_to_tec_formular', 'ps_feld')){
+				print 'Anything ok.';
+		}
+		*/
+		// process form data, e.g. update fields
+		// you can use it in a IF statement if you want, not mandatory because there is not "false" return, only true or die().
+		/*
+		if ( isset( $_POST['ps_feld'] ) && wp_verify_nonce( $_POST['ps_feld'], 'add_infos_to_tec_formular' )
+		) {
+			print 'Sorry, your nonce did not verify.';
+			exit;
+		} else {
+			print 'Anything ok.';
+		}
+		*/
 	?>
 	<div class="wrap">
 	<h1>Add Infos to TEC</h1>
@@ -365,6 +399,7 @@ add_action(
 			}
 			// absichern (nonce) //
 			$nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
+			// echo $ps_feld . 'nonce: ' . $nonce_field;
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
@@ -425,25 +460,25 @@ add_action(
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'All links as buttons:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_alle_buttons'], 1, true)); ?> />
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php checked($add_infos_to_tec_options['fs_alle_buttons'], 1, true); ?> />
 	        </tr>
 
 					<!-- Diverses -->
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Font for Copyright:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="1" <?php echo esc_attr(checked(1, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'italic', 'add_infos_to_tec' ); ?>
-					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="2" <?php echo esc_attr(checked(2, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'bold', 'add_infos_to_tec' ); ?>
-					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="3" <?php echo esc_attr(checked(3, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'normal', 'add_infos_to_tec' ); ?></td>
+	        <td><input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="1" <?php checked(1, $add_infos_to_tec_options['fs_schriftart'], true); ?>><?php echo __( 'italic', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="2" <?php checked(2, $add_infos_to_tec_options['fs_schriftart'], true); ?>><?php echo __( 'bold', 'add_infos_to_tec' ); ?>
+					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="3" <?php checked(3, $add_infos_to_tec_options['fs_schriftart'], true); ?>><?php echo __( 'normal', 'add_infos_to_tec' ); ?></td>
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_oben'], 1, true)); ?> />
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_oben'], 1, true); ?> />
 	        </tr>
 
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add_infos_to_tec' ); ?></th>
-	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_unten'], 1, true)); ?> />
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php checked($add_infos_to_tec_options['fs_linie_unten'], 1, true); ?> />
 	        </tr>
 
 	    </table>
