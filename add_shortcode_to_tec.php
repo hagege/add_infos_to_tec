@@ -27,6 +27,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if (isset($_POST['btnsubmit'])) {
+	$my_nonce = $_POST['add_infos_to_tec_formular'];
+	echo $my_nonce;
+	if (! isset( $_POST['add_infos_to_tec_formular'] )|| ! wp_verify_nonce( $_POST['add_infos_to_tec_formular'], 'kommt_von_A' )	) {
+			print 'Sorry, Nonce ist nicht korrekt.';
+			exit;
+		}
+	/*
+	if (check_admin_referer( 'add_infos_to_tec_formular')){
+			$status = 1;
+	}
+	else {
+			$status = 0;
+	}
+	die;
+	*/
+}
 
 // Load language files
 function meine_textdomain_laden() {
@@ -363,8 +380,6 @@ add_action(
 			if ( !current_user_can( 'manage_options' ) ){
 				 wp_die( __('You do not have permissions to perform this action') );
 			}
-			// absichern (nonce) //
-			$nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
@@ -452,8 +467,11 @@ add_action(
 
 	    </table>
 			<?php
-			submit_button();
+			// absichern (nonce) //
+			wp_nonce_field('add_infos_to_tec_formular', 'ait_tec');
+			// submit_button();
  		 ?>
+		 <button type="submit" name="btnsubmit">Submit</button>
 			</form>
 	</div>
 	<?php
