@@ -391,7 +391,7 @@ add_action(
 	        <tr valign="top">
 					<?php
 					$tec_path = esc_url( tribe_get_listview_link() );
-					echo __( 'That would be the path to TEC events: ', 'add_infos_to_tec' ) . $tec_path; 
+					echo __( 'That would be the path to TEC events: ', 'add_infos_to_tec' ) . $tec_path;
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>
