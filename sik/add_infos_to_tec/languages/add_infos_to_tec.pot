@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Add infos to the events calendar\n"
-"POT-Creation-Date: 2019-04-23 05:03+0200\n"
+"POT-Creation-Date: 2019-04-23 05:19+0200\n"
 "PO-Revision-Date: 2019-04-21 08:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -111,7 +111,10 @@ msgid "https://haurand.com/plugins/add_infos_tec"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "provides a shortcode block to single events (TEC)"
+msgid ""
+"Provides a shortcode block (image copyright, button with link to events "
+"with a special category, link to the website of the organizer) to single "
+"events for The Events Calendar Free Plugin (by MODERN TRIBE)"
 msgstr ""
 
 #. Author of the plugin/theme
