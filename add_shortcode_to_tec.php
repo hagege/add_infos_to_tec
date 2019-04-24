@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.62
+ * Version:     0.621
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -307,13 +307,13 @@ add_action(
 
 // create custom plugin settings menu
 	function add_infos_to_tec_create_menu() {
-		// check_admin_referer( 'add_infos_to_tec_create_menu', 'ait_tec' );
-		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
-		//call register settings function
-		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
-}
+			// check_admin_referer( 'add_infos_to_tec_create_menu', 'ait_tec' );
+			//create new top-level menu: add_menu_page
+			add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+			add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
+			//call register settings function
+			add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
+		}
 
 // Settings in the Plugin List
 	function plugin_settings_link( $links ) {
