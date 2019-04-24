@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.61
+ * Version:     0.621
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -307,13 +307,13 @@ add_action(
 
 // create custom plugin settings menu
 	function add_infos_to_tec_create_menu() {
-
-		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
-		//call register settings function
-		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
-}
+			// check_admin_referer( 'add_infos_to_tec_create_menu', 'ait_tec' );
+			//create new top-level menu: add_menu_page
+			add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+			add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
+			//call register settings function
+			add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
+		}
 
 // Settings in the Plugin List
 	function plugin_settings_link( $links ) {
@@ -348,13 +348,52 @@ add_action(
 
 // page with settings
 	function add_infos_to_tec_settings_page() {
+		global $add_infos_to_tec_options;
+		//Formularwerte aus Datenbank laden und Variablen zuweisen
+
+		$action = ( isset( $_POST['action'] ) ) ? $_POST['action'] : false;
+
+		if ( ! isset( $_POST['AIT_SENT'] ) ) {
+			$add_infos_to_tec_options  = get_option( 'add_infos_to_tec_settings' );
+		}
+		// Speichern der im Adminbereich - Optionen eingestellten Werte
+		if ( isset( $_POST['AIT_SENT'] ) ) {
+				// $wert = check_admin_referer( $action );
+				echo 'hier bin ich';
+				// $_POST['mi_article_count'] kann so nicht funktionieren (Array)
+	  	    // if (check_admin_referer( $action ) &&	is_admin() &&	isset( $_POST['mi_article_count'] ))
+					if (check_admin_referer( $action )) {
+						echo 'hier bin ich';
+							/*
+							&&
+						strlen( $_POST['mi_article_count'] ) != 0 &&
+						is_numeric( $_POST['mi_article_count'] ) &&
+						isset( $_POST['mi_excerpt_length'] ) &&
+						strlen( $_POST['mi_excerpt_length'] ) != 0 &&
+						is_numeric( $_POST['mi_excerpt_length'] ) &&
+						isset( $_POST['mi_allow_refer'] )
+						*/
+
+				// updaten - muss noch gemacht werden - Array !!!
+				/*
+				update_option( 'mi_article_count', (int) $_POST['mi_article_count'] );
+				update_option( 'mi_excerpt_length', (int) $_POST['mi_excerpt_length'] );
+				update_option( 'mi_allow_refer', (int) $_POST['mi_allow_refer'] );
+				*/
+			}
+		}
+
+		$action = 'save_options_' . wp_rand( 1000, 9999 );
+		// $location = '';
 	?>
 	<div class="wrap">
 	<h1>Add Infos to TEC</h1>
 	<hr>
 
-	<form method="post" action="options.php">
-	    <?php
+	<form name="form1" method="post" action="<?php $location ?>">
+		  <input type="hidden" name="action" value="<?php echo $action; ?>">
+			<?php
+			echo $action . 'location:' . $location;
 			settings_fields( 'add_infos_to_tec_settings-group' );
 	    do_settings_sections( 'add_infos_to_tec_settings-group' );
 			// get plugin options from the database
@@ -363,8 +402,6 @@ add_action(
 			if ( !current_user_can( 'manage_options' ) ){
 				 wp_die( __('You do not have permissions to perform this action') );
 			}
-			// absichern (nonce) //
-			$nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
@@ -452,8 +489,11 @@ add_action(
 
 	    </table>
 			<?php
-			submit_button();
+			// absichern (nonce) //
+			// wp_nonce_field('add_infos_to_tec_create_menu', 'ait_tec');
+			// submit_button();
  		 ?>
+		 	<input type="submit" name="AIT_SENT" value="Speichern"/>
 			</form>
 	</div>
 	<?php

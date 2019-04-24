@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.61
+ * Version:     0.63
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -307,13 +307,13 @@ add_action(
 
 // create custom plugin settings menu
 	function add_infos_to_tec_create_menu() {
-
-		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
-		//call register settings function
-		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
-}
+			// check_admin_referer( 'add_infos_to_tec_create_menu', 'ait_tec' );
+			//create new top-level menu: add_menu_page
+			add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+			add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
+			//call register settings function
+			add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
+		}
 
 // Settings in the Plugin List
 	function plugin_settings_link( $links ) {
@@ -352,19 +352,27 @@ add_action(
 	<div class="wrap">
 	<h1>Add Infos to TEC</h1>
 	<hr>
+	<?php if( isset($_GET['settings-updated']) ) { ?>
+		<div id="message" class="updated">
+			<p><strong><?php _e('Settings have been saved.') ?></strong></p>
+		</div>
+	<?php } ?>
 
-	<form method="post" action="options.php">
-	    <?php
+	<form method="post" action="options-general.php?page=add_infos_to_tec_settings_page">
+			<!-- options.php -->
+			<!-- nötig ?? -->
+			<input type="hidden" name="action" value="save_ait_tec_options" />
+			<!-- Adding security through hidden referrer field -->
+			<?php wp_nonce_field( 'add_infos_to_tec_create_menu', 'ait_tec' );
+
 			settings_fields( 'add_infos_to_tec_settings-group' );
 	    do_settings_sections( 'add_infos_to_tec_settings-group' );
 			// get plugin options from the database
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
 			// Check that user has proper security level
 			if ( !current_user_can( 'manage_options' ) ){
-				 wp_die( __('You do not have permissions to perform this action') );
+				 wp_die( __('You do not have permissions to perform this action', 'ait_tec') );
 			}
-			// absichern (nonce) //
-			$nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
@@ -452,13 +460,52 @@ add_action(
 
 	    </table>
 			<?php
-			submit_button();
+			// absichern (nonce) //
+			wp_nonce_field('add_infos_to_tec_create_menu', 'ait_tec');
+			// submit_button();
  		 ?>
+		  <input type="submit" value="Submit" class="button-primary"/>
 			</form>
 	</div>
 	<?php
 	// -------------------------------------------------- //
 	// End: admin area
 	// -------------------------------------------------- //
+
 }
+
+// das wird lediglich aufgefrufen:
+function ait_tec_admin_init() {
+add_action( 'admin_post_save_ait_tec_options', 'process_ait_tec_options' );
+}
+add_action( 'admin_init', 'ait_tec_admin_init' );
+
+
+// hier werden die Einträge in der DB upgedatet:
+function process_ait_tec_options() {
+	// Check that user has proper security level
+	echo 'hier bin ich';
+	if ( !current_user_can( 'manage_options' ) ){
+		wp_die( __('You do not have permissions to perform this action', 'ait_tec') );
+	}
+	// Check that nonce field created in configuration form is present
+	if ( ! empty( $_POST ) && check_admin_referer( 'add_infos_to_tec_create_menu', 'ait_tec' ) ) {
+		// Retrieve original plugin options array
+		$ait_options = get_site_option( 'add_infos_to_tec_settings' );
+		$ait_options = ait_test_array($ait_options);
+		// hier ist noch nicht berücksichtigt, dass das ein Array ist:
+		$option_name = 'fs_option_pfad';
+		if ( isset( $_POST[$option_name] ) ) {
+			$ait_options[$option_name] = ($_POST[$option_name]);
+		}
+		// Store updated options array to database
+		// update_option( 'add_infos_to_tec_settings', $ait_options );
+
+		// Redirect the page to the configuration form that was processed
+		// wp_redirect( add_query_arg( 'page', 'azc-tc&settings-updated', admin_url( 'admin.php' ) ) );
+		exit;
+	}
+}
+add_action('add_infos_to_tec_settings_page', 'process_ait_tec_options');
+
 ?>

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.63
+ * Version:     0.621
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -354,8 +354,6 @@ add_action(
 	<hr>
 
 	<form method="post" action="options.php">
-			<!-- nötig ?? -->
-			<input type="hidden" name="action" value="save_ait_tec_options" />
 	    <?php
 			settings_fields( 'add_infos_to_tec_settings-group' );
 	    do_settings_sections( 'add_infos_to_tec_settings-group' );
@@ -363,7 +361,7 @@ add_action(
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
 			// Check that user has proper security level
 			if ( !current_user_can( 'manage_options' ) ){
-				 wp_die( __('You do not have permissions to perform this action', 'ait_tec') );
+				 wp_die( __('You do not have permissions to perform this action') );
 			}
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
@@ -454,49 +452,13 @@ add_action(
 			<?php
 			// absichern (nonce) //
 			wp_nonce_field('add_infos_to_tec_create_menu', 'ait_tec');
-			// submit_button();
+			submit_button();
  		 ?>
-		  <input type="submit" value="Submit" class="button-primary"/>
 			</form>
 	</div>
 	<?php
 	// -------------------------------------------------- //
 	// End: admin area
 	// -------------------------------------------------- //
-
 }
-
-// das wird lediglich aufgefrufen:
-function ait_tec_admin_init() {
-add_action( 'admin_post_save_ait_tec_options', 'process_ait_tec_options' );
-}
-add_action( 'admin_init', 'ait_tec_admin_init' );
-
-
-// hier werden die Einträge in der DB upgedatet:
-function process_ait_tec_options() {
-	// Check that user has proper security level
-	echo 'hier bin ich';
-	if ( !current_user_can( 'manage_options' ) ){
-		wp_die( __('You do not have permissions to perform this action', 'ait_tec') );
-	}
-	// Check that nonce field created in configuration form is present
-	if ( ! empty( $_POST ) && check_admin_referer( 'add_infos_to_tec_create_menu', 'ait_tec' ) ) {
-		// Retrieve original plugin options array
-		$ait_options = get_site_option( 'add_infos_to_tec_settings' );
-		$ait_options = ait_test_array($ait_options);
-		// hier ist noch nicht berücksichtigt, dass das ein Array ist:
-		$option_name = 'fs_option_pfad';
-		if ( isset( $_POST[$option_name] ) ) {
-			$ait_options[$option_name] = ($_POST[$option_name]);
-		}
-		// Store updated options array to database
-		// update_option( 'add_infos_to_tec_settings', $ait_options );
-
-		// Redirect the page to the configuration form that was processed
-		// wp_redirect( add_query_arg( 'page', 'azc-tc&settings-updated', admin_url( 'admin.php' ) ) );
-		exit;
-	}
-}
-
 ?>
