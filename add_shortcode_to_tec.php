@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.61
+ * Version:     0.62
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -27,23 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if (isset($_POST['btnsubmit'])) {
-	$my_nonce = $_POST['add_infos_to_tec_formular'];
-	echo $my_nonce;
-	if (! isset( $_POST['add_infos_to_tec_formular'] )|| ! wp_verify_nonce( $_POST['add_infos_to_tec_formular'], 'kommt_von_A' )	) {
-			print 'Sorry, Nonce ist nicht korrekt.';
-			exit;
-		}
-	/*
-	if (check_admin_referer( 'add_infos_to_tec_formular')){
-			$status = 1;
-	}
-	else {
-			$status = 0;
-	}
-	die;
-	*/
-}
 
 // Load language files
 function meine_textdomain_laden() {
@@ -324,7 +307,7 @@ add_action(
 
 // create custom plugin settings menu
 	function add_infos_to_tec_create_menu() {
-
+		// check_admin_referer( 'add_infos_to_tec_create_menu', 'ait_tec' );
 		//create new top-level menu: add_menu_page
 		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
 		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
@@ -468,10 +451,9 @@ add_action(
 	    </table>
 			<?php
 			// absichern (nonce) //
-			wp_nonce_field('add_infos_to_tec_formular', 'ait_tec');
-			// submit_button();
+			wp_nonce_field('add_infos_to_tec_create_menu', 'ait_tec');
+			submit_button();
  		 ?>
-		 <button type="submit" name="btnsubmit">Submit</button>
 			</form>
 	</div>
 	<?php
