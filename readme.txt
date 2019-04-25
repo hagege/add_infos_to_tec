@@ -1,6 +1,6 @@
 === Add infos to the events calendar ===
 Contributors: hage
-Tags: The Events Calendar, shortcodes, info, button, lightweight
+Tags: The Events Calendar, shortcodes, info, button, lightweight plugin
 Donate link: https://haurand.com/plugins
 Requires at least: 4.0
 Tested up to: 5.1.1
