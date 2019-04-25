@@ -346,7 +346,7 @@ add_action(
 		return $ait_options;
 	}
 
-
+// Determine path for events and suggest as path if necessary
 function path_for_tec(){
 	$ait_path = esc_url( tribe_get_listview_link() );
 	// delete last "/":
