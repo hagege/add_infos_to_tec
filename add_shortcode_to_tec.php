@@ -403,14 +403,8 @@ function path_for_tec(){
 	        <tr valign="top">
 					<?php
 					$tec_path= path_for_tec();
-					/*
-					$tec_path = esc_url( tribe_get_listview_link() );
-					// var_dump(strlen($tec_path));
-					// delete last "/":
-					$tec_path = substr($tec_path,0,strlen($tec_path)-1);
-					// show the path without the kind of view:
-					$tec_path = substr($tec_path,0,strrpos($tec_path, '/')) . "/";
-					*/
+					$category_list = wp_get_object_terms( get_the_ID(), 'tribe_events_cat' );
+					echo 'Name für Kategorie: ' . var_dump($category_list);
 					echo __( 'That would be the path to TEC events: ', 'add_infos_to_tec' ) . $tec_path;
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
