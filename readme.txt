@@ -1,6 +1,6 @@
 === Add infos to the events calendar ===
 Contributors: hage
-Tags: The Events Calendar, shortcodes, info, button
+Tags: The Events Calendar, shortcodes, info, button, lightweight
 Donate link: https://haurand.com/plugins
 Requires at least: 4.0
 Tested up to: 5.1.1
@@ -9,10 +9,10 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-“Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
+Lightweight Plugin “Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
 
 == Description ==
-“Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
+Lightweight Plugin “Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
 
 As a rule, the short code (description and examples see below) should be one of the last lines of a single event. However, the short code can also be used in principle in posts.
 
