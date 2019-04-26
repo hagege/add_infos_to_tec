@@ -22,10 +22,14 @@ Automatically displays the text from "Caption" (see Media, image details) in ita
 
 Attention: if the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
 
+Shortcode - Options:
+link = link e.g. to organizer
+vl   = list of events
+il   = e.g. used for internal link
+
 Call Examples:
 [fuss link="https://externer_link.de" vl=""] --> always shows picture credits, then more info with the link to external website and at vl="" the link to "more events".
 [fuss vl=""] --> always shows picture credits, but no link to external website and at vl="" the link to "more events".
-vl = list of events
 [fuss] --> always shows picture credits, but no link to external website.
 [fuss link="https://externer_link.de" vl="nature"] --> always shows picture credits, then more info with the link to external website and at vl="Nature" the link to "more events: nature".
 (of course the category must exist in The Events Calendar (this is checked by a function). If the category does not exist, the event list will be shown.)
