@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.61
+ * Version:     0.66
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -346,6 +346,21 @@ add_action(
 		return $ait_options;
 	}
 
+// Determine path for events and suggest as path if necessary
+function path_for_tec(){
+	$ait_path = esc_url( tribe_get_listview_link() );
+	// delete last "/":
+	$ait_path = substr($ait_path,0,strlen($ait_path)-1);
+	$tec_category = __( 'category', 'the-events-calendar' );
+	$tec_category = strtolower($tec_category);
+	// show the path without the kind of view:
+	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
+	// echo $ait_path .'<br>';
+	return $ait_path;
+}
+
+
+
 // page with settings
 	function add_infos_to_tec_settings_page() {
 	?>
@@ -370,8 +385,9 @@ add_action(
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 			    $deprecated = null;
 			    $autoload = 'no';
+					$tec_path = path_for_tec();
 					$add_infos_to_tec_options = array(
-							'fs_option_pfad' => 'http://beispielseite.de/events/category/',
+							'fs_option_pfad' => $tec_path,
 							'fs_hintergrundfarbe_button' => '#77BCC7',
 							'fs_vordergrundfarbe_button' => '#000000',
 							'fs_hover_hintergrundfarbe_button' => '#F9B81E',
@@ -390,8 +406,9 @@ add_action(
 					<!-- path-->
 	        <tr valign="top">
 					<?php
-					$tec_path = esc_url( tribe_get_listview_link() );
-					echo __( 'That would be the path to TEC events: ', 'add_infos_to_tec' ) . $tec_path;
+					$tec_path= path_for_tec();
+					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . $tec_path . '<br />';
+					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add_infos_to_tec' );
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>
@@ -460,5 +477,29 @@ add_action(
 	// -------------------------------------------------- //
 	// End: admin area
 	// -------------------------------------------------- //
+
+
+	// das würde benötigt - von hier
+	/* klappt noch nicht
+	function ait_hsh_plugin_scripts($plugin_array)
+	{
+	    //enqueue TinyMCE plugin script with its ID.
+	    $plugin_array["ait_btn_cmd"] =  plugins_url('assets/js',__FILE__) . '/index.js';
+	    return $plugin_array;
+	}
+
+	add_filter("mce_external_plugins", "ait_hsh_plugin_scripts");
+
+	function ait_hsh_register_buttons_editor($buttons)
+	{
+	    //register buttons with their id.
+	    array_push($buttons, "yellow");
+	    return $buttons;
+	}
+
+	add_filter("mce_buttons", "ait_hsh_register_buttons_editor");
+	*/
+	// das würde benötigt - bis hier
+
 }
 ?>

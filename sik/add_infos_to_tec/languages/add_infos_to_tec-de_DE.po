@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Add infos to the events calendar\n"
-"POT-Creation-Date: 2019-04-23 07:40+0200\n"
-"PO-Revision-Date: 2019-04-23 07:41+0200\n"
+"POT-Creation-Date: 2019-04-26 07:41+0200\n"
+"PO-Revision-Date: 2019-04-26 07:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: add_shortcode_to_tec.php\n"
@@ -41,15 +41,31 @@ msgstr "Add Infos to TEC Einstellungen"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: add_shortcode_to_tec.php:364
+#: add_shortcode_to_tec.php:355
+msgid "category"
+msgstr "kategorie"
+
+#: add_shortcode_to_tec.php:376
 msgid "You do not have permissions to perform this action"
 msgstr "Du hast keine Berechtigungen, um diese Aktion auszuführen"
 
-#: add_shortcode_to_tec.php:394
-msgid "That would be the path to TEC events: "
-msgstr "Das wäre der Ordner zu den TEC-Veranstaltungen:"
+#: add_shortcode_to_tec.php:409
+msgid "This could be the path to the categories of The Events Calendar (TEC): "
+msgstr ""
+"Dies könnte der Pfad zu den Kategorien des Veranstaltungskalenders (TEC) "
+"sein: "
 
-#: add_shortcode_to_tec.php:397
+#: add_shortcode_to_tec.php:410
+msgid ""
+"To be on the safe side, however, you should check this by going to the "
+"relevant event after using the shortcut and checking that the links are "
+"executed correctly."
+msgstr ""
+"Um jedoch auf der sicheren Seite zu sein, solltest du dies überprüfen, indem "
+"du bei der entsprechenden Veranstaltung, bei der du den Shortcode verwendet "
+"hast, prüfst, ob die Links korrekt ausgeführt werden."
+
+#: add_shortcode_to_tec.php:413
 msgid ""
 "Path e.g. categories to The Events Calendar (e.g. http://example.com/events/"
 "category/):"
@@ -57,51 +73,51 @@ msgstr ""
 "Ordner für Kategorien von \"The Events Calendar\" (e.g. http://example.com/"
 "events/category/):"
 
-#: add_shortcode_to_tec.php:404
+#: add_shortcode_to_tec.php:420
 msgid "Button - Background color:"
 msgstr "Button-Hintergrundfarbe:"
 
-#: add_shortcode_to_tec.php:410
+#: add_shortcode_to_tec.php:426
 msgid "Button - font color:"
 msgstr "Button-Schriftfarbe:"
 
-#: add_shortcode_to_tec.php:415
+#: add_shortcode_to_tec.php:431
 msgid "Button - Background color when driving over the button (Hover):"
 msgstr "Button-Hintergrundfarbe beim Überfahren der Taste (Hover):"
 
-#: add_shortcode_to_tec.php:420
+#: add_shortcode_to_tec.php:436
 msgid "Button - font color when driving over the button (Hover):"
 msgstr "Button-Schriftfarbe beim Überfahren des Buttons (Hover):"
 
-#: add_shortcode_to_tec.php:425
+#: add_shortcode_to_tec.php:441
 msgid "Rounded corners (values from 0 - 30):"
 msgstr "Abgerundete Ecken (Werte von 0-30):"
 
-#: add_shortcode_to_tec.php:431
+#: add_shortcode_to_tec.php:447
 msgid "All links as buttons:"
 msgstr "Alle Links als Buttons:"
 
-#: add_shortcode_to_tec.php:437
+#: add_shortcode_to_tec.php:453
 msgid "Font for Copyright:"
 msgstr "Schriftzug für Copyright:"
 
-#: add_shortcode_to_tec.php:438
+#: add_shortcode_to_tec.php:454
 msgid "italic"
 msgstr "kursiv"
 
-#: add_shortcode_to_tec.php:439
+#: add_shortcode_to_tec.php:455
 msgid "bold"
 msgstr "fett"
 
-#: add_shortcode_to_tec.php:440
+#: add_shortcode_to_tec.php:456
 msgid "normal"
 msgstr "normal"
 
-#: add_shortcode_to_tec.php:444
+#: add_shortcode_to_tec.php:460
 msgid "Horizontal line above the block:"
 msgstr "Horizontale Linie über dem Block:"
 
-#: add_shortcode_to_tec.php:449
+#: add_shortcode_to_tec.php:465
 msgid "Horizontal line below the block:"
 msgstr "Horizontale Linie unterhalb des Blocks:"
 
@@ -132,20 +148,6 @@ msgstr "Hans-Gerd Gerhards (haurand.com)"
 msgid "https://haurand.com"
 msgstr "https://haurand.com"
 
-#~ msgid ""
-#~ "Provides a shortcode block (image copyright, button with link to events "
-#~ "with a special category, link to the website of the organizer) to single "
-#~ "events for The Events Calendar Free Plugin (by MODERN TRIBE)"
-#~ msgstr ""
-#~ "Bietet einen Shortcode-Block (Bildrechte, Schaltfläche mit Link zu "
-#~ "Ereignissen mit einer speziellen Kategorie, Link zur Website des "
-#~ "Veranstalters) zu einzelnen Ereignissen für The Events Calendar Free "
-#~ "Plugin (von MODERN TRIBE)"
-
-#~ msgid "provides a shortcode block to single events (TEC)"
-#~ msgstr ""
-#~ "stellt einen Shortcodeblock für einzelne Ereignisse zur Verfügung (TEC)"
-
 #~ msgid "Dashboard-Widget for \"Add infos to the events calendar\" - Plugin"
 #~ msgstr "Dashboard-Widget für \"Add infos to the events calendar\" - Plugin"
 
@@ -154,6 +156,10 @@ msgstr "https://haurand.com"
 #~ msgstr ""
 #~ "Erstes Dashboard-Widget für \"Infos zum Veranstaltungskalender hinzufügen"
 #~ "\" - Plugin"
+
+#~ msgid "provides a shortcode block to single events (TEC)"
+#~ msgstr ""
+#~ "stellt einen Shortcodeblock für einzelne Ereignisse zur Verfügung (TEC)"
 
 #~ msgid ""
 #~ "First Dashboard-Widget for \"Add infos to the events calendar\" - "

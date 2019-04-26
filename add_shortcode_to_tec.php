@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.66
+ * Version:     0.661
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -351,8 +351,11 @@ function path_for_tec(){
 	$ait_path = esc_url( tribe_get_listview_link() );
 	// delete last "/":
 	$ait_path = substr($ait_path,0,strlen($ait_path)-1);
+	$tec_category = __( 'category', 'the-events-calendar' );
+	$tec_category = strtolower($tec_category);
 	// show the path without the kind of view:
-	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . __( 'category', 'the-events-calendar' ) . '/';
+	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
+	// echo $ait_path .'<br>';
 	return $ait_path;
 }
 
@@ -382,8 +385,9 @@ function path_for_tec(){
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 			    $deprecated = null;
 			    $autoload = 'no';
+					$tec_path = path_for_tec();
 					$add_infos_to_tec_options = array(
-							'fs_option_pfad' => path_for_tec(),
+							'fs_option_pfad' => $tec_path,
 							'fs_hintergrundfarbe_button' => '#77BCC7',
 							'fs_vordergrundfarbe_button' => '#000000',
 							'fs_hover_hintergrundfarbe_button' => '#F9B81E',
@@ -403,9 +407,8 @@ function path_for_tec(){
 	        <tr valign="top">
 					<?php
 					$tec_path= path_for_tec();
-					$category_list = wp_get_object_terms( get_the_ID(), 'tribe_events_cat' );
-					// echo 'Name für Kategorie: ' . var_dump($category_list);
-					echo __( 'That would be the path to TEC events: ', 'add_infos_to_tec' ) . $tec_path;
+					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . $tec_path . '<br />';
+					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add_infos_to_tec' );
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>

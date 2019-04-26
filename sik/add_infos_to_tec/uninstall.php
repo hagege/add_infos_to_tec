@@ -30,4 +30,4 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // Optionen wieder löschen
-// delete_option( 'add_infos_to_tec_settings' );
+$delete_ok = delete_option( 'add_infos_to_tec_settings' );
