@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.65
+ * Version:     0.66
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -352,7 +352,7 @@ function path_for_tec(){
 	// delete last "/":
 	$ait_path = substr($ait_path,0,strlen($ait_path)-1);
 	// show the path without the kind of view:
-	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . "/";
+	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . __( 'category', 'the-events-calendar' ) . '/';
 	return $ait_path;
 }
 
@@ -404,7 +404,7 @@ function path_for_tec(){
 					<?php
 					$tec_path= path_for_tec();
 					$category_list = wp_get_object_terms( get_the_ID(), 'tribe_events_cat' );
-					echo 'Name für Kategorie: ' . var_dump($category_list);
+					// echo 'Name für Kategorie: ' . var_dump($category_list);
 					echo __( 'That would be the path to TEC events: ', 'add_infos_to_tec' ) . $tec_path;
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
