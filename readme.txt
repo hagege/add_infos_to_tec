@@ -57,7 +57,7 @@ Select "Events" -> "Event Categories" from the menu. You will then see the categ
 Then copy the URL in the settings of "Add Infos to the events calendar" into the field with the path, but without the category (lesungen), so that you get the following URL for the example: http://localhost/leer/events/category/
 
 = Why did I develop this plugin ?
-It is extremely important to note the copyright notice in the text of photos. I had always done this by copying and pasting the caption from the featured image, but I'd already forgotten it.
+It is extremely important to note the copyright notice of photos in the text (post). I had always done this by copying and pasting the caption from the featured image, but I'd already forgotten it.
 The Shortcodes gets this information automatically from this field. I also wanted to place some additional and more visually appealing buttons. This is now also possible with the plugin (see examples).
 
 == Screenshots ==
