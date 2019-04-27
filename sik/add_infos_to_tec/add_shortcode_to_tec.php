@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.661
+ * Version:     0.673
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -474,32 +474,31 @@ function path_for_tec(){
 			</form>
 	</div>
 	<?php
+}
 	// -------------------------------------------------- //
 	// End: admin area
 	// -------------------------------------------------- //
 
 
-	// das würde benötigt - von hier
-	/* klappt noch nicht
-	function ait_hsh_plugin_scripts($plugin_array)
-	{
-	    //enqueue TinyMCE plugin script with its ID.
-	    $plugin_array["ait_btn_cmd"] =  plugins_url('assets/js',__FILE__) . '/index.js';
-	    return $plugin_array;
+	/* add new ait_button in tinymce */
+
+	add_action( 'admin_init', 'ait_button' );
+
+	function ait_button() {
+	     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
+	          add_filter( 'mce_buttons', 'my_register_tinymce_button' );
+	          add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
+	     }
 	}
 
-	add_filter("mce_external_plugins", "ait_hsh_plugin_scripts");
-
-	function ait_hsh_register_buttons_editor($buttons)
-	{
-	    //register buttons with their id.
-	    array_push($buttons, "yellow");
-	    return $buttons;
+	function my_register_tinymce_button( $buttons ) {
+	     array_push( $buttons, "ait_button");
+	     return $buttons;
 	}
 
-	add_filter("mce_buttons", "ait_hsh_register_buttons_editor");
-	*/
-	// das würde benötigt - bis hier
+	function my_add_tinymce_button( $plugin_array ) {
+	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
+	     return $plugin_array;
+	}
 
-}
 ?>
