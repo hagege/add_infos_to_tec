@@ -474,32 +474,31 @@ function path_for_tec(){
 			</form>
 	</div>
 	<?php
+}
 	// -------------------------------------------------- //
 	// End: admin area
 	// -------------------------------------------------- //
 
 
-	// das würde benötigt - von hier
-	/* klappt noch nicht
-	function ait_hsh_plugin_scripts($plugin_array)
-	{
-	    //enqueue TinyMCE plugin script with its ID.
-	    $plugin_array["ait_btn_cmd"] =  plugins_url('assets/js',__FILE__) . '/index.js';
-	    return $plugin_array;
+	/* add new button */
+
+	add_action( 'admin_init', 'ait_button' );
+
+	function ait_button() {
+	     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
+	          add_filter( 'mce_buttons', 'my_register_tinymce_button' );
+	          add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
+	     }
 	}
 
-	add_filter("mce_external_plugins", "ait_hsh_plugin_scripts");
-
-	function ait_hsh_register_buttons_editor($buttons)
-	{
-	    //register buttons with their id.
-	    array_push($buttons, "yellow");
-	    return $buttons;
+	function my_register_tinymce_button( $buttons ) {
+	     array_push( $buttons, "button_eek");
+	     return $buttons;
 	}
 
-	add_filter("mce_buttons", "ait_hsh_register_buttons_editor");
-	*/
-	// das würde benötigt - bis hier
+	function my_add_tinymce_button( $plugin_array ) {
+	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
+	     return $plugin_array;
+	}
 
-}
 ?>

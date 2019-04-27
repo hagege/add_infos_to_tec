@@ -8,7 +8,7 @@
             ed.addButton("yellow", {
                 title : "Add infos to the events calendar",
                 cmd : "ait_command",
-                image : url + "/event-20.png"
+                image : "images/event-20.png"
             });
 
             //button functionality.
