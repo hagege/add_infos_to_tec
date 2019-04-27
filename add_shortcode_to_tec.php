@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.673
+ * Version:     0.674
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -500,5 +500,29 @@ function path_for_tec(){
 	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
 	     return $plugin_array;
 	}
+
+	/*** Integrate shortcode generator in tinymce editor */
+	function ait_to_tec_add_tc_button() {
+		/*** check user permissions */
+		if ( !current_user_can('edit_posts') && !current_user_can('edit_pages') ) {
+			return;
+		}
+
+		/*** check if WYSIWYG is enabled */
+		if ( get_user_option('rich_editing') == 'true') {
+			add_filter("mce_external_plugins",array($this,"ait_to_tec_tinymce_plugin"));
+			add_filter('mce_buttons',array($this,'ait_to_tec_register_tc_button'));
+		}
+	}
+	function ait_to_tec_tinymce_plugin($plugin_array)
+	{
+		$plugin_array['ait_to_tec_button'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ );
+		return $plugin_array;
+	}
+	function ait_to_tec_register_tc_button($buttons) {
+		 array_push($buttons, "ait_to_tec_button");
+		 return $buttons;
+	}
+
 
 ?>

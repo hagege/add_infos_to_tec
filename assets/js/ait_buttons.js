@@ -1,17 +1,17 @@
 // JavaScript Document
 
 (function() {
-  var ect_cats = JSON.parse(ect_cat_obj.category);
-  var categories = [];
+  // var ait_cats = JSON.parse(ect_cat_obj.category);
+  // var categories = [];
   var ait_http = 'http://';
   var ait_https = 'https://';
   var ait_test_http = '';
 
-
-    for( var cat in ect_cats){
-      categories.push({"text":ect_cats[cat],"value":cat});
+    /*
+    for( var cat in ait_cats){
+      categories.push({"text":ait_cats[cat],"value":cat});
     }
-
+    */
      /* Register the buttons */
      tinymce.PluginManager.add( 'my_button_script', function( ed, url ) {
           ed.addButton( 'ait_button', {
@@ -34,10 +34,11 @@
                                  value:""
                               },
                 							{
-                								type: 'listbox',
+                								type: 'textbox',
                 				        name: 'vl',
-                				        label: 'Event Categories',
-                				        values:categories
+                				        label: 'Event Category',
+                                values: ""
+                				        // values:categories
                 							},
                               {
                 								type: 'textbox',
