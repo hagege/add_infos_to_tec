@@ -6,10 +6,11 @@
           init : function(ed, url) {
                /**
                * Inserts shortcode content
+               image : '../wp-includes/images/smilies/icon_eek.gif',
                */
-               ed.addButton( 'button_eek', {
-                    title : 'AIT-Shortcode',
-                    image : '../wp-includes/images/smilies/icon_eek.gif',
+               ed.addButton( 'ait_button', {
+                    title : 'Add Infos to TEC Shortcode',
+                    image : url + '/icons8-kalender-48.png',
                     onclick : function() {
                          ed.selection.setContent('[fuss]');
                     }
