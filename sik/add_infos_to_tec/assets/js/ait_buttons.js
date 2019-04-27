@@ -1,7 +1,7 @@
 // JavaScript Document
 
 (function() {
-  // var ait_cats = JSON.parse(ect_cat_obj.category);
+  // var ait_cats = JSON.parse(ait_cat_obj.category);
   // var categories = [];
   var ait_http = 'http://';
   var ait_https = 'https://';

@@ -480,49 +480,28 @@ function path_for_tec(){
 	// -------------------------------------------------- //
 
 
-	/* add new ait_button in tinymce */
+	/* Integrate shortcode generator in tinymce editor */
 
 	add_action( 'admin_init', 'ait_button' );
 
 	function ait_button() {
 	     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
-	          add_filter( 'mce_buttons', 'my_register_tinymce_button' );
-	          add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
+				 // check if WYSIWYG is enabled //
+				 if ( get_user_option('rich_editing') == 'true') {
+	          add_filter( 'mce_buttons', 'ait_to_tec_register_tinymce_button' );
+	          add_filter( 'mce_external_plugins', 'ait_to_tec_add_tinymce_button' );
+					}
 	     }
 	}
 
-	function my_register_tinymce_button( $buttons ) {
+	function ait_to_tec_register_tinymce_button( $buttons ) {
 	     array_push( $buttons, "ait_button");
 	     return $buttons;
 	}
 
-	function my_add_tinymce_button( $plugin_array ) {
+	function ait_to_tec_add_tinymce_button( $plugin_array ) {
 	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
 	     return $plugin_array;
 	}
-
-	/*** Integrate shortcode generator in tinymce editor */
-	function ait_to_tec_add_tc_button() {
-		/*** check user permissions */
-		if ( !current_user_can('edit_posts') && !current_user_can('edit_pages') ) {
-			return;
-		}
-
-		/*** check if WYSIWYG is enabled */
-		if ( get_user_option('rich_editing') == 'true') {
-			add_filter("mce_external_plugins",array($this,"ait_to_tec_tinymce_plugin"));
-			add_filter('mce_buttons',array($this,'ait_to_tec_register_tc_button'));
-		}
-	}
-	function ait_to_tec_tinymce_plugin($plugin_array)
-	{
-		$plugin_array['ait_to_tec_button'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ );
-		return $plugin_array;
-	}
-	function ait_to_tec_register_tc_button($buttons) {
-		 array_push($buttons, "ait_to_tec_button");
-		 return $buttons;
-	}
-
 
 ?>
