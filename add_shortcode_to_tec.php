@@ -46,7 +46,7 @@ function ait_scripts() {
 		array( 'wp-i18n' ),
 		'0.0.1');
 	wp_enqueue_script('ait_firstscript');
-	wp_set_script_translations( 'ait_firstscript', 'my-plugin' );
+	wp_set_script_translations( 'ait_firstscript');
 }
 
 
