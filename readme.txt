@@ -16,7 +16,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 The path to the The Events Calendar (TEC) categories is automatically suggested during installation. To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.
 
-As a rule, the short code (description and examples see below) should be one of the last lines of a single event. However, the short code can also be used in principle in posts.
+As a rule, the short code (description and examples see below) should be one of the last lines of a single event. However, the short code can also be used in principle in posts. In this case, you should usually not use the option "vl", because this option refers to events, unless you want to link to a specific category in a contribution on events, for example.
 
 Automatically displays the text from "Caption" (see Media, image details) in italics by default for an event or a post. A copyright notice should be entered in this field.
 
