@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.676
+ * Version:     0.61
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -38,16 +38,6 @@ function meine_textdomain_laden() {
 }
 add_action('plugins_loaded','meine_textdomain_laden');
 
-
-function ait_scripts() {
-	wp_register_script(
-		'ait_firstscript',
-		plugins_url( 'assets/js/ait_buttons.js', __FILE__ ),
-		array( 'wp-i18n' ),
-		'0.0.1');
-	wp_enqueue_script('ait_firstscript');
-	wp_set_script_translations( 'ait_firstscript');
-}
 
 
 /*----------------------------------------------------------------*/
@@ -127,7 +117,7 @@ function fs_beitrags_fuss_pi($atts) {
 		// linking
 		//
 		// Get path from the settings: //
-		$ait_pfad = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
+		$veranstaltungen = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
 		// Save file path
 		// Categories used by TEC
     $kategorien = cliff_get_events_taxonomies();
@@ -162,11 +152,7 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Events with category
 		//
-		/* Evtl. einbauen:
-		if ( $werte['fm'] != 'nein' ) {
-			$ausgabe = $ausgabe . '<br><br><p class="button-absatz"><a class="tribe-events-button-beitrag" href="https://aachen50plus.de/veranstaltungen/kategorie/flohmarkt/">Weitere Flohmärkte</a></p>';
-		}
-		*/
+
 		//
     if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {
@@ -176,7 +162,7 @@ function fs_beitrags_fuss_pi($atts) {
 	        if (in_array($vergleichswert, $kategorien )){
 	          /* Replace special characters */
 	          $werte['vl'] = fs_sonderzeichen ($werte['vl']);
-	          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $werte['vl']);
+	          $veranstaltungen = $veranstaltungen . str_replace(" ", "-", $werte['vl']);
 	          $vergleichswert = ': ' . $vergleichswert . '';
 	          }
 	        else {
@@ -360,21 +346,6 @@ add_action(
 		return $ait_options;
 	}
 
-// Determine path for events and suggest as path if necessary
-function path_for_tec(){
-	$ait_path = esc_url( tribe_get_listview_link() );
-	// delete last "/":
-	$ait_path = substr($ait_path,0,strlen($ait_path)-1);
-	$tec_category = __( 'category', 'the-events-calendar' );
-	$tec_category = strtolower($tec_category);
-	// show the path without the kind of view:
-	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
-	// echo $ait_path .'<br>';
-	return $ait_path;
-}
-
-
-
 // page with settings
 	function add_infos_to_tec_settings_page() {
 	?>
@@ -399,9 +370,8 @@ function path_for_tec(){
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 			    $deprecated = null;
 			    $autoload = 'no';
-					$tec_path = path_for_tec();
 					$add_infos_to_tec_options = array(
-							'fs_option_pfad' => $tec_path,
+							'fs_option_pfad' => 'http://beispielseite.de/events/category/',
 							'fs_hintergrundfarbe_button' => '#77BCC7',
 							'fs_vordergrundfarbe_button' => '#000000',
 							'fs_hover_hintergrundfarbe_button' => '#F9B81E',
@@ -420,9 +390,8 @@ function path_for_tec(){
 					<!-- path-->
 	        <tr valign="top">
 					<?php
-					$tec_path= path_for_tec();
-					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . $tec_path . '<br />';
-					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add_infos_to_tec' );
+					$tec_path = esc_url( tribe_get_listview_link() );
+					echo __( 'That would be the path to TEC events: ', 'add_infos_to_tec' ) . $tec_path;
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add_infos_to_tec' ); ?></th>
@@ -488,35 +457,8 @@ function path_for_tec(){
 			</form>
 	</div>
 	<?php
-}
 	// -------------------------------------------------- //
 	// End: admin area
 	// -------------------------------------------------- //
-
-
-	/* Integrate shortcode generator in tinymce editor */
-
-	add_action( 'admin_init', 'ait_button' );
-
-	function ait_button() {
-	     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
-				 // check if WYSIWYG is enabled //
-				 if ( get_user_option('rich_editing') == 'true') {
-	          add_filter( 'mce_buttons', 'ait_to_tec_register_tinymce_button' );
-	          add_filter( 'mce_external_plugins', 'ait_to_tec_add_tinymce_button' );
-					}
-	     }
-	}
-
-	function ait_to_tec_register_tinymce_button( $buttons ) {
-	     array_push( $buttons, "ait_button");
-	     return $buttons;
-	}
-
-	function ait_to_tec_add_tinymce_button( $plugin_array ) {
-	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
-	     return $plugin_array;
-	}
-
-
+}
 ?>
