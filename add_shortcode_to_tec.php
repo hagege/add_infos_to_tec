@@ -162,9 +162,9 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Events with category
 		//
-		/* Evtl. einbauen:
+		/* Evtl. einbauen: 
 		if ( $werte['fm'] != 'nein' ) {
-			$ausgabe = $ausgabe . '<br><br><p class="button-absatz"><a class="tribe-events-button-beitrag" href="https://aachen50plus.de/veranstaltungen/kategorie/flohmarkt/">Weitere Flohmärkte</a></p>';
+			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . '/flohmarkt target="_blank">'. __( 'More Events: flea markets', 'add_infos_to_tec' ) . '</a></p>';
 		}
 		*/
 		//
