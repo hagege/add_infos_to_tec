@@ -107,6 +107,7 @@ add_action( 'wp_enqueue_scripts', 'fs_style_fuss_plugin_scripts' );
 function fs_beitrags_fuss_pi($atts) {
   	$werte = shortcode_atts( array(
   	  'link' => '',
+			'fm' => 'nein',
       'vl' => 'nein',
       'il' => '',
   	  ), $atts);
@@ -162,11 +163,12 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Events with category
 		//
-		/* Evtl. einbauen: 
+		/* nur intern für aachen50plus.de */
 		if ( $werte['fm'] != 'nein' ) {
-			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . '/flohmarkt target="_blank">'. __( 'More Events: flea markets', 'add_infos_to_tec' ) . '</a></p>';
+			// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">'. __( 'More Events: flea markets', 'add_infos_to_tec' ) . '</a></p>';
+			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">' . 'Weitere Flohmärkte' . '</a></p>';
 		}
-		*/
+
 		//
     if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {
