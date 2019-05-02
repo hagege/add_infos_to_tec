@@ -182,6 +182,8 @@ function fs_beitrags_fuss_pi($atts) {
 	          $vergleichswert = ': ' . $vergleichswert . '';
 	          }
 	        else {
+						// no real category, so it should be the path to all events:
+						$veranstaltungen = esc_url( tribe_get_listview_link() );
 	          $vergleichswert = '';
 	          }
 	      }
