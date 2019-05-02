@@ -176,7 +176,8 @@ function fs_beitrags_fuss_pi($atts) {
 	        $vergleichswert = $werte['vl'];
 	        /* if the comparison value is contained in the array of categories: */
 	        if (in_array($vergleichswert, $kategorien )){
-	          /* Replace special characters */
+	          // Replace special characters //
+						// not yet solved: it should be the slug of the event category, not the name
 	          $werte['vl'] = fs_sonderzeichen ($werte['vl']);
 	          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $werte['vl']);
 	          $vergleichswert = ': ' . $vergleichswert . '';
