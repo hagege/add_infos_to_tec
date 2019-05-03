@@ -13,6 +13,8 @@ Todo:
 
 
 
+
+
 Erledigt:
 1. Da es wegen der Schreibweise zu Problemen kommen kann, sollte der slug durch die Funktion cliff_get_events_taxonomies(), siehe Zeile 226
     übergeben werden
@@ -23,3 +25,6 @@ Erledigt:
       Da gibt es auch Beispiele für Dropdown-Listen, die für die Übergabe bei der Shortcode-Erstellung genutzt werden können
     Beispiel: Wenn slug = "sport" ist, aber die Kategorie "Sport" heißt
     "slug" shon übergeben, aber dann stimmt der Vergleich nicht mehr, d. h. hier müsste das noch zusätzlich umgewandelt werden (z. B. alles in Kleinbuchstaben)
+
+5. Bei Nutzung des Icons sollte bei Leerlassen des Internen Link nicht il="" ausgegeben werden. Auch mal für externen Link prüfen
+    ==> funktioniert einwandfrei, weil das in dem Fall einfach ignoriert wird.
