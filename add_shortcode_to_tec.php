@@ -246,7 +246,9 @@ function cliff_get_events_taxonomies(){
 	if( ! is_wp_error( $events_cats ) && ! empty( $events_cats ) && is_array( $events_cats) ) {
 		$events_cats_names = array();
 		foreach( $events_cats as $key => $value ) {
+			// slug instead of name
 			$events_cats_names[] = $value->slug;
+			// $events_cats_names[] = $value->name; //
 		}
 	}
 	return $events_cats_names;
