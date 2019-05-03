@@ -9,7 +9,7 @@ Todo:
    wird logischerweise der Shortcode nicht automatisch geändert.
    Das könnte z. B. eine Option für eine PRO-VERSION sein.
 
-5. Abhängig vom der URL sollen Einstellungen für aachen50plus.de und aachenerkinder.de aktiviert werden
+5. Abhängig vom der URL sollen Einstellungen für aachen50plus.de und aachenerkinder.de aktiviert werden, evtl. aber auch so drin lassen ohn Prüfung
     Am Anfang:
     $additional_options = false;
     // Wenn der Pfad "aachen" enthält:
