@@ -1,5 +1,16 @@
 Todo:
 
+2. Erweitern des plugins um "ferien" und "kfm" für aachenerkinder.de
+
+3. Shortcode als Gutenberg Block umwandeln, siehe hier:
+   https://www.affordablewebsiteorlando.com/learn-convert-shortcodes-gutenberg-blocks-wordpress-developers/
+
+
+
+
+
+
+Erledigt:
 1. Da es wegen der Schreibweise zu Problemen kommen kann, sollte der slug durch die Funktion cliff_get_events_taxonomies(), siehe Zeile 226
     übergeben werden
     siehe dazu auch https://codex.wordpress.org/Function_Reference/wp_dropdown_categories
@@ -9,8 +20,3 @@ Todo:
       Da gibt es auch Beispiele für Dropdown-Listen, die für die Übergabe bei der Shortcode-Erstellung genutzt werden können
     Beispiel: Wenn slug = "sport" ist, aber die Kategorie "Sport" heißt
     "slug" shon übergeben, aber dann stimmt der Vergleich nicht mehr, d. h. hier müsste das noch zusätzlich umgewandelt werden (z. B. alles in Kleinbuchstaben)
-
-2. Erweitern des plugins um "ferien" und "kfm" für aachenerkinder.de
-
-3. Shortcode als Gutenberg Block umwandeln, siehe hier:
-   https://www.affordablewebsiteorlando.com/learn-convert-shortcodes-gutenberg-blocks-wordpress-developers/
