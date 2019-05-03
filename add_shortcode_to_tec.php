@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.68
+ * Version:     0.681
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -53,9 +53,9 @@ function ait_scripts() {
 // https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
 function searchForId($id, $array) {
    foreach ($array as $key => $val) {
-		 	 echo 'Id: ' . $id . "\n";
+		 	 // echo 'Id: ' . $id . "\n"; //
        if ($val['Kategorie'] === $id) {
-				 	 echo 'Kategorie: ' . $val['Kategorie'] . "\n";
+				 	 // echo 'Kategorie: ' . $val['Kategorie'] . "\n"; //
            return $key;
        }
    }
