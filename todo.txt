@@ -8,6 +8,7 @@ Todo:
       Default: term_id
       Da gibt es auch Beispiele für Dropdown-Listen, die für die Übergabe bei der Shortcode-Erstellung genutzt werden können
     Beispiel: Wenn slug = "sport" ist, aber die Kategorie "Sport" heißt
+    "slug" shon übergeben, aber dann stimmt der Vergleich nicht mehr, d. h. hier müsste das noch zusätzlich umgewandelt werden (z. B. alles in Kleinbuchstaben)
 
 2. Erweitern des plugins um "ferien" und "kfm" für aachenerkinder.de
 
