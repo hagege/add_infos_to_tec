@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.676
+ * Version:     0.681
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -47,6 +47,19 @@ function ait_scripts() {
 		'0.0.1');
 	wp_enqueue_script('ait_firstscript');
 	wp_set_script_translations( 'ait_firstscript');
+}
+
+// Search in an associative, multidimensional array
+// https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
+function searchForId($id, $array) {
+   foreach ($array as $key => $val) {
+		 	 // echo 'Id: ' . $id . "\n"; //
+       if ($val['Kategorie'] === $id) {
+				 	 // echo 'Kategorie: ' . $val['Kategorie'] . "\n"; //
+           return $key;
+       }
+   }
+   return null;
 }
 
 
@@ -107,6 +120,7 @@ add_action( 'wp_enqueue_scripts', 'fs_style_fuss_plugin_scripts' );
 function fs_beitrags_fuss_pi($atts) {
   	$werte = shortcode_atts( array(
   	  'link' => '',
+			'fm' => 'nein',
       'vl' => 'nein',
       'il' => '',
   	  ), $atts);
@@ -127,10 +141,11 @@ function fs_beitrags_fuss_pi($atts) {
 		// linking
 		//
 		// Get path from the settings: //
-		$veranstaltungen = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
+		$ait_pfad = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
 		// Save file path
 		// Categories used by TEC
     $kategorien = cliff_get_events_taxonomies();
+		// var_dump($kategorien); //
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
 			if (esc_attr($add_infos_to_tec_options['fs_alle_buttons']) == 1){
@@ -162,20 +177,35 @@ function fs_beitrags_fuss_pi($atts) {
 		//
 		// Events with category
 		//
+		/* nur intern für aachen50plus.de */
+		if ( $werte['fm'] != 'nein' ) {
+			// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">'. __( 'More Events: flea markets', 'add_infos_to_tec' ) . '</a></p>';
+			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">' . 'Weitere Flohmärkte' . '</a></p>';
+		}
 
 		//
     if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {
 	        /* Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood"). */
 	        $vergleichswert = $werte['vl'];
-	        /* if the comparison value is contained in the array of categories: */
-	        if (in_array($vergleichswert, $kategorien )){
-	          /* Replace special characters */
-	          $werte['vl'] = fs_sonderzeichen ($werte['vl']);
-	          $veranstaltungen = $veranstaltungen . str_replace(" ", "-", $werte['vl']);
+					// Set value for $ait_key to -1, so that you can query later whether the value has changed.
+					$ait_key = -1;
+					// search in array with categories
+					$ait_key = searchForId($vergleichswert, $kategorien);
+					// echo 'Key: ' . $ait_key . "\n"; //
+					// if the comparison value is contained in the array of categories - found, then value is greater -1 //
+	        if ($ait_key > -1 ){
+						// Get the slug out of the associative array.
+						$ait_slug = $kategorien[$ait_key]['Slug']; //
+						// Replace special characters //
+	          $ait_slug = fs_sonderzeichen ($ait_slug);
+	          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $ait_slug); //
+						// show category on button
 	          $vergleichswert = ': ' . $vergleichswert . '';
 	          }
 	        else {
+						// no real category, so it should be the path to all events:
+						$veranstaltungen = esc_url( tribe_get_listview_link() );
 	          $vergleichswert = '';
 	          }
 	      }
@@ -236,7 +266,10 @@ function cliff_get_events_taxonomies(){
 	if( ! is_wp_error( $events_cats ) && ! empty( $events_cats ) && is_array( $events_cats) ) {
 		$events_cats_names = array();
 		foreach( $events_cats as $key => $value ) {
-			$events_cats_names[] = $value->name;
+			// slug instead of name
+			$events_cats_names[] = array ('Slug' => $value->slug,
+																		'Kategorie' => $value->name);
+			// $events_cats_names[] = $value->name; //
 		}
 	}
 	return $events_cats_names;
@@ -417,7 +450,7 @@ function path_for_tec(){
 	        <tr valign="top">
 					<?php
 					$tec_path= path_for_tec();
-					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . $tec_path . '<br />';
+					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
 					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add_infos_to_tec' );
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
