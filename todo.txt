@@ -1,0 +1,15 @@
+Todo:
+
+1. Da es wegen der Schreibweise zu Problemen kommen kann, sollte der slug durch die Funktion cliff_get_events_taxonomies(), siehe Zeile 226
+    übergeben werden
+    siehe dazu auch https://codex.wordpress.org/Function_Reference/wp_dropdown_categories
+      value_field (string) (optional) Term field that should be used to populate the 'value' attribute of the option elements.
+      Accepts any valid term field: 'term_id', 'name', 'slug', 'term_group', 'term_taxonomy_id', 'taxonomy', 'description', 'parent', 'count'.
+      Default: term_id
+      Da gibt es auch Beispiele für Dropdown-Listen, die für die Übergabe bei der Shortcode-Erstellung genutzt werden können
+    Beispiel: Wenn slug = "sport" ist, aber die Kategorie "Sport" heißt
+
+2. Erweitern des plugins um "ferien" und "kfm" für aachenerkinder.de
+
+3. Shortcode als Gutenberg Block umwandeln, siehe hier:
+   https://www.affordablewebsiteorlando.com/learn-convert-shortcodes-gutenberg-blocks-wordpress-developers/

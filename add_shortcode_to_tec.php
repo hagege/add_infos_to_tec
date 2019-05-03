@@ -132,6 +132,7 @@ function fs_beitrags_fuss_pi($atts) {
 		// Save file path
 		// Categories used by TEC
     $kategorien = cliff_get_events_taxonomies();
+		var_dump($kategorien);
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
 			if (esc_attr($add_infos_to_tec_options['fs_alle_buttons']) == 1){
