@@ -5,6 +5,9 @@ Todo:
 3. Shortcode als Gutenberg Block umwandeln, siehe hier:
    https://www.affordablewebsiteorlando.com/learn-convert-shortcodes-gutenberg-blocks-wordpress-developers/
 
+4. Problem: Wenn - aus welchen Gründen auch immer - jemand die Bezeichnung der Kategorie ändert,
+   wird logischerweise der Shortcode nicht automatisch geändert.
+   Das könnte z. B. eine Option für eine PRO-VERSION sein.
 
 
 

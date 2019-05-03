@@ -450,7 +450,7 @@ function path_for_tec(){
 	        <tr valign="top">
 					<?php
 					$tec_path= path_for_tec();
-					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . $tec_path . '<br />';
+					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
 					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add_infos_to_tec' );
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
