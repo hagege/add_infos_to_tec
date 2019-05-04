@@ -34,8 +34,9 @@ Todo:
       }
     }
 
+6. Übersetzungen bei JS-Dateien
 
-
+7. Nonces - siehe hier
 
 
 Erledigt:
