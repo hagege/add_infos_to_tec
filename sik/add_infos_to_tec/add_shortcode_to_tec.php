@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.6821
+ * Version:     0.69
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -29,14 +29,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 // Load language files
-function meine_textdomain_laden() {
+function ait_meine_textdomain_laden() {
 	load_plugin_textdomain(
 	'add_infos_to_tec',
 	false,
 	basename( dirname( __FILE__ ) ) . '/languages'
 	);
 }
-add_action('plugins_loaded','meine_textdomain_laden');
+add_action('plugins_loaded','ait_meine_textdomain_laden');
 
 
 function ait_scripts() {
@@ -51,7 +51,8 @@ function ait_scripts() {
 
 // Search in an associative, multidimensional array
 // https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
-function searchForId($id, $array) {
+// deprecated since 0.682
+function ait_searchForId($id, $array) {
    foreach ($array as $key => $val) {
 		 	 // echo 'Id: ' . $id . "\n"; //
        if ($val['Kategorie'] === $id) {
@@ -68,9 +69,9 @@ function searchForId($id, $array) {
 // for the design of the buttons
 /*----------------------------------------------------------------*/
 
-function fs_style_fuss_plugin_scripts() {
+function ait_fs_style_fuss_plugin_scripts() {
 		// Include CSS file:
-		$script = plugin_dir_url( __FILE__ ) . 'assets/css/style_fuss.css';
+		$script = plugin_dir_url( __FILE__ ) . 'assets/css/ait_style_fuss.css';
 		wp_enqueue_style( 'custom_style',  $script);
 
 		// Variables for button design
@@ -95,7 +96,7 @@ function fs_style_fuss_plugin_scripts() {
 		wp_add_inline_style( 'custom_style', $custom_css );
     // not used: wp_enqueue_script( 'style_fuss' ); //
 }
-add_action( 'wp_enqueue_scripts', 'fs_style_fuss_plugin_scripts' );
+add_action( 'wp_enqueue_scripts', 'ait_fs_style_fuss_plugin_scripts' );
 
 /*----------------------------------------------------------------*/
 // End: get the color settings from style_fuss.css
@@ -117,7 +118,7 @@ add_action( 'wp_enqueue_scripts', 'fs_style_fuss_plugin_scripts' );
 // (of course the category must exist in The Events Calendar (this is checked by a function). If the category does not exist, the event list will be shown.)
 // [fuss vl="" il="http://internal_link.de/example"] --> always shows picture credits, but no link to external website and at vl="" the link to "more events" and at il="http://internal_link.de/example" the link to another external or internal webesite.
 
-function fs_beitrags_fuss_pi($atts) {
+function ait_fs_beitrags_fuss_pi($atts) {
   	$werte = shortcode_atts( array(
   	  'link' => '',
 			'fm' => 'nein',
@@ -144,7 +145,7 @@ function fs_beitrags_fuss_pi($atts) {
 		$ait_pfad = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
 		// Save file path
 		// Categories used by TEC
-    $kategorien = cliff_get_events_taxonomies();
+    $kategorien = ait_cliff_get_events_taxonomies();
 		// var_dump($kategorien); //
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
@@ -192,14 +193,14 @@ function fs_beitrags_fuss_pi($atts) {
 					$ait_key = -1;
 					// search in array with categories
 					$ait_key = array_search($vergleichswert, array_column($kategorien, 'Kategorie'));
-					// $ait_key = searchForId($vergleichswert, $kategorien); //
+					// $ait_key = ait_searchForId($vergleichswert, $kategorien); //
 					// echo 'Key: ' . $ait_key . "\n"; //
 					// if the comparison value is contained in the array of categories - found, then value is greater -1 //
 	        if ($ait_key > -1 ){
 						// Get the slug out of the associative array.
 						$ait_slug = $kategorien[$ait_key]['Slug']; //
 						// Replace special characters //
-	          $ait_slug = fs_sonderzeichen ($ait_slug);
+	          $ait_slug = ait_fs_sonderzeichen ($ait_slug);
 	          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $ait_slug); //
 						// show category on button
 	          $vergleichswert = ': ' . $vergleichswert . '';
@@ -226,7 +227,7 @@ function fs_beitrags_fuss_pi($atts) {
 	}
 	return $fs_ausgabe;
 }
-add_shortcode('fuss', 'fs_beitrags_fuss_pi');
+add_shortcode('fuss', 'ait_fs_beitrags_fuss_pi');
 
 
 
@@ -244,8 +245,8 @@ add_shortcode('fuss', 'fs_beitrags_fuss_pi');
   *
   * From https://gist.github.com/cliffordp/36d2b1f5b4f03fc0c8484ef0d4e0bbbb
   */
-add_action( 'tribe_events_before_template', 'cliff_get_events_taxonomies' );
-function cliff_get_events_taxonomies(){
+add_action( 'tribe_events_before_template', 'ait_cliff_get_events_taxonomies' );
+function ait_cliff_get_events_taxonomies(){
 	if( ! class_exists( 'Tribe__Events__Main' ) ) {
 		return false;
 	}
@@ -280,7 +281,7 @@ function cliff_get_events_taxonomies(){
 // Convert German Umlaute, so that e.g.  Führung in Fuehrung
 // otherwise the category list will not be found.
 /*----------------------------------------------------------------*/
-function fs_sonderzeichen($string)
+function ait_fs_sonderzeichen($string)
 {
    $string = str_replace("ä", "ae", $string);
    $string = str_replace("ü", "ue", $string);
@@ -296,7 +297,7 @@ return $string;
 
 // hooks and filters
 $shortcodes = array( 'fuss_pi'); // add shortcode triggers to array
-foreach( $shortcodes as $shortcode ) add_shortcode( $shortcode, 'fs_beitrags_fuss_pi' ); // create shortcode for each item in $shortcodes
+foreach( $shortcodes as $shortcode ) add_shortcode( $shortcode, 'ait_fs_beitrags_fuss_pi' ); // create shortcode for each item in $shortcodes
 
 
 
@@ -304,7 +305,7 @@ foreach( $shortcodes as $shortcode ) add_shortcode( $shortcode, 'fs_beitrags_fus
 // Start: Add new Dashboard-Widget
 // -------------------------------------------------- //
 /* not used yet
-function fs_add_dashboard_widget() {
+function ait_fs_add_dashboard_widget() {
   wp_add_dashboard_widget(
     'mein_dashboard_widget',
     __('Dashboard-Widget for "Add infos to the events calendar" - Plugin', 'add_infos_to_tec'),
@@ -314,7 +315,7 @@ function fs_add_dashboard_widget() {
 
 add_action(
   'wp_dashboard_setup',
-  'fs_add_dashboard_widget'
+  'ait_fs_add_dashboard_widget'
   );
   // Ausgabe des Inhaltes des Dashboard-Widgets
   function fs_dashboard_widget_html($post,$callback_args){
@@ -334,12 +335,12 @@ add_action(
 // -------------------------------------------------- //
 
 // WP Color Picker
-	add_action( 'admin_enqueue_scripts', 'farbwaehler_laden' );
-	function farbwaehler_laden( $hook ) {
+	add_action( 'admin_enqueue_scripts', 'ait_farbwaehler_laden' );
+	function ait_farbwaehler_laden( $hook ) {
 	    wp_enqueue_style( 'wp-color-picker' );
 	    wp_enqueue_script(
 	        'color-script',
-	        plugins_url( 'assets/js/script.js', __FILE__ ),
+	        plugins_url( 'assets/js/ait_script.js', __FILE__ ),
 	        array( 'wp-color-picker' ),
 	        false,
 	        true
@@ -347,18 +348,18 @@ add_action(
 	}
 
 
-	add_action('admin_menu', 'add_infos_to_tec_create_menu');
+	add_action('admin_menu', 'ait_add_infos_to_tec_create_menu');
 
 // create custom plugin settings menu
-	function add_infos_to_tec_create_menu() {
+	function ait_add_infos_to_tec_create_menu() {
 
 		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
+		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'administrator', __FILE__, 'ait_add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'ait_add_infos_to_tec_settings_page', 'ait_add_infos_to_tec_settings_page');
 		//call register settings function
-		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
+		add_action( 'admin_init', 'ait_register_add_infos_to_tec_settings' );
 		/*
-		if (! isset( $_POST['ait_tec'] )	|| ! wp_verify_nonce( $_POST['ait_tec'],	'plugin_settings_link' )) {
+		if (! isset( $_POST['ait_tec'] )	|| ! wp_verify_nonce( $_POST['ait_tec'],	'ait_plugin_settings_link' )) {
 				print 'Sorry, Nonce ist nicht korrekt.';
 				exit;
 		}
@@ -366,18 +367,18 @@ add_action(
 }
 
 // Settings in the Plugin List
-	function plugin_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=add_infos_to_tec_settings_page">'	. __( 'Settings' ) . '</a>';
-		// check_admin_referer( 'plugin_settings_link', 'ait_tec' );
+	function ait_plugin_settings_link( $links ) {
+		$settings_link = '<a href="options-general.php?page=ait_add_infos_to_tec_settings_page">'	. __( 'Settings' ) . '</a>';
+		// check_admin_referer( 'ait_plugin_settings_link', 'ait_tec' );
 		array_push( $links, $settings_link );
 		return $links;
 	}
 	add_filter(
-		'plugin_action_links_' . plugin_basename( __FILE__ ),	'plugin_settings_link'
+		'plugin_action_links_' . plugin_basename( __FILE__ ),	'ait_plugin_settings_link'
 	);
 
 //register our settings
-	function register_add_infos_to_tec_settings() {
+	function ait_register_add_infos_to_tec_settings() {
 		register_setting( 'add_infos_to_tec_settings-group', 'add_infos_to_tec_settings' );
 	}
 
@@ -396,23 +397,28 @@ add_action(
 		return $ait_options;
 	}
 
-// Determine path for events and suggest as path if necessary
-function path_for_tec(){
-	$ait_path = esc_url( tribe_get_listview_link() );
-	// delete last "/":
-	$ait_path = substr($ait_path,0,strlen($ait_path)-1);
-	$tec_category = __( 'category', 'the-events-calendar' );
-	$tec_category = strtolower($tec_category);
-	// show the path without the kind of view:
-	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
-	// echo $ait_path .'<br>';
-	return $ait_path;
-}
+	// Determine path for events and suggest as path if necessary
+	function ait_path_for_tec(){
+		if ( ! function_exists( 'tribe_get_listview_link' ) ) {
+			// The Events Calendar is not installed, therefore:
+			$ait_path = "http://beispielseite.de/events/category/";
+		} else {
+			$ait_path = esc_url( tribe_get_listview_link() );
+			// delete last "/":
+			$ait_path = substr($ait_path,0,strlen($ait_path)-1);
+			$tec_category = __( 'category', 'the-events-calendar' );
+			$tec_category = strtolower($tec_category);
+			// show the path without the kind of view:
+			$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
+			// echo $ait_path .'<br>';
+		}
+		return $ait_path;
+	}
 
 
 
 // page with settings
-	function add_infos_to_tec_settings_page() {
+	function ait_add_infos_to_tec_settings_page() {
 	?>
 	<div class="wrap">
 	<h1>Add Infos to TEC</h1>
@@ -428,15 +434,15 @@ function path_for_tec(){
 			if ( !current_user_can( 'manage_options' ) ){
 				 wp_die( __('You do not have permissions to perform this action') );
 			}
-			// absichern (nonce) //
-			wp_nonce_field('plugin_settings_link', 'ait_tec');
-			// $nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
+			// security (nonce) //
+			wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
+			// $nonce_field = wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 			    $deprecated = null;
 			    $autoload = 'no';
-					$tec_path = path_for_tec();
+					$tec_path = ait_path_for_tec();
 					$add_infos_to_tec_options = array(
 							'fs_option_pfad' => $tec_path,
 							'fs_hintergrundfarbe_button' => '#77BCC7',
@@ -457,7 +463,7 @@ function path_for_tec(){
 					<!-- path-->
 	        <tr valign="top">
 					<?php
-					$tec_path= path_for_tec();
+					$tec_path= ait_path_for_tec();
 					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
 					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add_infos_to_tec' );
 					?>
