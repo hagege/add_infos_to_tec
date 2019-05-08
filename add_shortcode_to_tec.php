@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.6821
+ * Version:     0.6822
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -396,18 +396,23 @@ add_action(
 		return $ait_options;
 	}
 
-// Determine path for events and suggest as path if necessary
-function path_for_tec(){
-	$ait_path = esc_url( tribe_get_listview_link() );
-	// delete last "/":
-	$ait_path = substr($ait_path,0,strlen($ait_path)-1);
-	$tec_category = __( 'category', 'the-events-calendar' );
-	$tec_category = strtolower($tec_category);
-	// show the path without the kind of view:
-	$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
-	// echo $ait_path .'<br>';
-	return $ait_path;
-}
+	// Determine path for events and suggest as path if necessary
+	function ait_path_for_tec(){
+		if ( ! function_exists( 'tribe_get_listview_link' ) ) {
+			// The Events Calendar is not installed, therefore:
+			$ait_path = "http://beispielseite.de/events/category/";
+		} else {
+			$ait_path = esc_url( tribe_get_listview_link() );
+			// delete last "/":
+			$ait_path = substr($ait_path,0,strlen($ait_path)-1);
+			$tec_category = __( 'category', 'the-events-calendar' );
+			$tec_category = strtolower($tec_category);
+			// show the path without the kind of view:
+			$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
+			// echo $ait_path .'<br>';
+		}
+		return $ait_path;
+	}
 
 
 
@@ -436,7 +441,7 @@ function path_for_tec(){
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
 			    $deprecated = null;
 			    $autoload = 'no';
-					$tec_path = path_for_tec();
+					$tec_path = ait_path_for_tec();
 					$add_infos_to_tec_options = array(
 							'fs_option_pfad' => $tec_path,
 							'fs_hintergrundfarbe_button' => '#77BCC7',
@@ -457,7 +462,7 @@ function path_for_tec(){
 					<!-- path-->
 	        <tr valign="top">
 					<?php
-					$tec_path= path_for_tec();
+					$tec_path= ait_path_for_tec();
 					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add_infos_to_tec' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
 					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add_infos_to_tec' );
 					?>
