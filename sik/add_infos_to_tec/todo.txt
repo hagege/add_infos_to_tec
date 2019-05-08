@@ -1,5 +1,32 @@
 Todo:
 
+0. Nonces
+    wichtig:
+    <form method="post" action="options-general.php?page=add_infos_to_tec_settings_page">
+    damit man wieder auf die Einstellungsseite kommt. Dann wird allerdings nichts gespeichert
+
+
+    unklar, wo das eingebaut werden muss, siehe Anleitung auf Seite 87:
+    if (! isset( $_POST['_wpnonce'] )	|| ! wp_verify_nonce( $_POST['_wpnonce'],	'kommt_von_A' )) {
+        print 'Sorry, Nonce ist nicht korrekt.';
+        exit;
+    } else {
+      // Weiter im Programm
+    }
+
+    Wenn das in die function add_infos_to_tec_create_menu() eingebaut wird, dann erfolgt zumindest eine Reaktion, allerdings wenig erwünscht, d. h.
+    hier ist die richtige Stelle für die Abfrage !!!!
+    Aber offenbar kommt da die Variable 'ait_tec' nicht an
+    /*
+    if (! isset( $_POST['ait_tec'] )	|| ! wp_verify_nonce( $_POST['ait_tec'],	'plugin_settings_link' )) {
+        print 'Sorry, Nonce ist nicht korrekt.';
+        exit;
+    }
+    */
+
+
+
+
 2. Erweitern des plugins um "ferien" und "kfm" für aachenerkinder.de
 
 3. Shortcode als Gutenberg Block umwandeln, siehe hier:
@@ -34,8 +61,9 @@ Todo:
       }
     }
 
+6. Übersetzungen bei JS-Dateien
 
-
+7. Nonces - siehe hier
 
 
 Erledigt:

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.6821
+ * Version:     0.682
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/plugins/add_infos_tec
@@ -357,12 +357,6 @@ add_action(
 		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add_infos_to_tec'), 'manage_options', 'add_infos_to_tec_settings_page', 'add_infos_to_tec_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'register_add_infos_to_tec_settings' );
-		/*
-		if (! isset( $_POST['ait_tec'] )	|| ! wp_verify_nonce( $_POST['ait_tec'],	'plugin_settings_link' )) {
-				print 'Sorry, Nonce ist nicht korrekt.';
-				exit;
-		}
-		*/
 }
 
 // Settings in the Plugin List
@@ -429,8 +423,7 @@ function path_for_tec(){
 				 wp_die( __('You do not have permissions to perform this action') );
 			}
 			// absichern (nonce) //
-			wp_nonce_field('plugin_settings_link', 'ait_tec');
-			// $nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
+			$nonce_field = wp_nonce_field('plugin_settings_link', 'ait_tec');
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
