@@ -431,7 +431,7 @@ add_action(
 	function ait_add_infos_to_tec_settings_page() {
 	?>
 	<div class="wrap">
-	<h1>Add Infos to TEC</h1>
+	<h1>Add Infos to The Events Calendar</h1>
 	<hr>
 
 	<form method="post" action="options.php">
