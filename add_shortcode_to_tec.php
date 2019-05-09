@@ -5,7 +5,7 @@
  * Version:     0.69
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
- * Plugin URI:  https://haurand.com/plugins/add_infos_tec
+ * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
  * Text Domain: add_infos_to_tec
  * Domain Path: /languages
  * License:     GPL2
