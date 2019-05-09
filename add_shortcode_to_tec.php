@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.69
+ * Version:     0.7
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
@@ -122,6 +122,8 @@ function ait_fs_beitrags_fuss_pi($atts) {
   	$werte = shortcode_atts( array(
   	  'link' => '',
 			'fm' => 'nein',
+			'kfm' => 'nein',
+			'ferien' => 'nein',
       'vl' => 'nein',
       'il' => '',
   	  ), $atts);
@@ -175,15 +177,23 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		// Display of the copyright //
 		//
     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz">' . $fs_schriftart_ein  . get_post(get_post_thumbnail_id())->post_excerpt . $fs_schriftart_aus . '</p><br>';
-		//
-		// Events with category
-		//
-		/* nur intern für aachen50plus.de */
+
+
+		// only internal for special use //
 		if ( $werte['fm'] != 'nein' ) {
 			// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">'. __( 'More Events: flea markets', 'add_infos_to_tec' ) . '</a></p>';
 			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">' . 'Weitere Flohmärkte' . '</a></p>';
 		}
+		if ( $werte['kfm'] != 'nein' ) {
+			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt/Karte target="_blank">' . 'Weitere Kinderflohmärkte' . '</a></p>';
+		}
+		if ( $werte['ferien'] != 'nein' ) {
+			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'ferien target="_blank">' . 'Weitere Ferienveranstaltungen' . '</a></p>';
+		}
+		// only internal for special use //
 
+		//
+		// Events with category
 		//
     if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {

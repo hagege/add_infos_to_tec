@@ -53,12 +53,12 @@ Basically yes, but it cannot be checked automatically whether the selected categ
 No, if the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
 
 = Where can I find the path to the categories of The Events Calendar ?
-When installing the plugin, the path to the categories is automatically determined by TEC. Under the heading you will see the following hint:
+When installing the plugin, the path to the categories of TEC is automatically recognized by the plugin. Under the heading you will see the following hint:
 "This could be the path to the categories of The Events Calendar (TEC): (URL)
 To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly."
 If the suggested path is not correct, you can proceed as follows:
 Select "Events" -> "Event Categories" from the menu. You will then see the categories on the right. Move the cursor to "View" of a category and copy the URL e.g. with CTRL C. Then you will get e.g. the following URL: http://beispielseite.de/events/category/lesungen/
-Then copy the URL in the settings of "Add Infos to the events calendar" into the field with the path, but without the category (lesungen), so that you get the following URL for the example: http://localhost/leer/events/category/
+Then copy the URL in the settings of "Add Infos to the events calendar" into the field with the path, but without the category (lesungen), so that you get the following URL for the example: http://beispielseite.de/events/category/
 
 = Why did I develop this plugin ?
 It is extremely important to note the copyright notice in the text of photos. I had always done this by copying and pasting the caption from the featured image, but I'd already forgotten it.
