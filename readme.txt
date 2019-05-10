@@ -1,9 +1,9 @@
 === Add infos to the events calendar ===
 Contributors: hage
-Tags: The Events Calendar, shortcodes, info, button
+Tags: The Events Calendar, events, calendar, shortcodes, shortcode, info, button, copyright
 Donate link: https://haurand.com/plugins
 Requires at least: 4.0
-Tested up to: 5.1.1
+Tested up to: 5.2
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
@@ -12,12 +12,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 “Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
 
 == Description ==
-“Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE).
-
+“Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
 The path to the The Events Calendar (TEC) categories is automatically suggested during installation. To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.
-
 As a rule, the short code (description and examples see below) should be one of the last lines of a single event. However, the short code can also be used in principle in posts. In this case, you should usually not use the option "vl", because this option refers to events, unless you want to link to a specific category in a contribution on events, for example.
-
 Automatically displays the text from "Caption" (see Media, image details) in italics by default for an event or a post. A copyright notice should be entered in this field.
 
 Attention: if the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
@@ -64,13 +61,22 @@ Then copy the URL in the settings of "Add Infos to the events calendar" into the
 It is extremely important to note the copyright notice in the text of photos. I had always done this by copying and pasting the caption from the featured image, but I'd already forgotten it.
 The Shortcodes gets this information automatically from this field. I also wanted to place some additional and more visually appealing buttons. This is now also possible with the plugin (see examples).
 
+= What about the further development of the plugin ?
+great question :-)
+I already have some more ideas and can tell you so much that I can go on. If you have any suggestions for further development, I would be very happy if you could tell me. Answer guaranteed, but I can't guarantee that your ideas will be implemented ;-)
+
 == Screenshots ==
 1. All options in the settings
 2. Use in a single event (backend)
 3. Representation of the event in the frontend
 
 == Changelog ==
-nothing
+
+= 0.65 =
+* Fixed a bug with the language files
+
+= 0.62 =
+* Initial release
 
 == Upgrade Notice ==
 nothing
