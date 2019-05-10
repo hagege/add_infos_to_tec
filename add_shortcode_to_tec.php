@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.8
+ * Version:     0.81
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
@@ -117,6 +117,7 @@ add_action( 'wp_enqueue_scripts', 'ait_fs_style_fuss_plugin_scripts' );
 // [fuss link="https://externer_link.de" vl="nature"] --> always shows picture credits, then more info with the link to external website and at vl="Nature" the link to "more events: nature".
 // (of course the category must exist in The Events Calendar (this is checked by a function). If the category does not exist, the event list will be shown.)
 // [fuss vl="" il="http://internal_link.de/example"] --> always shows picture credits, but no link to external website and at vl="" the link to "more events" and at il="http://internal_link.de/example" the link to another external or internal webesite.
+// internal used: fm, kfm, ferien
 
 function ait_fs_beitrags_fuss_pi($atts) {
   	$werte = shortcode_atts( array(
