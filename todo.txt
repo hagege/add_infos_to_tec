@@ -25,6 +25,7 @@ screenshot mit dem ICON
 
 
 
+
 Erledigt:
 1. Da es wegen der Schreibweise zu Problemen kommen kann, sollte der slug durch die Funktion cliff_get_events_taxonomies(), siehe Zeile 226
     übergeben werden
