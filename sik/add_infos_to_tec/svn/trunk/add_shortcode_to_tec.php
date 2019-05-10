@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.8
+ * Version:     0.62
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
@@ -38,30 +38,6 @@ function ait_meine_textdomain_laden() {
 }
 add_action('plugins_loaded','ait_meine_textdomain_laden');
 
-
-function ait_scripts() {
-	wp_register_script(
-		'ait_firstscript',
-		plugins_url( 'assets/js/ait_buttons.js', __FILE__ ),
-		array( 'wp-i18n' ),
-		'0.0.1');
-	wp_enqueue_script('ait_firstscript');
-	wp_set_script_translations( 'ait_firstscript');
-}
-
-// Search in an associative, multidimensional array
-// https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
-// deprecated since 0.682
-function ait_searchForId($id, $array) {
-   foreach ($array as $key => $val) {
-		 	 // echo 'Id: ' . $id . "\n"; //
-       if ($val['Kategorie'] === $id) {
-				 	 // echo 'Kategorie: ' . $val['Kategorie'] . "\n"; //
-           return $key;
-       }
-   }
-   return null;
-}
 
 
 /*----------------------------------------------------------------*/
@@ -121,9 +97,6 @@ add_action( 'wp_enqueue_scripts', 'ait_fs_style_fuss_plugin_scripts' );
 function ait_fs_beitrags_fuss_pi($atts) {
   	$werte = shortcode_atts( array(
   	  'link' => '',
-			'fm' => 'nein',
-			'kfm' => 'nein',
-			'ferien' => 'nein',
       'vl' => 'nein',
       'il' => '',
   	  ), $atts);
@@ -144,11 +117,10 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		// linking
 		//
 		// Get path from the settings: //
-		$ait_pfad = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
+		$veranstaltungen = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
 		// Save file path
 		// Categories used by TEC
     $kategorien = ait_cliff_get_events_taxonomies();
-		// var_dump($kategorien); //
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
 			if (esc_attr($add_infos_to_tec_options['fs_alle_buttons']) == 1){
@@ -177,47 +149,23 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		// Display of the copyright //
 		//
     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz">' . $fs_schriftart_ein  . get_post(get_post_thumbnail_id())->post_excerpt . $fs_schriftart_aus . '</p><br>';
-
-
-		// only internal for special use //
-		if ( $werte['fm'] != 'nein' ) {
-			// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">'. __( 'More Events: flea markets', 'add-infos-to-the-events-calendar' ) . '</a></p>';
-			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">' . 'Weitere Flohmärkte' . '</a></p>';
-		}
-		if ( $werte['kfm'] != 'nein' ) {
-			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt/Karte target="_blank">' . 'Weitere Kinderflohmärkte' . '</a></p>';
-		}
-		if ( $werte['ferien'] != 'nein' ) {
-			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'ferien target="_blank">' . 'Weitere Ferienveranstaltungen' . '</a></p>';
-		}
-		// only internal for special use //
-
 		//
 		// Events with category
+		//
+
 		//
     if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {
 	        /* Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood"). */
 	        $vergleichswert = $werte['vl'];
-					// Set value for $ait_key to -1, so that you can query later whether the value has changed.
-					$ait_key = -1;
-					// search in array with categories
-					$ait_key = array_search($vergleichswert, array_column($kategorien, 'Kategorie'));
-					// $ait_key = ait_searchForId($vergleichswert, $kategorien); //
-					// echo 'Key: ' . $ait_key . "\n"; //
-					// if the comparison value is contained in the array of categories - found, then value is greater -1 //
-	        if ($ait_key > -1 ){
-						// Get the slug out of the associative array.
-						$ait_slug = $kategorien[$ait_key]['Slug']; //
-						// Replace special characters //
-	          $ait_slug = ait_fs_sonderzeichen ($ait_slug);
-	          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $ait_slug); //
-						// show category on button
+	        /* if the comparison value is contained in the array of categories: */
+	        if (in_array($vergleichswert, $kategorien )){
+	          /* Replace special characters */
+	          $werte['vl'] = ait_fs_sonderzeichen ($werte['vl']);
+	          $veranstaltungen = $veranstaltungen . str_replace(" ", "-", $werte['vl']);
 	          $vergleichswert = ': ' . $vergleichswert . '';
 	          }
 	        else {
-						// no real category, so it should be the path to all events:
-						$veranstaltungen = esc_url( tribe_get_listview_link() );
 	          $vergleichswert = '';
 	          }
 	      }
@@ -278,10 +226,7 @@ function ait_cliff_get_events_taxonomies(){
 	if( ! is_wp_error( $events_cats ) && ! empty( $events_cats ) && is_array( $events_cats) ) {
 		$events_cats_names = array();
 		foreach( $events_cats as $key => $value ) {
-			// slug instead of name
-			$events_cats_names[] = array ('Slug' => $value->slug,
-																		'Kategorie' => $value->name);
-			// $events_cats_names[] = $value->name; //
+			$events_cats_names[] = $value->name;
 		}
 	}
 	return $events_cats_names;
@@ -368,12 +313,6 @@ add_action(
 		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'manage_options', 'ait_add_infos_to_tec_settings_page', 'ait_add_infos_to_tec_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'ait_register_add_infos_to_tec_settings' );
-		/*
-		if (! isset( $_POST['ait_tec'] )	|| ! wp_verify_nonce( $_POST['ait_tec'],	'ait_plugin_settings_link' )) {
-				print 'Sorry, Nonce ist nicht korrekt.';
-				exit;
-		}
-		*/
 }
 
 // Settings in the Plugin List
@@ -407,31 +346,30 @@ add_action(
 		return $ait_options;
 	}
 
-	// Determine path for events and suggest as path if necessary
-	function ait_path_for_tec(){
-		if ( ! function_exists( 'tribe_get_listview_link' ) ) {
-			// The Events Calendar is not installed, therefore:
-			$ait_path = "http://beispielseite.de/events/category/";
-		} else {
-			$ait_path = esc_url( tribe_get_listview_link() );
-			// delete last "/":
-			$ait_path = substr($ait_path,0,strlen($ait_path)-1);
-			$tec_category = __( 'category', 'the-events-calendar' );
-			$tec_category = strtolower($tec_category);
-			// show the path without the kind of view:
-			$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
-			// echo $ait_path .'<br>';
-		}
-		return $ait_path;
+// Determine path for events and suggest as path if necessary
+function ait_path_for_tec(){
+	if ( ! function_exists( 'tribe_get_listview_link' ) ) {
+		// The Events Calendar is not installed, therefore:
+		$ait_path = "http://beispielseite.de/events/category/";
+	} else {
+		$ait_path = esc_url( tribe_get_listview_link() );
+		// delete last "/":
+		$ait_path = substr($ait_path,0,strlen($ait_path)-1);
+		$tec_category = __( 'category', 'the-events-calendar' );
+		$tec_category = strtolower($tec_category);
+		// show the path without the kind of view:
+		$ait_path = substr($ait_path,0,strrpos($ait_path, '/')) . '/' . $tec_category . '/';
+		// echo $ait_path .'<br>';
 	}
-
+	return $ait_path;
+}
 
 
 // page with settings
 	function ait_add_infos_to_tec_settings_page() {
 	?>
 	<div class="wrap">
-	<h1>Add Infos to The Events Calendar</h1>
+	<h1>Add Infos to TEC</h1>
 	<hr>
 
 	<form method="post" action="options.php">
@@ -445,8 +383,7 @@ add_action(
 				 wp_die( __('You do not have permissions to perform this action') );
 			}
 			// security (nonce) //
-			wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
-			// $nonce_field = wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
+			$nonce_field = wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
 			// Set options if the options do not yet exist
 			if (empty( $add_infos_to_tec_options)) {
 			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
@@ -541,35 +478,8 @@ add_action(
 			</form>
 	</div>
 	<?php
-}
 	// -------------------------------------------------- //
 	// End: admin area
 	// -------------------------------------------------- //
-
-
-	/* Integrate shortcode generator in tinymce editor */
-
-	add_action( 'admin_init', 'ait_button' );
-
-	function ait_button() {
-	     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
-				 // check if WYSIWYG is enabled //
-				 if ( get_user_option('rich_editing') == 'true') {
-	          add_filter( 'mce_buttons', 'ait_to_tec_register_tinymce_button' );
-	          add_filter( 'mce_external_plugins', 'ait_to_tec_add_tinymce_button' );
-					}
-	     }
-	}
-
-	function ait_to_tec_register_tinymce_button( $buttons ) {
-	     array_push( $buttons, "ait_button");
-	     return $buttons;
-	}
-
-	function ait_to_tec_add_tinymce_button( $plugin_array ) {
-	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
-	     return $plugin_array;
-	}
-
-
+}
 ?>

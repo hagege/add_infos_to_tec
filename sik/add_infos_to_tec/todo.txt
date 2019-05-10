@@ -65,6 +65,9 @@ Todo:
 
 7. Nonces - siehe hier
 
+8. Der Ordner für TEC muss abgesichert werden, weil ansonsten die Einstellungen nicht funktionieren, evtl. über
+    plugin_dir_url o. ä.
+
 
 Erledigt:
 1. Da es wegen der Schreibweise zu Problemen kommen kann, sollte der slug durch die Funktion cliff_get_events_taxonomies(), siehe Zeile 226
