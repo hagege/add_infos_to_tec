@@ -1,6 +1,7 @@
 // JavaScript Document
 
 (function() {
+  // const { __, } = wp.i18n;
   // var ait_cats = JSON.parse(ait_cat_obj.category);
   // var categories = [];
   var ait_http = 'http://';
@@ -15,16 +16,16 @@
      /* Register the buttons */
      tinymce.PluginManager.add( 'my_button_script', function( ed, url ) {
           ed.addButton( 'ait_button', {
-            title : 'Add Infos to TEC Shortcode',
+            title : 'Add Infos to the events calendar',
             type: 'menubutton',
             image : url + '/icons8-kalender-48.png',
             icon: 'icons8-kalender-48.png',
               menu:[{
-                  text: 'Add Infos to TEC Shortcode',
-                  value: 'Add Infos to TEC Shortcode',
+                  text: 'Add Infos to the events calendar',
+                  value: 'Add Infos to the events calendar',
                   onclick : function() {
                       ed.windowManager.open( {
-                         title: 'Add Infos to TEC Shortcode Generator',
+                         title: 'Add Infos to the events calendar Shortcode Generator',
                          body: [
 
                               {

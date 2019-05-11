@@ -18,7 +18,12 @@ screenshot mit dem ICON
    wird logischerweise der Shortcode nicht automatisch geändert.
    Das könnte z. B. eine Option für eine PRO-VERSION sein.
 
-6. Übersetzungen bei JS-Dateien
+6. Übersetzungen (Lokalisieren) bei JS-Dateien
+    https://pascalbirchler.com/internationalization-in-wordpress-5-0/
+    https://bueltge.de/daten-aus-wordpress-an-javascript-uebergeben-2/1334/
+    https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+
+9. Hinweis, wenn TEC nicht installiert ist.
 
 
 
