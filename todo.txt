@@ -19,9 +19,11 @@ screenshot mit dem ICON
    Das könnte z. B. eine Option für eine PRO-VERSION sein.
 
 6. Übersetzungen (Lokalisieren) bei JS-Dateien
+    https://codex.wordpress.org/Function_Reference/wp_localize_script
     https://pascalbirchler.com/internationalization-in-wordpress-5-0/
     https://bueltge.de/daten-aus-wordpress-an-javascript-uebergeben-2/1334/
     https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+    https://www.smashingmagazine.com/2018/01/internationalize-your-wordpress-website/
 
 9. Hinweis, wenn TEC nicht installiert ist.
 
