@@ -25,7 +25,7 @@ screenshot mit dem ICON
     https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
     https://www.smashingmagazine.com/2018/01/internationalize-your-wordpress-website/
 
-9. Hinweis, wenn TEC nicht installiert ist.
+
 
 
 
@@ -77,6 +77,10 @@ Erledigt:
 
 8. Der Ordner für TEC muss geprüft werden, weil ansonsten die Einstellungen nicht funktionieren, evtl. über
     plugin_dir_url o. ä.
+
+9. Hinweis, wenn TEC nicht installiert ist.
+
+10. Versionsanzeige (Konstante AIT_VERSION)
 
 
 
