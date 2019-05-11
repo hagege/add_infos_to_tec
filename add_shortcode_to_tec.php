@@ -10,7 +10,7 @@
  * Domain Path: /languages
  * License:     GPL2
  */
-
+define("AIT_VERSION", "0.9");
 
 /*
 Shortcode:
@@ -432,7 +432,7 @@ add_action(
 	function ait_add_infos_to_tec_settings_page() {
 	?>
 	<div class="wrap">
-	<h1>Add Infos to The Events Calendar</h1>
+	<h1>Add Infos to The Events Calendar - Version: <?php echo AIT_VERSION ?></h1>
 	<hr>
 
 	<form method="post" action="options.php">
@@ -443,7 +443,7 @@ add_action(
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
 			// Check that user has proper security level
 			if ( !current_user_can( 'manage_options' ) ){
-				 wp_die( __('You do not have permissions to perform this action') );
+				 wp_die( __('You do not have permissions to perform this action', 'add-infos-to-the-events-calendar') );
 			}
 			// security (nonce) //
 			wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
@@ -475,6 +475,10 @@ add_action(
 	        <tr valign="top">
 					<?php
 					$tec_path= ait_path_for_tec();
+					if ( ! function_exists( 'tribe_get_listview_link' ) ) {
+						// The Events Calendar is not installed, therefore:
+						echo __( '<font color="#FF0000"><strong>It seems that The Events Calendar is not (yet) installed. </strong></font>Please note that the option "vl" (to display a list of events) will probably not be available.<br />', 'add-infos-to-the-events-calendar') ;
+					}		
 					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add-infos-to-the-events-calendar' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
 					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add-infos-to-the-events-calendar' );
 					?>
