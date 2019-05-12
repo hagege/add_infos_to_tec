@@ -25,7 +25,13 @@ screenshot mit dem ICON
     https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
     https://www.smashingmagazine.com/2018/01/internationalize-your-wordpress-website/
 
+11. Bezeichnungen für die Buttons in den Einstellungen
+    Problem ist die Sprachdatei. Klären, wie das upgedatet wird.
 
+12. Bei Seiten, die keinen events calendar haben, sollte eine (in dem Fall) unsinnige Option "vl" abgefangen werden
+
+13. auf der lokalen Seite aachenerkinder.de muss unbedingt der Shortcode aus der functions.php entfernt werden, sonst funktioniert das plugin nicht.
+    Daher auf das parent theme umgestellt.
 
 
 
@@ -81,6 +87,8 @@ Erledigt:
 9. Hinweis, wenn TEC nicht installiert ist.
 
 10. Versionsanzeige (Konstante AIT_VERSION)
+
+
 
 
 

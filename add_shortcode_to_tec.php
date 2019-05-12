@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     0.9
+ * Version:     1.0
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
@@ -10,7 +10,7 @@
  * Domain Path: /languages
  * License:     GPL2
  */
-define("AIT_VERSION", "0.9");
+define("AIT_VERSION", "1.0");
 
 /*
 Shortcode:
@@ -149,13 +149,19 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		// Save file path
 		// Categories used by TEC
     $kategorien = ait_cliff_get_events_taxonomies();
+
+		// caption for buttons - 12.05.2019://
+		$button_externer_link = trim(esc_attr( $add_infos_to_tec_options['fs_bezeichnung_externer_link']));
+		$button_events_link = trim(esc_attr( $add_infos_to_tec_options['fs_bezeichnung_events_link']));
+		$button_interner_link = trim(esc_attr( $add_infos_to_tec_options['fs_bezeichnung_interner_link']));
+
 		// var_dump($kategorien); //
     if ( trim($werte['link']) != '') {
 			// optionally also the link as button:
 			if (esc_attr($add_infos_to_tec_options['fs_alle_buttons']) == 1){
-			  $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . __( 'Read more', 'add-infos-to-the-events-calendar' ) . '</a></p><br>';
+				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $werte['link'] . ' target="_blank">' . $button_externer_link . '</a></p><br>';
 			} else {
-      	$fs_ausgabe = $fs_ausgabe . '<a href=' . $werte['link'] . ' target="_blank">'. __( 'Read more', 'add-infos-to-the-events-calendar' ) . '</a><br>';
+				$fs_ausgabe = $fs_ausgabe . '<a href=' . $werte['link'] . ' target="_blank">'. $button_externer_link . '</a><br>';
 			}
 		}
 		//
@@ -213,8 +219,10 @@ function ait_fs_beitrags_fuss_pi($atts) {
 						// Replace special characters //
 	          $ait_slug = ait_fs_sonderzeichen ($ait_slug);
 	          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $ait_slug); //
-						// show category on button
-	          $vergleichswert = ': ' . $vergleichswert . '';
+						// Space and colon behind the name, because the category appear behind it.
+						$button_events_link = $button_events_link . ': ';
+						// after description - option for buttons not used any more, 12.5.2019
+	          // $vergleichswert = ': ' . $vergleichswert . ''; //
 	          }
 	        else {
 						// no real category, so it should be the path to all events:
@@ -222,13 +230,13 @@ function ait_fs_beitrags_fuss_pi($atts) {
 	          $vergleichswert = '';
 	          }
 	      }
-				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. __( 'More Events', 'add-infos-to-the-events-calendar' ) . $vergleichswert . '</a></p>';
+				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . $vergleichswert . '</a></p>';
 			}
 	//
 	// Internal link (can also be an external link)
 	//
   if ( trim($werte['il']) != '') {
-     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $werte['il'] . ' target="_blank">' . __( 'Read more on this website', 'add-infos-to-the-events-calendar' ) . '</a></p>';
+		$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $werte['il'] . ' target="_blank">' . $button_interner_link . '</a></p>';
   }
 	//
 	// Output line below //
@@ -405,6 +413,16 @@ add_action(
 		if (empty( $ait_options['fs_linie_unten'])) {
 			 $ait_options['fs_linie_unten'] = 0;
 		}
+		if (empty( $ait_options['fs_bezeichnung_externer_link'])) {
+			 $ait_options['fs_bezeichnung_externer_link'] = 'Read More';
+		}
+		if (empty( $ait_options['fs_bezeichnung_events_link'])) {
+			 $ait_options['fs_bezeichnung_events_link'] = 'Read More: ';
+		}
+		if (empty( $ait_options['fs_bezeichnung_interner_link'])) {
+			 $ait_options['fs_bezeichnung_interner_link'] = 'Read More on this website ';
+		}
+
 		return $ait_options;
 	}
 
@@ -465,6 +483,9 @@ add_action(
 							'fs_schriftart' => '1',
 							'fs_linie_oben' => '1',
 							'fs_linie_unten' => '0'
+							'fs_bezeichnung_externer_link',
+							'fs_bezeichnung_events_link',
+							'fs_bezeichnung_interner_link'
 						);
 					add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
 			}
@@ -478,7 +499,7 @@ add_action(
 					if ( ! function_exists( 'tribe_get_listview_link' ) ) {
 						// The Events Calendar is not installed, therefore:
 						echo __( '<font color="#FF0000"><strong>It seems that The Events Calendar is not (yet) installed. </strong></font>Please note that the option "vl" (to display a list of events) will probably not be available.<br />', 'add-infos-to-the-events-calendar') ;
-					}		
+					}
 					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add-infos-to-the-events-calendar' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
 					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add-infos-to-the-events-calendar' );
 					?>
@@ -537,6 +558,22 @@ add_action(
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_unten'], 1, true)); ?> />
+	        </tr>
+
+					<!--  caption for buttons - 12.05.2019: -->
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Button-Description for external link:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_externer_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_externer_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Button-Description for events:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_events_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_events_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Button-Description for internal link:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_interner_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_interner_link']); ?>" /></td>
 	        </tr>
 
 	    </table>
