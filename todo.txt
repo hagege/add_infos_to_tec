@@ -3,6 +3,10 @@ Todo:
 
 
 in readme.txt:
+
+= [0.8] 2019-05-12 =
+* New feature: The name of the buttons can now be defined via the settings.
+
 = 1.0.0 =
 * Icon added to the editor tinycme, so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog.
 
