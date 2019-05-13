@@ -482,10 +482,10 @@ add_action(
 							'fs_alle_buttons' => '0',
 							'fs_schriftart' => '1',
 							'fs_linie_oben' => '1',
-							'fs_linie_unten' => '0'
-							'fs_bezeichnung_externer_link',
-							'fs_bezeichnung_events_link',
-							'fs_bezeichnung_interner_link'
+							'fs_linie_unten' => '0',
+							'fs_bezeichnung_externer_link' => 'Read More',
+							'fs_bezeichnung_events_link' => 'Read More',
+							'fs_bezeichnung_interner_link' => 'Read More on this website',
 						);
 					add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
 			}
@@ -511,23 +511,23 @@ add_action(
 
 					<!-- Buttons -->
 	        <tr valign="top">
-					<th scope="row"><?php echo __( 'Button - Background color:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<th scope="row"><?php echo __( 'Button-Background color:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 
 	        <tr valign="top">
-	        <th scope="row"><?php echo __( 'Button - font color:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <th scope="row"><?php echo __( 'Button-font color:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Button - Background color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <th scope="row"><?php echo __( 'Button-Background color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Button - font color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <th scope="row"><?php echo __( 'Button-font color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 

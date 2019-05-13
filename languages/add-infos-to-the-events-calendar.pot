@@ -3,115 +3,122 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Add infos to the events calendar\n"
-"POT-Creation-Date: 2019-04-26 07:41+0200\n"
+"POT-Creation-Date: 2019-05-13 07:52+0200\n"
 "PO-Revision-Date: 2019-04-21 08:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: add_shortcode_to_tec.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-0: add_shortcode_to_tec.php\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: add_shortcode_to_tec.php:127 add_shortcode_to_tec.php:129
-msgid "Read more"
-msgstr ""
-
-#: add_shortcode_to_tec.php:172
-msgid "More Events"
-msgstr ""
-
-#: add_shortcode_to_tec.php:178
-msgid "Read more on this website"
-msgstr ""
-
-#: add_shortcode_to_tec.php:312 add_shortcode_to_tec.php:313
+#: add_shortcode_to_tec.php:376 add_shortcode_to_tec.php:377
 msgid "Add Infos to TEC Settings"
 msgstr ""
 
-#: add_shortcode_to_tec.php:320
+#: add_shortcode_to_tec.php:390
 msgid "Settings"
 msgstr ""
 
-#: add_shortcode_to_tec.php:355
+#: add_shortcode_to_tec.php:438
 msgid "category"
 msgstr ""
 
-#: add_shortcode_to_tec.php:376
+#: add_shortcode_to_tec.php:464
 msgid "You do not have permissions to perform this action"
 msgstr ""
 
-#: add_shortcode_to_tec.php:409
+#: add_shortcode_to_tec.php:501
+msgid ""
+"<font color=\"#FF0000\"><strong>It seems that The Events Calendar is not "
+"(yet) installed. </strong></font>Please note that the option \"vl\" (to "
+"display a list of events) will probably not be available.<br />"
+msgstr ""
+
+#: add_shortcode_to_tec.php:503
 msgid ""
 "This could be the path to the categories of The Events Calendar (TEC): "
 msgstr ""
 
-#: add_shortcode_to_tec.php:410
+#: add_shortcode_to_tec.php:504
 msgid ""
 "To be on the safe side, however, you should check this by going to the "
 "relevant event after using the shortcut and checking that the links are "
 "executed correctly."
 msgstr ""
 
-#: add_shortcode_to_tec.php:413
+#: add_shortcode_to_tec.php:507
 msgid ""
 "Path e.g. categories to The Events Calendar (e.g. http://example.com/events/"
 "category/):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:420
+#: add_shortcode_to_tec.php:514
 msgid "Button - Background color:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:426
+#: add_shortcode_to_tec.php:520
 msgid "Button - font color:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:431
+#: add_shortcode_to_tec.php:525
 msgid "Button - Background color when driving over the button (Hover):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:436
+#: add_shortcode_to_tec.php:530
 msgid "Button - font color when driving over the button (Hover):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:441
+#: add_shortcode_to_tec.php:535
 msgid "Rounded corners (values from 0 - 30):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:447
+#: add_shortcode_to_tec.php:541
 msgid "All links as buttons:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:453
+#: add_shortcode_to_tec.php:547
 msgid "Font for Copyright:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:454
+#: add_shortcode_to_tec.php:548
 msgid "italic"
 msgstr ""
 
-#: add_shortcode_to_tec.php:455
+#: add_shortcode_to_tec.php:549
 msgid "bold"
 msgstr ""
 
-#: add_shortcode_to_tec.php:456
+#: add_shortcode_to_tec.php:550
 msgid "normal"
 msgstr ""
 
-#: add_shortcode_to_tec.php:460
+#: add_shortcode_to_tec.php:554
 msgid "Horizontal line above the block:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:465
+#: add_shortcode_to_tec.php:559
 msgid "Horizontal line below the block:"
+msgstr ""
+
+#: add_shortcode_to_tec.php:565
+msgid "Button-Description for external link:"
+msgstr ""
+
+#: add_shortcode_to_tec.php:570
+msgid "Button-Description for events:"
+msgstr ""
+
+#: add_shortcode_to_tec.php:575
+msgid "Button-Description for internal link:"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
@@ -119,7 +126,7 @@ msgid "Add infos to the events calendar"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://haurand.com/plugins/add_infos_tec"
+msgid "https://haurand.com/add-infos-to-the-events-calendar/"
 msgstr ""
 
 #. Description of the plugin/theme
