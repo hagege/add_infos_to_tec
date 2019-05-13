@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Add infos to the events calendar\n"
-"POT-Creation-Date: 2019-05-13 07:52+0200\n"
-"PO-Revision-Date: 2019-05-13 07:53+0200\n"
+"POT-Creation-Date: 2019-05-13 17:02+0200\n"
+"PO-Revision-Date: 2019-05-13 18:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -21,40 +21,29 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: add_shortcode_to_tec.php:376 add_shortcode_to_tec.php:377
+#: add_shortcode_to_tec.php:340 add_shortcode_to_tec.php:341
 msgid "Add Infos to TEC Settings"
 msgstr "Add Infos to TEC Einstellungen"
 
-#: add_shortcode_to_tec.php:390
+#: add_shortcode_to_tec.php:348
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: add_shortcode_to_tec.php:438
+#: add_shortcode_to_tec.php:396
 msgid "category"
 msgstr "kategorie"
 
-#: add_shortcode_to_tec.php:464
+#: add_shortcode_to_tec.php:421
 msgid "You do not have permissions to perform this action"
 msgstr "Du hast keine Berechtigungen, um diese Aktion auszuführen"
 
-#: add_shortcode_to_tec.php:501
-msgid ""
-"<font color=\"#FF0000\"><strong>It seems that The Events Calendar is not "
-"(yet) installed. </strong></font>Please note that the option \"vl\" (to "
-"display a list of events) will probably not be available.<br />"
-msgstr ""
-"<Schriftfarbe = \"#FF0000\" > <strong> Es scheint, dass The Events Calendar "
-"(noch) nicht installiert ist. </strong> </font> Bitte beachte, dass die "
-"Option \"vl\" (um eine Liste der Ereignisse anzuzeigen) wahrscheinlich nicht "
-"verfügbar sein wird. <br/>"
-
-#: add_shortcode_to_tec.php:503
+#: add_shortcode_to_tec.php:455
 msgid "This could be the path to the categories of The Events Calendar (TEC): "
 msgstr ""
 "Dies könnte der Pfad zu den Kategorien des Veranstaltungskalenders (TEC) "
 "sein: "
 
-#: add_shortcode_to_tec.php:504
+#: add_shortcode_to_tec.php:456
 msgid ""
 "To be on the safe side, however, you should check this by going to the "
 "relevant event after using the shortcut and checking that the links are "
@@ -64,73 +53,81 @@ msgstr ""
 "du bei der entsprechenden Veranstaltung, bei der du den Shortcode verwendet "
 "hast, prüfst, ob die Links korrekt ausgeführt werden."
 
-#: add_shortcode_to_tec.php:507
+#: add_shortcode_to_tec.php:459
 msgid ""
 "Path e.g. categories to The Events Calendar (e.g. http://example.com/events/"
 "category/):"
 msgstr ""
-"Ordner für Kategorien von \"The Events Calendar\" (e.g. http://example.com/"
+"Ordner für Kategorien von The Events Calendar (e.g. http://example.com/"
 "events/category/):"
 
-#: add_shortcode_to_tec.php:514
-msgid "Button - Background color:"
-msgstr "Button-Hintergrundfarbe:"
+#: add_shortcode_to_tec.php:466
+msgid "Settings for Buttons:"
+msgstr "Einstellungen für Buttons:"
 
-#: add_shortcode_to_tec.php:520
-msgid "Button - font color:"
-msgstr "Button-Schriftfarbe:"
+#: add_shortcode_to_tec.php:470
+msgid "Background color:"
+msgstr "Hintergrundfarbe:"
 
-#: add_shortcode_to_tec.php:525
-msgid "Button - Background color when driving over the button (Hover):"
-msgstr "Button-Hintergrundfarbe beim Überfahren der Taste (Hover):"
+#: add_shortcode_to_tec.php:476
+msgid "Font color:"
+msgstr "Schriftfarbe:"
 
-#: add_shortcode_to_tec.php:530
-msgid "Button - font color when driving over the button (Hover):"
-msgstr "Button-Schriftfarbe beim Überfahren des Buttons (Hover):"
+#: add_shortcode_to_tec.php:481
+msgid "Background color when driving over the button (Hover):"
+msgstr "Hintergrundfarbe beim Überfahren der Taste (Hover):"
 
-#: add_shortcode_to_tec.php:535
+#: add_shortcode_to_tec.php:486
+msgid "Font color when driving over the button (Hover):"
+msgstr "Schriftfarbe beim Überfahren (Hover):"
+
+#: add_shortcode_to_tec.php:492
+msgid "Description for external link:"
+msgstr "Beschreibung für externen Link:"
+
+#: add_shortcode_to_tec.php:497
+msgid "Description for events:"
+msgstr "Beschreibung für Veranstaltungen:"
+
+#: add_shortcode_to_tec.php:502
+msgid "Description for internal link:"
+msgstr "Beschreibung für den internen Link:"
+
+#: add_shortcode_to_tec.php:508
+msgid "Further settings:"
+msgstr "Weitere Einstellungen:"
+
+#: add_shortcode_to_tec.php:511
 msgid "Rounded corners (values from 0 - 30):"
 msgstr "Abgerundete Ecken (Werte von 0-30):"
 
-#: add_shortcode_to_tec.php:541
+#: add_shortcode_to_tec.php:517
 msgid "All links as buttons:"
 msgstr "Alle Links als Buttons:"
 
-#: add_shortcode_to_tec.php:547
+#: add_shortcode_to_tec.php:523
 msgid "Font for Copyright:"
 msgstr "Schriftzug für Copyright:"
 
-#: add_shortcode_to_tec.php:548
+#: add_shortcode_to_tec.php:524
 msgid "italic"
 msgstr "kursiv"
 
-#: add_shortcode_to_tec.php:549
+#: add_shortcode_to_tec.php:525
 msgid "bold"
 msgstr "fett"
 
-#: add_shortcode_to_tec.php:550
+#: add_shortcode_to_tec.php:526
 msgid "normal"
 msgstr "normal"
 
-#: add_shortcode_to_tec.php:554
+#: add_shortcode_to_tec.php:530
 msgid "Horizontal line above the block:"
 msgstr "Horizontale Linie über dem Block:"
 
-#: add_shortcode_to_tec.php:559
+#: add_shortcode_to_tec.php:535
 msgid "Horizontal line below the block:"
 msgstr "Horizontale Linie unterhalb des Blocks:"
-
-#: add_shortcode_to_tec.php:565
-msgid "Button-Description for external link:"
-msgstr "Button-Beschreibung für externen Link:"
-
-#: add_shortcode_to_tec.php:570
-msgid "Button-Description for events:"
-msgstr "Button-Beschreibung für Veranstaltungen:"
-
-#: add_shortcode_to_tec.php:575
-msgid "Button-Description for internal link:"
-msgstr "Button-Beschreibung für internen Link:"
 
 #. Plugin Name of the plugin/theme
 msgid "Add infos to the events calendar"
@@ -159,6 +156,9 @@ msgstr "Hans-Gerd Gerhards (haurand.com)"
 msgid "https://haurand.com"
 msgstr "https://haurand.com"
 
+#~ msgid "Buttons:"
+#~ msgstr "Buttons:"
+
 #~ msgid "Read more"
 #~ msgstr "Mehr lesen"
 
@@ -166,7 +166,7 @@ msgstr "https://haurand.com"
 #~ msgstr "Mehr Veranstaltungen"
 
 #~ msgid "Read more on this website"
-#~ msgstr "Lies mehr auf dieser Website"
+#~ msgstr "Lesen Sie mehr auf dieser Website"
 
 #~ msgid "Dashboard-Widget for \"Add infos to the events calendar\" - Plugin"
 #~ msgstr "Dashboard-Widget für \"Add infos to the events calendar\" - Plugin"

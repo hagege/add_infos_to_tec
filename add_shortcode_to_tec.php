@@ -493,43 +493,63 @@ add_action(
 			?>
 	    <table class="form-table">
 					<!-- path-->
-	        <tr valign="top">
+					<tr valign="top">
 					<?php
 					$tec_path= ait_path_for_tec();
-					if ( ! function_exists( 'tribe_get_listview_link' ) ) {
-						// The Events Calendar is not installed, therefore:
-						echo __( '<font color="#FF0000"><strong>It seems that The Events Calendar is not (yet) installed. </strong></font>Please note that the option "vl" (to display a list of events) will probably not be available.<br />', 'add-infos-to-the-events-calendar') ;
-					}
 					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add-infos-to-the-events-calendar' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
 					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add-infos-to-the-events-calendar' );
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
+					<hr>
 	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add-infos-to-the-events-calendar' ); ?></th>
 
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_option_pfad]" size=50 value="<?php echo esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']); ?>" /></td>
 	        </tr>
 
 					<!-- Buttons -->
+					<tr valign="top">
+					<th scope="row"><h3><?php echo __( 'Settings for Buttons:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
+
+
 	        <tr valign="top">
-					<th scope="row"><?php echo __( 'Button-Background color:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<th scope="row"><?php echo __( 'Background color:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 
 	        <tr valign="top">
-	        <th scope="row"><?php echo __( 'Button-font color:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <th scope="row"><?php echo __( 'Font color:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Button-Background color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <th scope="row"><?php echo __( 'Background color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Button-font color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <th scope="row"><?php echo __( 'Font color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
+
+					<!--  caption for buttons - 12.05.2019: -->
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Description for external link:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_externer_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_externer_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Description for events:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_events_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_events_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Description for internal link:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_interner_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_interner_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+					<th scope="row"><h3><?php echo __( 'Further settings:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
 
 					<tr valign="top">
 					<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'add-infos-to-the-events-calendar' ); ?></th>
@@ -558,22 +578,6 @@ add_action(
 					<tr valign="top">
 	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_unten'], 1, true)); ?> />
-	        </tr>
-
-					<!--  caption for buttons - 12.05.2019: -->
-					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Button-Description for external link:', 'add-infos-to-the-events-calendar' ); ?></th>
-					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_externer_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_externer_link']); ?>" /></td>
-	        </tr>
-
-					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Button-Description for events:', 'add-infos-to-the-events-calendar' ); ?></th>
-					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_events_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_events_link']); ?>" /></td>
-	        </tr>
-
-					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Button-Description for internal link:', 'add-infos-to-the-events-calendar' ); ?></th>
-					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_interner_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_interner_link']); ?>" /></td>
 	        </tr>
 
 	    </table>
