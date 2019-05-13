@@ -3,3 +3,7 @@ Fehler
 13.5.2019, Version [0.8]: deutsche Sprachdatei wird nicht komplett umgesetzt.
 getestet:
   1. deutsch (Sie) funktioniert
+  2. eine Änderung der Reihenfolge brachte nichts
+  3. Ich vermute, dass die Übersetzung deutsch, default vom Server geholt wird.
+      die Dateien waren im Beispiel der Testseite der RS Mausbach im Ordner:
+      D:\xampp\htdocs\rs_mausbach\wp-content\languages\plugins und waren vom 11.5.2019
