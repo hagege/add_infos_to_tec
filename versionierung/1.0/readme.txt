@@ -17,15 +17,15 @@ The path to the The Events Calendar (TEC) categories is automatically suggested 
 As a rule, the short code (description and examples see below) should be one of the last lines of a single event. However, the short code can also be used in principle in posts. In this case, you should usually not use the option "vl", because this option refers to events, unless you want to link to a specific category in a contribution on events, for example.
 Automatically displays the text from "Caption" (see Media, image details) in italics by default for an event or a post. A copyright notice should be entered in this field.
 
-<strong>Attention</strong>:
+= Attention =
 If the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
 
-<strong>Shortcode - Options</strong>:
+= Shortcode - Options =
 1. link = link e.g. to organizer
 2. vl   = list of events
 3. il   = e.g. used for internal link
 
-<strong>Call Examples</strong>:
+= Call Examples =
 * [fuss link="https://externer_link.de" vl=""] --> always shows picture credits, then more info with the link to external website and at vl="" the link to "more events".
 * [fuss vl=""] --> always shows picture credits, but no link to external website and at vl="" the link to "more events".
 * [fuss] --> always shows picture credits, but no link to external website.
