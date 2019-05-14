@@ -12,7 +12,7 @@ in readme.txt:
 = [0.8] 2019-05-12 =
 * New feature: The name of the buttons can now be defined via the settings.
 
-= 1.0.0 =
+= 1.1 =
 * Icon added to the editor tinycme, so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog.
 
 screenshot mit dem ICON
@@ -20,23 +20,28 @@ screenshot mit dem ICON
 
 
 
-13052019.3. Shortcode als Gutenberg Block umwandeln, siehe hier:
-   https://www.affordablewebsiteorlando.com/learn-convert-shortcodes-gutenberg-blocks-wordpress-developers/
+13052019.3.
+  Shortcode als Gutenberg Block umwandeln, siehe hier:
+      https://www.affordablewebsiteorlando.com/learn-convert-shortcodes-gutenberg-blocks-wordpress-developers/
 
-13052019.4. Problem: Wenn - aus welchen Gründen auch immer - jemand die Bezeichnung der Kategorie ändert,
-   wird logischerweise der Shortcode nicht automatisch geändert.
-   Das könnte z. B. eine Option für eine PRO-VERSION sein.
+13052019.4.
+  Problem: Wenn - aus welchen Gründen auch immer - jemand die Bezeichnung der Kategorie ändert,
+      wird logischerweise der Shortcode nicht automatisch geändert.
+      Das könnte z. B. eine Option für eine PRO-VERSION sein.
 
-13052019.6. Übersetzungen (Lokalisieren) bei JS-Dateien
-    https://codex.wordpress.org/Function_Reference/wp_localize_script
-    https://pascalbirchler.com/internationalization-in-wordpress-5-0/
-    https://bueltge.de/daten-aus-wordpress-an-javascript-uebergeben-2/1334/
-    https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-    https://www.smashingmagazine.com/2018/01/internationalize-your-wordpress-website/
+13052019.6.
+  Übersetzungen (Lokalisieren) bei JS-Dateien
+      https://codex.wordpress.org/Function_Reference/wp_localize_script
+      https://pascalbirchler.com/internationalization-in-wordpress-5-0/
+      https://bueltge.de/daten-aus-wordpress-an-javascript-uebergeben-2/1334/
+      https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+      https://www.smashingmagazine.com/2018/01/internationalize-your-wordpress-website/
 
-13052019.12. Bei Seiten, die keinen events calendar haben, sollte eine (in dem Fall) unsinnige Option "vl" abgefangen werden
+13052019.12.
+  Bei Seiten, die keinen events calendar haben, sollte eine (in dem Fall) unsinnige Option "vl" abgefangen werden
 
-14052019.1. https bzw. http automatisch ergänzen, wenn das fehlte - siehe auch entsprechende Vorbereitungen in 1.1 
+14052019.1.
+  https bzw. http automatisch ergänzen, wenn das fehlt - siehe auch entsprechende Vorbereitungen in 1.1  (ait_buttons.js)
 
 
 
