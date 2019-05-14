@@ -80,7 +80,7 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 
 == Changelog ==
 
-= [1.01] 2019-05-12 =
+= [1.01] 2019-05-14 =
 * Fixed: With the option "vl" the event list was not displayed correctly if the category was wrong or vl="" was selected.
 
 = [1.0] 2019-05-14 =

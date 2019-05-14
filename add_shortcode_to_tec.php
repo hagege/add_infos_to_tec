@@ -205,6 +205,10 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		//
 		// Events with category
 		//
+
+		// Preset variables (path to event list and without category) //
+		$veranstaltungen = esc_url( tribe_get_listview_link() );
+		$vergleichswert = '';
     if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {
 	        /* Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood"). */

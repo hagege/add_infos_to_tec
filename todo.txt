@@ -1,10 +1,9 @@
 Todo:
 
-Fertigstellung 1.0:
+Fertigstellung 1.01:
 Dateien kopieren:
 1. add_shortcode_to_tec.php
-2. readme.text
-3. languages - Ordner komplett
+2. readme.txt
 
 
 
@@ -21,27 +20,25 @@ screenshot mit dem ICON
 
 
 
-3. Shortcode als Gutenberg Block umwandeln, siehe hier:
+13052019.3. Shortcode als Gutenberg Block umwandeln, siehe hier:
    https://www.affordablewebsiteorlando.com/learn-convert-shortcodes-gutenberg-blocks-wordpress-developers/
 
-4. Problem: Wenn - aus welchen Gründen auch immer - jemand die Bezeichnung der Kategorie ändert,
+13052019.4. Problem: Wenn - aus welchen Gründen auch immer - jemand die Bezeichnung der Kategorie ändert,
    wird logischerweise der Shortcode nicht automatisch geändert.
    Das könnte z. B. eine Option für eine PRO-VERSION sein.
 
-6. Übersetzungen (Lokalisieren) bei JS-Dateien
+13052019.6. Übersetzungen (Lokalisieren) bei JS-Dateien
     https://codex.wordpress.org/Function_Reference/wp_localize_script
     https://pascalbirchler.com/internationalization-in-wordpress-5-0/
     https://bueltge.de/daten-aus-wordpress-an-javascript-uebergeben-2/1334/
     https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
     https://www.smashingmagazine.com/2018/01/internationalize-your-wordpress-website/
 
-11. Bezeichnungen für die Buttons in den Einstellungen
-    Problem ist die Sprachdatei. Klären, wie das upgedatet wird.
+13052019.12. Bei Seiten, die keinen events calendar haben, sollte eine (in dem Fall) unsinnige Option "vl" abgefangen werden
 
-12. Bei Seiten, die keinen events calendar haben, sollte eine (in dem Fall) unsinnige Option "vl" abgefangen werden
+14052019.1. https bzw. http automatisch ergänzen, wenn das fehlte - siehe auch entsprechende Vorbereitungen in 1.1 
 
-13. auf der lokalen Seite aachenerkinder.de muss unbedingt der Shortcode aus der functions.php entfernt werden, sonst funktioniert das plugin nicht.
-    Daher auf das parent theme umgestellt.
+
 
 
 
@@ -97,6 +94,13 @@ Erledigt:
 9. Hinweis, wenn TEC nicht installiert ist.
 
 10. Versionsanzeige (Konstante AIT_VERSION)
+
+11. Bezeichnungen für die Buttons in den Einstellungen
+    Problem ist die Sprachdatei. Klären, wie das upgedatet wird.
+
+13. auf der lokalen Seite aachenerkinder.de muss unbedingt der Shortcode aus der functions.php entfernt werden, sonst funktioniert das plugin nicht.
+    Daher auf das parent theme umgestellt.
+
 
 
 
