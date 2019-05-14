@@ -4,7 +4,7 @@ Tags: The Events Calendar, events, shortcode, button, lightweight
 Donate link: https://haurand.com/plugins
 Requires at least: 4.0
 Tested up to: 5.2
-Stable tag: 1.0
+Stable tag: 1.01
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -80,7 +80,10 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 
 == Changelog ==
 
-= [1.0] 2019-05-15 =
+= [1.01] 2019-05-12 =
+* Fixed: With the option "vl" the event list was not displayed correctly if the category was wrong or vl="" was selected.
+
+= [1.0] 2019-05-14 =
 * Added feature: The name of the buttons can now be defined via the settings. It is no longer necessary to have translation files that contain translations of the button names.
 * Added: Display the copyright only if the field is not empty
 * Updated translations

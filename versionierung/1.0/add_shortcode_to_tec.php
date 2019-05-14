@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     1.0
+ * Version:     1.01
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
@@ -10,7 +10,7 @@
  * Domain Path: /languages
  * License:     GPL2
  */
-define("AIT_VERSION", "1.0");
+define("AIT_VERSION", "1.01");
 
 
 // Securing against unauthorized access //
@@ -172,6 +172,10 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		//
 
 		//
+		// Preset variables (path to event list and without category) //
+		$veranstaltungen = esc_url( tribe_get_listview_link() );
+	  $vergleichswert = '';
+		// var_dump($veranstaltungen); //
     if ( $werte['vl'] != 'nein' ) {
 	      if ( trim($werte['vl']) != '') {
 	        /* Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood"). */
@@ -187,8 +191,8 @@ function ait_fs_beitrags_fuss_pi($atts) {
 	          // $vergleichswert = ': ' . $vergleichswert . ''; //
 	          }
 	        else {
-	          $vergleichswert = '';
-	          }
+						$vergleichswert = '';
+	        }
 	      }
 				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . $vergleichswert . '</a></p>';
 			}
