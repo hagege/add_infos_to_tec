@@ -181,9 +181,12 @@ function ait_fs_beitrags_fuss_pi($atts) {
 				$fs_schriftart_aus = '</strong>';
 		}
 		//
-		// Display of the copyright //
+		// Display the copyright if the field is not empty //
 		//
-    $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz">' . $fs_schriftart_ein  . get_post(get_post_thumbnail_id())->post_excerpt . $fs_schriftart_aus . '</p><br>';
+		$fs_copyright = get_post(get_post_thumbnail_id())->post_excerpt;
+		if ( $fs_copyright != '' ) {
+    		$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz">' . $fs_schriftart_ein  .  $fs_copyright . $fs_schriftart_aus . '</p><br>';
+		}
 
 
 		// only internal for special use //
