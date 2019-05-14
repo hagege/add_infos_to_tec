@@ -1,5 +1,11 @@
 Todo:
 
+Fertigstellung 1.0:
+Dateien kopieren:
+1. add_shortcode_to_tec.php
+2. readme.text
+3. languages - Ordner komplett
+
 
 
 in readme.txt:
