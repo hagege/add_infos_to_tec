@@ -47,6 +47,26 @@
                 				        label: 'Internal Link',
                 				        values:""
                 							},
+                              /* hier sollte eine Abfrage hin, ob eine Datei vorhanden ist, damit die folgenden Optionen angeboten werden
+                              {
+                                type: 'checkbox',
+                                name: 'kfm',
+                                label: 'Kinderflohmärkte',
+                                values: ""
+                              },
+                              {
+                                type: 'checkbox',
+                                name: 'fm',
+                                label: 'Flohmärkte',
+                                values: ""
+                              },
+                              {
+                                type: 'checkbox',
+                                name: 'ferien',
+                                label: 'Ferien',
+                                values: ""
+                              },
+                              */
         ],
         onsubmit: function( e ) {
           if (e.data.vl == "all") {
