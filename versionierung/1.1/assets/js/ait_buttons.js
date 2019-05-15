@@ -47,7 +47,7 @@
                 				        label: 'Internal Link',
                 				        values:""
                 							},
-                              /* hier sollte eine Abfrage hin, ob eine Datei vorhanden ist, damit die folgenden Optionen angeboten werden
+                              /* hier sollte eine Abfrage hin, ob eine Datei vorhanden ist, damit die folgenden Optionen angeboten werden */
                               {
                                 type: 'checkbox',
                                 name: 'kfm',
@@ -66,7 +66,7 @@
                                 label: 'Ferien',
                                 values: ""
                               },
-                              */
+
         ],
         onsubmit: function( e ) {
           if (e.data.vl == "all") {
@@ -83,8 +83,25 @@
               e.data.il = ait_http + e.data.il;
             }
           }
+
+          /* only for internal use */
+          e.data.kfm_var = '';
+          if (e.data.kfm === true) {
+              e.data.kfm_var = ' kfm=""';
+          }
+          e.data.fm_var = '';
+          if (e.data.fm === true) {
+              e.data.fm_var = ' fm=""';
+          }
+          e.data.ferien_var = '';
+          if (e.data.ferien === true) {
+              e.data.ferien_var = ' ferien=""';
+          }
+          /* only for internal use */
+
           ed.insertContent(
-            '[fuss link="' + e.data.link + '" vl="' + e.data.vl + '" il="' + e.data.il+ '"]'
+            /* '[fuss link="' + e.data.link + '" vl="' + e.data.vl + '" il="' + e.data.il+ '"]' */
+            '[fuss link="' + e.data.link + '" vl="' + e.data.vl + '" il="' + e.data.il + '"' + e.data.kfm_var + e.data.fm_var + e.data.ferien_var + ']'
           );
         }
       });
