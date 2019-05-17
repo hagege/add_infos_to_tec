@@ -199,6 +199,7 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		//
 
 		// Preset variables (path to event list and without category) //
+		// no real category, so it should be the path to all events:
 		$veranstaltungen = esc_url( tribe_get_listview_link() );
 		$vergleichswert = '';
     if ( $werte['vl'] != 'nein' ) {
@@ -224,8 +225,6 @@ function ait_fs_beitrags_fuss_pi($atts) {
 	          // $vergleichswert = ': ' . $vergleichswert . ''; //
 	          }
 	        else {
-						// no real category, so it should be the path to all events:
-						$veranstaltungen = esc_url( tribe_get_listview_link() );
 	          $vergleichswert = '';
 	          }
 	      }
