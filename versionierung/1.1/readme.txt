@@ -45,7 +45,8 @@ If the plugin is deleted, the shortcode remains in the posts and events. In this
 A webdevelopement staff member of haurand.com.
 
 = Can this plugin also be used for other event plugins ? =
-Basically yes, but it cannot be checked automatically whether the selected category exists for the "vl" option.
+Basically, this plugin can only be used if The Events Calendar is also activated. Of course, you can check if the plugin can also be used if you use another plugin for events. In this case I would be very happy about your feedback, because I would like to include this information in the description here.
+If no Events plugin is used, the plugin can only be used to display the copyright and external as well as internal links via the shortcode.
 
 = Are the shortcodes deleted when the plugin is deleted ?
 No, if the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
@@ -83,7 +84,8 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 = [1.1] 2019 =
 * Added: Icon added to the editor tinycme, so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog.
 
-= [1.02] 2019-05-15 =
+= [1.02] 2019-05-18 =
+* Fixed: If The Events Calendar is not installed, in some cases an error message appeared on the page with the short code
 * Added: Automatically adds http:// to a URL before the link, if that is missing at the time of entry
 
 = [1.01] 2019-05-14 =
