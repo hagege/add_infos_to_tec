@@ -175,29 +175,32 @@ function ait_fs_beitrags_fuss_pi($atts) {
 
 		//
 		// Preset variables (path to event list and without category) //
-		$veranstaltungen = esc_url( tribe_get_listview_link() );
-	  $vergleichswert = '';
-		// var_dump($veranstaltungen); //
-    if ( $werte['vl'] != 'nein' ) {
-	      if ( trim($werte['vl']) != '') {
-	        /* Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood"). */
-	        $vergleichswert = $werte['vl'];
-	        /* if the comparison value is contained in the array of categories: */
-	        if (in_array($vergleichswert, $kategorien )){
-	          /* Replace special characters */
-	          $werte['vl'] = ait_fs_sonderzeichen ($werte['vl']);
-	          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $werte['vl']);
-						// Space and colon behind the name, because the category appear behind it.
-						$button_events_link = $button_events_link . ': ';
-						// after description - option for buttons not used any more, 12.5.2019
-	          // $vergleichswert = ': ' . $vergleichswert . ''; //
-	          }
-	        else {
-						$vergleichswert = '';
-	        }
-	      }
-				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . $vergleichswert . '</a></p>';
-			}
+		// fixed: 1.02 - check if TEC is installed (18.5.2019) //
+		if ( ait_tec_installed() ) {
+			$veranstaltungen = esc_url( tribe_get_listview_link() );
+		  $vergleichswert = '';
+			// var_dump($veranstaltungen); //
+	    if ( $werte['vl'] != 'nein' ) {
+		      if ( trim($werte['vl']) != '') {
+		        /* Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood"). */
+		        $vergleichswert = $werte['vl'];
+		        /* if the comparison value is contained in the array of categories: */
+		        if (in_array($vergleichswert, $kategorien )){
+		          /* Replace special characters */
+		          $werte['vl'] = ait_fs_sonderzeichen ($werte['vl']);
+		          $veranstaltungen = $ait_pfad . str_replace(" ", "-", $werte['vl']);
+							// Space and colon behind the name, because the category appear behind it.
+							$button_events_link = $button_events_link . ': ';
+							// after description - option for buttons not used any more, 12.5.2019
+		          // $vergleichswert = ': ' . $vergleichswert . ''; //
+		          }
+		        else {
+							$vergleichswert = '';
+		        }
+		      }
+					$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . $vergleichswert . '</a></p>';
+				}
+	}
 	//
 	// Internal link (can also be an external link)
 	//
@@ -215,11 +218,20 @@ function ait_fs_beitrags_fuss_pi($atts) {
 add_shortcode('fuss', 'ait_fs_beitrags_fuss_pi');
 
 
-
-
 /*----------------------------------------------------------------*/
 /* Ende: shortcodes for footer at the single event
 /*----------------------------------------------------------------*/
+
+// fixed: 1.02 - check if TEC is installed (18.5.2019) //
+function ait_tec_installed() {
+	$tec_installed = TRUE;
+	if ( ! function_exists( 'tribe_get_listview_link' ) ) {
+		$tec_installed = FALSE;
+	}
+	// var_dump ($tec_installed); //
+	return $tec_installed;
+}
+
 
 
 /**
@@ -397,7 +409,7 @@ add_action(
 
 // Determine path for events and suggest as path if necessary
 function ait_path_for_tec(){
-	if ( ! function_exists( 'tribe_get_listview_link' ) ) {
+	if ( !ait_tec_installed() ) {
 		// The Events Calendar is not installed, therefore:
 		$ait_path = "http://beispielseite.de/events/category/";
 	} else {
