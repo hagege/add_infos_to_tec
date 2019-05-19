@@ -233,6 +233,11 @@ function ait_fs_beitrags_fuss_pi($atts) {
 					$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . $vergleichswert . '</a></p>';
 				}
 	}
+	// TEC not installed - may be another Event-Plugin installed (19.5.2019) //
+	else {
+		$veranstaltungen = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
+		$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . '</a></p>';
+	}
 	//
 	// Internal link (can also be an external link)
 	//
@@ -442,7 +447,7 @@ add_action(
 			 $ait_options['fs_bezeichnung_externer_link'] = 'Read More';
 		}
 		if (empty( $ait_options['fs_bezeichnung_events_link'])) {
-			 $ait_options['fs_bezeichnung_events_link'] = 'Read More: ';
+			 $ait_options['fs_bezeichnung_events_link'] = 'More Events';
 		}
 		if (empty( $ait_options['fs_bezeichnung_interner_link'])) {
 			 $ait_options['fs_bezeichnung_interner_link'] = 'Read More on this website ';
