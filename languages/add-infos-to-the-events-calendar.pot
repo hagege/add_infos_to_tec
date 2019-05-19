@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Add infos to the events calendar\n"
-"POT-Creation-Date: 2019-05-13 18:10+0200\n"
+"POT-Creation-Date: 2019-05-19 17:32+0200\n"
 "PO-Revision-Date: 2019-04-21 08:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
-"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ../versionierung/1.1\n"
 "X-Poedit-WPHeader: add_shortcode_to_tec.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -20,106 +20,118 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: add_shortcode_to_tec.php:340 add_shortcode_to_tec.php:341
+#: add_shortcode_to_tec.php:406 add_shortcode_to_tec.php:407
 msgid "Add Infos to TEC Settings"
 msgstr ""
 
-#: add_shortcode_to_tec.php:348
+#: add_shortcode_to_tec.php:420
 msgid "Settings"
 msgstr ""
 
-#: add_shortcode_to_tec.php:396
+#: add_shortcode_to_tec.php:468
 msgid "category"
 msgstr ""
 
-#: add_shortcode_to_tec.php:421
+#: add_shortcode_to_tec.php:494
 msgid "You do not have permissions to perform this action"
 msgstr ""
 
-#: add_shortcode_to_tec.php:455
+#: add_shortcode_to_tec.php:529
 msgid ""
 "This could be the path to the categories of The Events Calendar (TEC): "
 msgstr ""
 
-#: add_shortcode_to_tec.php:456
+#: add_shortcode_to_tec.php:530
 msgid ""
 "To be on the safe side, however, you should check this by going to the "
 "relevant event after using the shortcut and checking that the links are "
 "executed correctly."
 msgstr ""
 
-#: add_shortcode_to_tec.php:459
+#: add_shortcode_to_tec.php:534
 msgid ""
 "Path e.g. categories to The Events Calendar (e.g. http://example.com/events/"
 "category/):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:466
+#: add_shortcode_to_tec.php:541
 msgid "Settings for Buttons:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:470
+#: add_shortcode_to_tec.php:545
 msgid "Background color:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:476
+#: add_shortcode_to_tec.php:551
 msgid "Font color:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:481
+#: add_shortcode_to_tec.php:556
 msgid "Background color when driving over the button (Hover):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:486
+#: add_shortcode_to_tec.php:561
 msgid "Font color when driving over the button (Hover):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:492
+#: add_shortcode_to_tec.php:567
 msgid "Description for external link:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:497
+#: add_shortcode_to_tec.php:572
 msgid "Description for events:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:502
+#: add_shortcode_to_tec.php:577
 msgid "Description for internal link:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:507
+#: add_shortcode_to_tec.php:582
 msgid "Further settings:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:510
+#: add_shortcode_to_tec.php:585
 msgid "Rounded corners (values from 0 - 30):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:516
+#: add_shortcode_to_tec.php:591
 msgid "All links as buttons:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:522
+#: add_shortcode_to_tec.php:597
 msgid "Font for Copyright:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:523
+#: add_shortcode_to_tec.php:598
 msgid "italic"
 msgstr ""
 
-#: add_shortcode_to_tec.php:524
+#: add_shortcode_to_tec.php:599
 msgid "bold"
 msgstr ""
 
-#: add_shortcode_to_tec.php:525
+#: add_shortcode_to_tec.php:600
 msgid "normal"
 msgstr ""
 
-#: add_shortcode_to_tec.php:529
+#: add_shortcode_to_tec.php:604
 msgid "Horizontal line above the block:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:534
+#: add_shortcode_to_tec.php:609
 msgid "Horizontal line below the block:"
+msgstr ""
+
+#: add_shortcode_to_tec.php:658
+msgid "External Link"
+msgstr ""
+
+#: add_shortcode_to_tec.php:659
+msgid "Event Category"
+msgstr ""
+
+#: add_shortcode_to_tec.php:660
+msgid "Internal Link"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

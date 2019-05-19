@@ -648,4 +648,19 @@ add_action(
 	}
 
 
+	// localization for ait_buttons.js //
+	// Register the script //
+	/* wenn das hier nicht kommentiert ist, dann gibt es einen Fehler in der Dev.Console
+	wp_register_script( 'ait_handle', plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) );
+
+			// Localize the script with new data
+			wp_enqueue_script( 'ait_handle', plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) );
+			$ait_translation_array = array(
+				'external_link' => __( 'External Link', 'add-infos-to-the-events-calendar' ),
+				'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
+				'internal_link' => __( 'Internal Link', 'add-infos-to-the-events-calendar' ),
+			);
+			// Enqueued script with localized data.
+			wp_localize_script( 'ait_handle', 'ait_object_name', $ait_translation_array );
+			*/
 ?>
