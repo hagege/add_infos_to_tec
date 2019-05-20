@@ -30,7 +30,7 @@ function ait_meine_textdomain_laden() {
 }
 add_action('plugins_loaded','ait_meine_textdomain_laden');
 
-
+// 1.1 -> wird nicht aufgefrufen und könnte das Problem sein //
 function ait_scripts() {
 	wp_register_script(
 		'ait_firstscript',
@@ -650,6 +650,7 @@ add_action(
 
 	// localization for ait_buttons.js //
 	// Register the script //
+	// 1.1 ->  siehe Zeile 33
 	/* wenn das hier nicht kommentiert ist, dann gibt es einen Fehler in der Dev.Console
 	wp_register_script( 'ait_handle', plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) );
 
@@ -663,4 +664,20 @@ add_action(
 			// Enqueued script with localized data.
 			wp_localize_script( 'ait_handle', 'ait_object_name', $ait_translation_array );
 			*/
+
+			// Place this code in your child theme's functions.php file
+			/* https://plethorathemes.com/wordpress-tips-tutorials/how-to-add-javascript-or-jquery-to-wordpress/#registering-and-enqueueing:
+function myprefix_enqueue_scripts() {
+			wp_enqueue_script(
+					'custom-script',
+					get_stylesheet_directory_uri() . '/js/custom.js'
+			);
+			wp_localize_script( 'custom-script', 'php_data', array(
+							'message' => __('A message that can be translated!' )
+					)
+			);
+}
+
+add_action('wp_enqueue_scripts', 'myprefix_enqueue_scripts');
+*/
 ?>
