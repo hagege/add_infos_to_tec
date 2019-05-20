@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     1.1
+ * Version:     1.2
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
@@ -10,7 +10,7 @@
  * Domain Path: /languages
  * License:     GPL2
  */
-define("AIT_VERSION", "1.1");
+define("AIT_VERSION", "1.2");
 define("AIT_HTTP", "http://");
 define("AIT_HTTPS", "https://");
 
@@ -30,7 +30,7 @@ function ait_meine_textdomain_laden() {
 }
 add_action('plugins_loaded','ait_meine_textdomain_laden');
 
-
+// 1.1 -> wird nicht aufgefrufen und könnte das Problem sein //
 function ait_scripts() {
 	wp_register_script(
 		'ait_firstscript',
@@ -232,6 +232,11 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		      }
 					$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . $vergleichswert . '</a></p>';
 				}
+	}
+	// TEC not installed - may be another Event-Plugin installed (19.5.2019) //
+	else {
+		$veranstaltungen = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']);
+		$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">'. $button_events_link . '</a></p>';
 	}
 	//
 	// Internal link (can also be an external link)
@@ -442,7 +447,7 @@ add_action(
 			 $ait_options['fs_bezeichnung_externer_link'] = 'Read More';
 		}
 		if (empty( $ait_options['fs_bezeichnung_events_link'])) {
-			 $ait_options['fs_bezeichnung_events_link'] = 'Read More: ';
+			 $ait_options['fs_bezeichnung_events_link'] = 'More Events';
 		}
 		if (empty( $ait_options['fs_bezeichnung_interner_link'])) {
 			 $ait_options['fs_bezeichnung_interner_link'] = 'Read More on this website ';
@@ -643,4 +648,36 @@ add_action(
 	}
 
 
+	// localization for ait_buttons.js //
+	// Register the script //
+	// 1.1 ->  siehe Zeile 33
+	/* wenn das hier nicht kommentiert ist, dann gibt es einen Fehler in der Dev.Console
+	wp_register_script( 'ait_handle', plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) );
+
+			// Localize the script with new data
+			wp_enqueue_script( 'ait_handle', plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) );
+			$ait_translation_array = array(
+				'external_link' => __( 'External Link', 'add-infos-to-the-events-calendar' ),
+				'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
+				'internal_link' => __( 'Internal Link', 'add-infos-to-the-events-calendar' ),
+			);
+			// Enqueued script with localized data.
+			wp_localize_script( 'ait_handle', 'ait_object_name', $ait_translation_array );
+			*/
+
+			// Place this code in your child theme's functions.php file
+			/* https://plethorathemes.com/wordpress-tips-tutorials/how-to-add-javascript-or-jquery-to-wordpress/#registering-and-enqueueing:
+function myprefix_enqueue_scripts() {
+			wp_enqueue_script(
+					'custom-script',
+					get_stylesheet_directory_uri() . '/js/custom.js'
+			);
+			wp_localize_script( 'custom-script', 'php_data', array(
+							'message' => __('A message that can be translated!' )
+					)
+			);
+}
+
+add_action('wp_enqueue_scripts', 'myprefix_enqueue_scripts');
+*/
 ?>
