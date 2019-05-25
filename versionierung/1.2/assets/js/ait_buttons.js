@@ -1,4 +1,5 @@
 // JavaScript Document
+// alert( ait_php_var.ackids );
 
 (function() {
   // const { __, } = wp.i18n;
@@ -7,6 +8,8 @@
   var ait_http = 'http://';
   var ait_https = 'https://';
   var ait_test_http = '';
+  // console.log(ait_php_var.ackids);
+
 
     /*
     for( var cat in ait_cats){
@@ -31,20 +34,20 @@
                               {
                                  type: 'textbox',
                                  name: 'link',
-                                 label: ait_object_name.external_link,
+                                 label: ait_php_var.external_link,
                                  value:""
                               },
                 							{
                 								type: 'textbox',
                 				        name: 'vl',
-                				        label: ait_object_name.event_category,
+                				        label: ait_php_var.event_category,
                                 values: ""
                 				        // values:categories
                 							},
                               {
                 								type: 'textbox',
                 				        name: 'il',
-                				        label: ait_object_name.internal_link,
+                				        label: ait_php_var.internal_link,
                 				        values:""
                 							},
                               /* hier sollte eine Abfrage hin, ob eine Datei vorhanden ist, damit die folgenden Optionen angeboten werden */
@@ -107,7 +110,7 @@
       });
           }
       }]
-      
+
     });
   });
   })();
