@@ -639,10 +639,12 @@ add_action(
 	     }
 	}
 
+
 	function ait_to_tec_register_tinymce_button( $buttons ) {
 	     array_push( $buttons, "ait_button");
 	     return $buttons;
 	}
+
 
 	function ait_to_tec_add_tinymce_button( $plugin_array ) {
 	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons_test.js', __FILE__ ) ;
@@ -664,8 +666,8 @@ function ait_load_scripts() {
 				array(
 					'external_link' => __( 'External Link', 'add-infos-to-the-events-calendar' ),
 					'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
-					'internal_link' => __( 'Internal Link', 'add-infos-to-the-events-calendar' ),
-					'ackids' => $ait_add_options,
+					'internal_link' => __( 'Internal Link', 'add-infos-to-the-events-calendar' )
+					// 'ackids' => $ait_add_options, //
 			)
 			);
 		}

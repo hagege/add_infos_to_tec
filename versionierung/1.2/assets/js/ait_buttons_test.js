@@ -1,2 +1,3 @@
 // JavaScript Document
-alert( ait_php_var.ackids );
+alert( 'Hello');
+alert( ait_php_var.external_link );
