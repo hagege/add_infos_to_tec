@@ -5,8 +5,8 @@
  * Version:     1.2
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
- * Plugin URI:  https://haurand.com/aittec_language/
- * Text Domain: aittec_language
+ * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
+ * Text Domain: add-infos-to-the-events-calendar
  * Domain Path: /languages
  * License:     GPL2
  */
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Load language files
 function ait_meine_textdomain_laden() {
 	load_plugin_textdomain(
-	'aittec_language',
+	'add-infos-to-the-events-calendar',
 	false,
 	basename( dirname( __FILE__ ) ) . '/languages'
 	);
@@ -185,7 +185,7 @@ function ait_fs_beitrags_fuss_pi($atts) {
 
 		// only internal for special use //
 		if ( $werte['fm'] != 'nein' ) {
-			// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">'. __( 'More Events: flea markets', 'aittec_language' ) . '</a></p>';
+			// $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">'. __( 'More Events: flea markets', 'add-infos-to-the-events-calendar' ) . '</a></p>';
 			$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">' . 'Weitere Flohmärkte' . '</a></p>';
 		}
 		if ( $werte['kfm'] != 'nein' ) {
@@ -359,7 +359,7 @@ foreach( $shortcodes as $shortcode ) add_shortcode( $shortcode, 'ait_fs_beitrags
 function ait_fs_add_dashboard_widget() {
   wp_add_dashboard_widget(
     'mein_dashboard_widget',
-    __('Dashboard-Widget for "Add infos to the events calendar" - Plugin', 'aittec_language'),
+    __('Dashboard-Widget for "Add infos to the events calendar" - Plugin', 'add-infos-to-the-events-calendar'),
     'fs_dashboard_widget_html'
     );
   }
@@ -371,8 +371,8 @@ add_action(
   // Ausgabe des Inhaltes des Dashboard-Widgets
   function fs_dashboard_widget_html($post,$callback_args){
     esc_html_e(
-    __('First Dashboard-Widget for "Add infos to the events calendar" - Plugin', 'aittec_language'),
-    'aittec_language'
+    __('First Dashboard-Widget for "Add infos to the events calendar" - Plugin', 'add-infos-to-the-events-calendar'),
+    'add-infos-to-the-events-calendar'
     );
   }
 */
@@ -405,8 +405,8 @@ add_action(
 	function ait_add_infos_to_tec_create_menu() {
 
 		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'aittec_language'), 'administrator', __FILE__, 'ait_add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'aittec_language'), 'manage_options', 'ait_add_infos_to_tec_settings_page', 'ait_add_infos_to_tec_settings_page');
+		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'administrator', __FILE__, 'ait_add_infos_to_tec_settings_page' , plugins_url('/images/icon.png', __FILE__) );
+		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'manage_options', 'ait_add_infos_to_tec_settings_page', 'ait_add_infos_to_tec_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'ait_register_add_infos_to_tec_settings' );
 		/*
@@ -493,7 +493,7 @@ add_action(
 			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
 			// Check that user has proper security level
 			if ( !current_user_can( 'manage_options' ) ){
-				 wp_die( __('You do not have permissions to perform this action', 'aittec_language') );
+				 wp_die( __('You do not have permissions to perform this action', 'add-infos-to-the-events-calendar') );
 			}
 			// security (nonce) //
 			wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
@@ -528,87 +528,87 @@ add_action(
 					<tr valign="top">
 					<?php
 					$tec_path= ait_path_for_tec();
-					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'aittec_language' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
-					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'aittec_language' );
+					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add-infos-to-the-events-calendar' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
+					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add-infos-to-the-events-calendar' );
 					?>
 					<!-- here I want to check if a folder exists in further versions of plugin -->
 					<hr>
-	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add-infos-to-the-events-calendar' ); ?></th>
 
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_option_pfad]" size=50 value="<?php echo esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']); ?>" /></td>
 	        </tr>
 
 					<!-- Buttons -->
 					<tr valign="top">
-					<th scope="row"><h3><?php echo __( 'Settings for Buttons:', 'aittec_language' ); ?></h3></th>
+					<th scope="row"><h3><?php echo __( 'Settings for Buttons:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
 
 
 	        <tr valign="top">
-					<th scope="row"><?php echo __( 'Background color:', 'aittec_language' ); ?></th>
+					<th scope="row"><?php echo __( 'Background color:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 
 	        <tr valign="top">
-	        <th scope="row"><?php echo __( 'Font color:', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Font color:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Background color when driving over the button (Hover):', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Background color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Font color when driving over the button (Hover):', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Font color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button']); ?>" class="color" /></td>
 	        </tr>
 
 					<!--  caption for buttons - 12.05.2019: -->
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Description for external link:', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Description for external link:', 'add-infos-to-the-events-calendar' ); ?></th>
 					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_externer_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_externer_link']); ?>" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Description for events:', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Description for events:', 'add-infos-to-the-events-calendar' ); ?></th>
 					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_events_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_events_link']); ?>" /></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Description for internal link:', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Description for internal link:', 'add-infos-to-the-events-calendar' ); ?></th>
 					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_interner_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_interner_link']); ?>" /></td>
 	        </tr>
 
 					<tr valign="top">
-					<th scope="row"><h3><?php echo __( 'Further settings:', 'aittec_language' ); ?></h3></th>
+					<th scope="row"><h3><?php echo __( 'Further settings:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
 
 					<tr valign="top">
-					<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'aittec_language' ); ?></th>
+					<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'add-infos-to-the-events-calendar' ); ?></th>
 					<td><input type="number" min="0" max="30" step="1" name="add_infos_to_tec_settings[fs_runder_button]" size=2 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_runder_button']); ?>" /></td>
 					</tr>
 
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'All links as buttons:', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'All links as buttons:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_alle_buttons'], 1, true)); ?> />
 	        </tr>
 
 					<!-- Diverses -->
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Font for Copyright:', 'aittec_language' ); ?></th>
-	        <td><input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="1" <?php echo esc_attr(checked(1, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'italic', 'aittec_language' ); ?>
-					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="2" <?php echo esc_attr(checked(2, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'bold', 'aittec_language' ); ?>
-					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="3" <?php echo esc_attr(checked(3, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'normal', 'aittec_language' ); ?></td>
+	        <th scope="row"><?php echo __( 'Font for Copyright:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="1" <?php echo esc_attr(checked(1, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'italic', 'add-infos-to-the-events-calendar' ); ?>
+					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="2" <?php echo esc_attr(checked(2, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'bold', 'add-infos-to-the-events-calendar' ); ?>
+					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="3" <?php echo esc_attr(checked(3, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'normal', 'add-infos-to-the-events-calendar' ); ?></td>
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_oben'], 1, true)); ?> />
 	        </tr>
 
 					<tr valign="top">
-	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'aittec_language' ); ?></th>
+	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add-infos-to-the-events-calendar' ); ?></th>
 	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_unten'], 1, true)); ?> />
 	        </tr>
 
@@ -645,7 +645,7 @@ add_action(
 	}
 
 	function ait_to_tec_add_tinymce_button( $plugin_array ) {
-	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
+	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons_test.js', __FILE__ ) ;
 	     return $plugin_array;
 	}
 
@@ -654,17 +654,17 @@ add_action(
 // localization for ait_buttons.js //
 add_action( 'wp_enqueue_scripts', 'ait_load_scripts' );
 function ait_load_scripts() {
-			$ait_pfad = plugin_dir_url( __FILE__ ) . '/assets/js/ait_buttons.js';
-			$ait_add_options = 'da bin ich';
+			$ait_pfad = plugin_dir_url( __FILE__ ) . 'assets/js/ait_buttons_test.js';
+			$ait_add_options = 'here';
 			// Enqueued script with localized data.
-			// wp_register_script('ait_js_script',	$ait_pfad, array( 'wp-i18n' ), '0.0.1'); //
-			wp_enqueue_script( 'ait_js_script', $ait_pfad, [], '0.1.0');
+			wp_register_script('ait_js_script',	$ait_pfad );
+			wp_enqueue_script( 'ait_js_script', $ait_pfad );
 			// Localize the script with new data
 			wp_localize_script( 'ait_js_script', 'ait_php_var',
 				array(
-					'external_link' => __( 'External Link', 'aittec_language' ),
-					'event_category' => __( 'Event Category', 'aittec_language' ),
-					'internal_link' => __( 'Internal Link', 'aittec_language' ),
+					'external_link' => __( 'External Link', 'add-infos-to-the-events-calendar' ),
+					'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
+					'internal_link' => __( 'Internal Link', 'add-infos-to-the-events-calendar' ),
 					'ackids' => $ait_add_options,
 			)
 			);
