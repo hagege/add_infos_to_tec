@@ -53,7 +53,7 @@
                 				        // label: ait_php_var.internal_link, //
                 				        values:""
                 							},
-                              /* for internal use only
+                              /* hier sollte eine Abfrage hin, ob eine Datei vorhanden ist, damit die folgenden Optionen angeboten werden */
                               {
                                 type: 'checkbox',
                                 name: 'kfm',
@@ -72,7 +72,6 @@
                                 label: 'Ferien',
                                 values: ""
                               },
-                              */
 
         ],
         onsubmit: function( e ) {
@@ -101,7 +100,7 @@
             e.data.il ="";
           }
 
-          /* for internal use only */
+          /* only for internal use */
           e.data.kfm_var = '';
           if (e.data.kfm === true) {
               e.data.kfm_var = ' kfm="" ';

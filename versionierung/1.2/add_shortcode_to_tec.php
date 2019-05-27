@@ -664,9 +664,9 @@ function ait_load_scripts() {
 			// Localize the script with new data
 			wp_localize_script( 'ait_js_script', 'ait_php_var',
 				array(
-					'external_link' => __( 'External Link', 'add-infos-to-the-events-calendar' ),
+					'external_link' => __( 'Ext. Link', 'add-infos-to-the-events-calendar' ),
 					'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
-					'internal_link' => __( 'Internal Link', 'add-infos-to-the-events-calendar' )
+					'internal_link' => __( 'Int. Link', 'add-infos-to-the-events-calendar' )
 					// 'ackids' => $ait_add_options, //
 			)
 			);
