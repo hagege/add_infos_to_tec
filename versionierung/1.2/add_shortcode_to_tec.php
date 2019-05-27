@@ -647,7 +647,7 @@ add_action(
 
 
 	function ait_to_tec_add_tinymce_button( $plugin_array ) {
-	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons_test.js', __FILE__ ) ;
+	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
 	     return $plugin_array;
 	}
 
@@ -656,7 +656,7 @@ add_action(
 // localization for ait_buttons.js //
 add_action( 'wp_enqueue_scripts', 'ait_load_scripts' );
 function ait_load_scripts() {
-			$ait_pfad = plugin_dir_url( __FILE__ ) . 'assets/js/ait_buttons_test.js';
+			$ait_pfad = plugin_dir_url( __FILE__ ) . 'assets/js/ait_buttons.js';
 			$ait_add_options = 'here';
 			// Enqueued script with localized data.
 			wp_register_script('ait_js_script',	$ait_pfad );
