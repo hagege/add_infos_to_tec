@@ -78,11 +78,13 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 2. Representation of the event in the frontend
 3. Use in a single event (backend)
 4. The reference to the photo must be entered in this field (caption).
+5. Call via the icon at the top right of the menu bar. Then click on "Add Infos to the events Calendar".
+6. These fields can currently be filled automatically via the shortcode generator and then appear in the description at the point where the cursor was positioned.
 
 == Changelog ==
 
 = [1.2] 2019 =
-* Added: Icon added to the editor tinycme, so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog.
+* Added: Icon added to the editor tinycme (Classic Editor), so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog. However, this icon cannot (yet) be used in the Gutenberg Editor.
 
 = [1.02] 2019-05-18 =
 * Fixed: If The Events Calendar is not installed, in some cases an error message appeared on the page with the short code
