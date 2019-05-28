@@ -52,6 +52,13 @@ screenshot mit dem ICON
 
 
 Erledigt:
+28052019.1.
+Fehler in der Console sichtbar:
+  Uncaught ReferenceError: tinymce is not defined
+    at ait_buttons-72a1ea84aa4b27a0928cbb0a24a3ceb3.js:1
+    at ait_buttons-72a1ea84aa4b27a0928cbb0a24a3ceb3.js:9
+    lag an dem Aufruf der Übersetzungsfunktion (siehe Ende), jetzt zunächst mal auskommentiert.
+
 1. Da es wegen der Schreibweise zu Problemen kommen kann, sollte der slug durch die Funktion cliff_get_events_taxonomies(), siehe Zeile 226
     übergeben werden
     siehe dazu auch https://codex.wordpress.org/Function_Reference/wp_dropdown_categories

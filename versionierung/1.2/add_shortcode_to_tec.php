@@ -653,7 +653,7 @@ add_action(
 
 
 
-// localization for ait_buttons.js //
+/* localization for ait_buttons.js
 add_action( 'wp_enqueue_scripts', 'ait_load_scripts' );
 function ait_load_scripts() {
 			$ait_pfad = plugin_dir_url( __FILE__ ) . 'assets/js/ait_buttons.js';
@@ -671,5 +671,5 @@ function ait_load_scripts() {
 			)
 			);
 		}
-
+*/
 ?>
