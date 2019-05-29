@@ -43,6 +43,22 @@ screenshot mit dem ICON
 14052019.1.
   https bzw. http automatisch ergänzen, wenn das fehlt - siehe auch entsprechende Vorbereitungen in 1.1  (ait_buttons.js)
 
+29052019.1.
+  3 Felder für eigene Nutzung - das können spezielle Links auf Veranstaltungskategorien sein oder abe allgemeine LINKS
+  siehe Zeile 173:
+  if ( $werte[$ait_shortcode_wert1] != 'nein' ) {
+    $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad_wert1 . ' ' . target="_blank">'. $ait_label_wert1 . '</a></p>';
+  }
+  $ait_shortcode_wert1    enthält die Bezeichnung für das Feld, z. B. 'fm'
+  $ait_pfad_wert1         enthält den kompletten Pfad, z. B. 'https://aachenerkinder.de/veranstaltungen/kategorie/flohmarkt/Karte/'
+  $ait_label_wert1        enthält die Bezeichnung die im Button zu sehen ist
+
+  d. h. es kommen insgesamt 9 Felder in den Einstellungen dazu. Daher ist es sinnvoll, die Einstellungen auf zwei tabs zu verteilen:
+  a) Gestaltung: mit Farben, etc.
+  b) Bezeichnung: mit allen Bezeichnungen, Pfaden und Shortcodebeschriftungen
+  Hinweis in der readme.txt: Bei den zusätzlichen Feldern sollten später keine Änderungen bei der Bezeichnung der Shortcodes vorgenommen werden,
+    weil es ansonsten zu Problemen kommt und die Shortcodes nicht mehr korrekt dargestellt werden
+  
 
 
 

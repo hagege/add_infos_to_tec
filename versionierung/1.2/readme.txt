@@ -83,7 +83,7 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 
 == Changelog ==
 
-= [1.2] 2019 =
+= [1.2] 2019-05-28 =
 * Added: Icon added to the editor tinycme (Classic Editor), so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog. However, this icon cannot (yet) be used in the Gutenberg Editor.
 
 = [1.02] 2019-05-18 =

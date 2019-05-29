@@ -43,20 +43,6 @@ function ait_scripts() {
 }
 */
 
-// Search in an associative, multidimensional array
-// https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
-// deprecated since 0.682
-function ait_searchForId($id, $array) {
-   foreach ($array as $key => $val) {
-		 	 // echo 'Id: ' . $id . "\n"; //
-       if ($val['Kategorie'] === $id) {
-				 	 // echo 'Kategorie: ' . $val['Kategorie'] . "\n"; //
-           return $key;
-       }
-   }
-   return null;
-}
-
 
 /*----------------------------------------------------------------*/
 // Start: get the color settings from style_fuss.css
@@ -506,8 +492,8 @@ add_action(
 					$tec_path = ait_path_for_tec();
 					$add_infos_to_tec_options = array(
 							'fs_option_pfad' => $tec_path,
-							'fs_hintergrundfarbe_button' => '#77BCC7',
-							'fs_vordergrundfarbe_button' => '#000000',
+							'fs_hintergrundfarbe_button' => '#1E73BE',
+							'fs_vordergrundfarbe_button' => '#ffffff',
 							'fs_hover_hintergrundfarbe_button' => '#F9B81E',
 							'fs_hover_vordergrundfarbe_button' => '#ffffff',
 							'fs_runder_button' => '5',
