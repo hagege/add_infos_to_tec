@@ -3,7 +3,7 @@ Contributors: hage
 Tags: The Events Calendar, events, shortcode, button, lightweight
 Donate link: https://haurand.com/wordpress-plugins/
 Requires at least: 4.0
-Tested up to: 5.2
+Tested up to: 5.2.1
 Stable tag: 1.3
 Requires PHP: 5.6
 License: GPLv2 or later
