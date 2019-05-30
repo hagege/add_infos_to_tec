@@ -56,9 +56,13 @@ screenshot mit dem ICON
   d. h. es kommen insgesamt 9 Felder in den Einstellungen dazu. Daher ist es sinnvoll, die Einstellungen auf zwei tabs zu verteilen:
   a) Gestaltung: mit Farben, etc.
   b) Bezeichnung: mit allen Bezeichnungen, Pfaden und Shortcodebeschriftungen
+  siehe hier:
+  https://scottdeluzio.com/create-tabbed-settings-pages-for-wordpress-plugins/
+  http://qnimate.com/wordpress-settings-api-a-comprehensive-developers-guide/
+
   Hinweis in der readme.txt: Bei den zusätzlichen Feldern sollten später keine Änderungen bei der Bezeichnung der Shortcodes vorgenommen werden,
     weil es ansonsten zu Problemen kommt und die Shortcodes nicht mehr korrekt dargestellt werden
-  
+
 
 
 
