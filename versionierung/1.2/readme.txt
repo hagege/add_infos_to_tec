@@ -4,7 +4,7 @@ Tags: The Events Calendar, events, shortcode, button, lightweight
 Donate link: https://haurand.com/wordpress-plugins/
 Requires at least: 4.0
 Tested up to: 5.2
-Stable tag: 1.2
+Stable tag: 1.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -80,8 +80,11 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 4. The reference to the photo must be entered in this field (caption).
 5. Call via the icon at the top right of the menu bar. Then click on "Add Infos to the events Calendar".
 6. These fields can currently be filled automatically via the shortcode generator and then appear in the description at the point where the cursor was positioned.
+7. Executing the Shortcodes in Gutenberg
 
 == Changelog ==
+= [1.3] 2019-05-30 =
+* Problem with the version number (1.2) so that no updates are performed automatically.
 
 = [1.2] 2019-05-28 =
 * Added: Icon added to the editor tinycme (Classic Editor), so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog. However, this icon cannot (yet) be used in the Gutenberg Editor.
