@@ -84,7 +84,7 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 
 == Changelog ==
 = [1.3] 2019-05-30 =
-* Problem with the version number (1.2) so that no updates are performed automatically.
+* Problem with the version number (1.2) so that no updates are performed automatically from Version 1.02 to 1.2.
 
 = [1.2] 2019-05-28 =
 * Added: Icon added to the editor tinycme (Classic Editor), so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog. However, this icon cannot (yet) be used in the Gutenberg Editor.
