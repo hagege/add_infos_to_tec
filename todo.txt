@@ -49,7 +49,7 @@ screenshot mit dem ICON
   if ( $werte[$ait_shortcode_wert1] != 'nein' ) {
     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad_wert1 . ' ' . target="_blank">'. $ait_label_wert1 . '</a></p>';
   }
-  $ait_shortcode_wert1    enthält die Bezeichnung für das Feld, z. B. 'fm'
+  $ait_kurz_wert1         enthält die Bezeichnung für das Feld, z. B. 'fm'
   $ait_pfad_wert1         enthält den kompletten Pfad, z. B. 'https://aachenerkinder.de/veranstaltungen/kategorie/flohmarkt/Karte/'
   $ait_label_wert1        enthält die Bezeichnung, die im Button zu sehen ist, z. B. "Weitere Flohmärkte"
 
