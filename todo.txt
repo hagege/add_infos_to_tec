@@ -51,7 +51,7 @@ screenshot mit dem ICON
   }
   $ait_shortcode_wert1    enthält die Bezeichnung für das Feld, z. B. 'fm'
   $ait_pfad_wert1         enthält den kompletten Pfad, z. B. 'https://aachenerkinder.de/veranstaltungen/kategorie/flohmarkt/Karte/'
-  $ait_label_wert1        enthält die Bezeichnung die im Button zu sehen ist
+  $ait_label_wert1        enthält die Bezeichnung, die im Button zu sehen ist, z. B. "Weitere Flohmärkte"
 
   d. h. es kommen insgesamt 9 Felder in den Einstellungen dazu. Daher ist es sinnvoll, die Einstellungen auf zwei tabs zu verteilen:
   a) Gestaltung: mit Farben, etc.
