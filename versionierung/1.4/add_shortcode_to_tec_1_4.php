@@ -113,13 +113,8 @@ function ait_fs_beitrags_fuss_pi($atts) {
 		// Output line above //
 		//
 		$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-		$add_infos_to_tec_options_tab_2 = get_option( 'add_infos_to_tec_settings_tab_2' );
 		// workaround to prevent the item from not being created (checked) and create a notice, if WP_DEBUG is true:
 		$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
-		$add_infos_to_tec_options_tab_2 = ait_test_array_tab_2($add_infos_to_tec_options_tab_2);
-		// merge arrays
-		$add_infos_to_tec_options = array_merge($add_infos_to_tec_options, $add_infos_to_tec_options_tab_2);
-
 		$fs_l_o = esc_attr($add_infos_to_tec_options['fs_linie_oben']);
 		if (esc_attr($add_infos_to_tec_options['fs_linie_oben']) == '1') {
 			  // echo 'Linie oben: ' . var_dump($l_o); //
@@ -398,7 +393,7 @@ add_action(
 
 		//create new top-level menu: add_menu_page
 		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'administrator', __FILE__, 'ait_admin_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'manage_options', 'ait-settings', 'ait_admin_settings_page');
+		add_options_page( 'Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'manage_options', 'sd-settings', 'ait_admin_settings_page');
 		//call register settings function
 		add_action( 'admin_init', 'ait_register_add_infos_to_tec_settings' );
 		/*
@@ -423,13 +418,20 @@ add_action(
 //register our settings
 	function ait_register_add_infos_to_tec_settings() {
 		register_setting( 'add_infos_to_tec_settings-group', 'add_infos_to_tec_settings' );
-		//
-		register_setting( 'add_infos_to_tec_settings-group_tab_2', 'add_infos_to_tec_settings_tab_2' );
 	}
 
 
 // workaround to prevent the item from not being created (option checked()) - would create a notice, if WP_DEBUG is true
 	function ait_test_array($ait_options) {
+		if (empty( $ait_options['fs_alle_buttons'])) {
+			 $ait_options['fs_alle_buttons'] = 0;
+		}
+		if (empty( $ait_options['fs_linie_oben'])) {
+			 $ait_options['fs_linie_oben'] = 0;
+		}
+		if (empty( $ait_options['fs_linie_unten'])) {
+			 $ait_options['fs_linie_unten'] = 0;
+		}
 		if (empty( $ait_options['fs_bezeichnung_externer_link'])) {
 			 $ait_options['fs_bezeichnung_externer_link'] = 'Read More';
 		}
@@ -440,20 +442,6 @@ add_action(
 			 $ait_options['fs_bezeichnung_interner_link'] = 'Read More on this website ';
 		}
 
-		return $ait_options;
-	}
-
-
-	function ait_test_array_tab_2($ait_options) {
-		if (empty( $ait_options['fs_alle_buttons'])) {
-			 $ait_options['fs_alle_buttons'] = 0;
-		}
-		if (empty( $ait_options['fs_linie_oben'])) {
-			 $ait_options['fs_linie_oben'] = 0;
-		}
-		if (empty( $ait_options['fs_linie_unten'])) {
-			 $ait_options['fs_linie_unten'] = 0;
-		}
 		return $ait_options;
 	}
 
@@ -477,46 +465,158 @@ add_action(
 
 
 
-// -------------------------------------------------- //
-// Begin: admin area
-// -------------------------------------------------- //
+// page with settings
+	function ait_add_infos_to_tec_settings_page() {
+	?>
+	<div class="wrap">
+	<h1>Add Infos to The Events Calendar - Version: <?php echo AIT_VERSION ?></h1>
+	<hr>
 
-function ait_set_variablen_tab_1() {
-	// The option hasn't been added yet. We'll add it with $autoload set to 'no'.
-	$deprecated = null;
-	$autoload = 'no';
-	$tec_path = ait_path_for_tec();
-	$add_infos_to_tec_options = array(
-			'fs_option_pfad' => $tec_path,
-			'fs_hintergrundfarbe_button' => '#1E73BE',
-			'fs_vordergrundfarbe_button' => '#ffffff',
-			'fs_hover_hintergrundfarbe_button' => '#F9B81E',
-			'fs_hover_vordergrundfarbe_button' => '#ffffff',
-			'fs_runder_button' => '5',
-			'fs_bezeichnung_externer_link' => 'Read More',
-			'fs_bezeichnung_events_link' => 'Read More',
-			'fs_bezeichnung_interner_link' => 'Read More on this website',
-		);
-	add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
-	return ($add_infos_to_tec_options);
+	<form method="post" action="options.php">
+	    <?php
+			settings_fields( 'add_infos_to_tec_settings-group' );
+	    do_settings_sections( 'add_infos_to_tec_settings-group' );
+			// get plugin options from the database
+			$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
+			// Check that user has proper security level
+			if ( !current_user_can( 'manage_options' ) ){
+				 wp_die( __('You do not have permissions to perform this action', 'add-infos-to-the-events-calendar') );
+			}
+			// security (nonce) //
+			wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
+			// $nonce_field = wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
+			// Set options if the options do not yet exist
+			if (empty( $add_infos_to_tec_options)) {
+			    // The option hasn't been added yet. We'll add it with $autoload set to 'no'.
+			    $deprecated = null;
+			    $autoload = 'no';
+					$tec_path = ait_path_for_tec();
+					$add_infos_to_tec_options = array(
+							'fs_option_pfad' => $tec_path,
+							'fs_hintergrundfarbe_button' => '#1E73BE',
+							'fs_vordergrundfarbe_button' => '#ffffff',
+							'fs_hover_hintergrundfarbe_button' => '#F9B81E',
+							'fs_hover_vordergrundfarbe_button' => '#ffffff',
+							'fs_runder_button' => '5',
+							'fs_alle_buttons' => '0',
+							'fs_schriftart' => '1',
+							'fs_linie_oben' => '1',
+							'fs_linie_unten' => '0',
+							'fs_bezeichnung_externer_link' => 'Read More',
+							'fs_bezeichnung_events_link' => 'Read More',
+							'fs_bezeichnung_interner_link' => 'Read More on this website',
+						);
+					add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
+			}
+			$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
+			?>
+	    <table class="form-table">
+					<!-- path-->
+					<tr valign="top">
+					<?php
+					$tec_path= ait_path_for_tec();
+					echo __( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add-infos-to-the-events-calendar' ) . '<font color="#FF0000"><strong>' . $tec_path . '</strong></font><br />';
+					echo __( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add-infos-to-the-events-calendar' );
+					?>
+					<!-- here I want to check if a folder exists in further versions of plugin -->
+					<hr>
+	        <th scope="row"><?php echo __( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add-infos-to-the-events-calendar' ); ?></th>
+
+	        <td><input type="text" name="add_infos_to_tec_settings[fs_option_pfad]" size=50 value="<?php echo esc_url_raw( $add_infos_to_tec_options['fs_option_pfad']); ?>" /></td>
+	        </tr>
+
+					<!-- Buttons -->
+					<tr valign="top">
+					<th scope="row"><h3><?php echo __( 'Settings for Buttons:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
+
+
+	        <tr valign="top">
+					<th scope="row"><?php echo __( 'Background color:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="text" name="add_infos_to_tec_settings[fs_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hintergrundfarbe_button']); ?>" class="color" /></td>
+	        </tr>
+
+
+	        <tr valign="top">
+	        <th scope="row"><?php echo __( 'Font color:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="text" name="add_infos_to_tec_settings[fs_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_vordergrundfarbe_button']); ?>" class="color" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Background color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_hintergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button']); ?>" class="color" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Font color when driving over the button (Hover):', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="text" name="add_infos_to_tec_settings[fs_hover_vordergrundfarbe_button]" value="<?php echo esc_attr( $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button']); ?>" class="color" /></td>
+	        </tr>
+
+					<!--  caption for buttons - 12.05.2019: -->
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Description for external link:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_externer_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_externer_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Description for events:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_events_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_events_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Description for internal link:', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="text" name="add_infos_to_tec_settings[fs_bezeichnung_interner_link]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_bezeichnung_interner_link']); ?>" /></td>
+	        </tr>
+
+					<tr valign="top">
+					<th scope="row"><h3><?php echo __( 'Further settings:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
+
+					<tr valign="top">
+					<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'add-infos-to-the-events-calendar' ); ?></th>
+					<td><input type="number" min="0" max="30" step="1" name="add_infos_to_tec_settings[fs_runder_button]" size=2 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_runder_button']); ?>" /></td>
+					</tr>
+
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'All links as buttons:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_alle_buttons'], 1, true)); ?> />
+	        </tr>
+
+					<!-- Diverses -->
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Font for Copyright:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="1" <?php echo esc_attr(checked(1, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'italic', 'add-infos-to-the-events-calendar' ); ?>
+					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="2" <?php echo esc_attr(checked(2, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'bold', 'add-infos-to-the-events-calendar' ); ?>
+					<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="3" <?php echo esc_attr(checked(3, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'normal', 'add-infos-to-the-events-calendar' ); ?></td>
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Horizontal line above the block:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_oben'], 1, true)); ?> />
+	        </tr>
+
+					<tr valign="top">
+	        <th scope="row"><?php echo __( 'Horizontal line below the block:', 'add-infos-to-the-events-calendar' ); ?></th>
+	        <td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_unten'], 1, true)); ?> />
+	        </tr>
+
+	    </table>
+			<?php
+			submit_button();
+ 		 ?>
+			</form>
+	</div>
+	<?php
 }
+	// -------------------------------------------------- //
+	// End: admin area
+	// -------------------------------------------------- //
 
-
-function ait_set_variablen_tab_2() {
-	// The option hasn't been added yet. We'll add it with $autoload set to 'no'.
-	$deprecated = null;
-	$autoload = 'no';
-	$tec_path = ait_path_for_tec();
-	$add_infos_to_tec_options_tab_2 = array(
-			'fs_alle_buttons' => '0',
-			'fs_schriftart' => '1',
-			'fs_linie_oben' => '1',
-			'fs_linie_unten' => '0',
-		);
-	add_option( 'add_infos_to_tec_settings_tab_2', $add_infos_to_tec_options_tab_2, $deprecated, $autoload);
-	return ($add_infos_to_tec_options_tab_2);
-}
-
+/*
+	function ait_admin_settings_setup() {
+	     add_options_page('My Plugin Settings', 'My Plugin Settings', 'manage_options', 'sd-settings', 'ait_admin_settings_page');
+  }
+  add_action('admin_menu', 'ait_admin_settings_setup');
+*/
   function ait_admin_settings_page(){
     	global $ait_active_tab;
     	$ait_active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'settings'; ?>
@@ -533,7 +633,7 @@ function ait_set_variablen_tab_2() {
 
   function ait_settings_tab(){
     	global $ait_active_tab; ?>
-    	<a class="nav-tab <?php echo $ait_active_tab == 'settings' || '' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'options-general.php?page=ait-settings&tab=settings' ); ?>"><?php _e( 'Settings for Buttons', 'sd' ); ?> </a>
+    	<a class="nav-tab <?php echo $ait_active_tab == 'settings' || '' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'options-general.php?page=sd-settings&tab=settings' ); ?>"><?php _e( 'Settings for Buttons', 'sd' ); ?> </a>
     	<?php
   }
 
@@ -566,12 +666,30 @@ function ait_set_variablen_tab_2() {
 				// $nonce_field = wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
 				// Set options if the options do not yet exist
 				if (empty( $add_infos_to_tec_options)) {
-					$add_infos_to_tec_options = ait_set_variablen_tab_1();
+						// The option hasn't been added yet. We'll add it with $autoload set to 'no'.
+						$deprecated = null;
+						$autoload = 'no';
+						$tec_path = ait_path_for_tec();
+						$add_infos_to_tec_options = array(
+								'fs_option_pfad' => $tec_path,
+								'fs_hintergrundfarbe_button' => '#1E73BE',
+								'fs_vordergrundfarbe_button' => '#ffffff',
+								'fs_hover_hintergrundfarbe_button' => '#F9B81E',
+								'fs_hover_vordergrundfarbe_button' => '#ffffff',
+								'fs_runder_button' => '5',
+								'fs_alle_buttons' => '0',
+								'fs_schriftart' => '1',
+								'fs_linie_oben' => '1',
+								'fs_linie_unten' => '0',
+								'fs_bezeichnung_externer_link' => 'Read More',
+								'fs_bezeichnung_events_link' => 'Read More',
+								'fs_bezeichnung_interner_link' => 'Read More on this website',
+							);
+						add_option( 'add_infos_to_tec_settings', $add_infos_to_tec_options, $deprecated, $autoload);
 				}
 				$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 				?>
 				<table class="form-table">
-						<?php var_dump ($add_infos_to_tec_options); ?>
 						<!-- path-->
 						<tr valign="top">
 						<?php
@@ -626,8 +744,35 @@ function ait_set_variablen_tab_2() {
 						</tr>
 
 						<tr valign="top">
+						<th scope="row"><h3><?php echo __( 'Further settings:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
+
+						<tr valign="top">
 						<th scope="row"><?php echo __( 'Rounded corners (values from 0 - 30):', 'add-infos-to-the-events-calendar' ); ?></th>
 						<td><input type="number" min="0" max="30" step="1" name="add_infos_to_tec_settings[fs_runder_button]" size=2 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_runder_button']); ?>" /></td>
+						</tr>
+
+
+						<tr valign="top">
+						<th scope="row"><?php echo __( 'All links as buttons:', 'add-infos-to-the-events-calendar' ); ?></th>
+						<td><input type="checkbox" name="add_infos_to_tec_settings[fs_alle_buttons]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_alle_buttons'], 1, true)); ?> />
+						</tr>
+
+						<!-- Diverses -->
+						<tr valign="top">
+						<th scope="row"><?php echo __( 'Font for Copyright:', 'add-infos-to-the-events-calendar' ); ?></th>
+						<td><input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="1" <?php echo esc_attr(checked(1, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'italic', 'add-infos-to-the-events-calendar' ); ?>
+						<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="2" <?php echo esc_attr(checked(2, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'bold', 'add-infos-to-the-events-calendar' ); ?>
+						<input type="radio" name="add_infos_to_tec_settings[fs_schriftart]" value="3" <?php echo esc_attr(checked(3, $add_infos_to_tec_options['fs_schriftart'], true)); ?>><?php echo __( 'normal', 'add-infos-to-the-events-calendar' ); ?></td>
+						</tr>
+
+						<tr valign="top">
+						<th scope="row"><?php echo __( 'Horizontal line above the block:', 'add-infos-to-the-events-calendar' ); ?></th>
+						<td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_oben]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_oben'], 1, true)); ?> />
+						</tr>
+
+						<tr valign="top">
+						<th scope="row"><?php echo __( 'Horizontal line below the block:', 'add-infos-to-the-events-calendar' ); ?></th>
+						<td><input type="checkbox" name="add_infos_to_tec_settings[fs_linie_unten]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options['fs_linie_unten'], 1, true)); ?> />
 						</tr>
 
 				</table>
@@ -638,90 +783,27 @@ function ait_set_variablen_tab_2() {
 		</div>
 		<?php
   }
-
-	// -------------------------------------------------- //
-	// Admin Area: Tab2 //
-	// -------------------------------------------------- //
-
   add_action( 'ait_settings_tab', 'ait_further_settings' );
 
   function ait_further_settings(){
   	global $ait_active_tab; ?>
-  	<a class="nav-tab <?php echo $ait_active_tab == 'further_settings' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'options-general.php?page=ait-settings&tab=further_settings' ); ?>"><?php _e( 'Further settings', 'add-infos-to-the-events-calendar' ); ?> </a>
+  	<a class="nav-tab <?php echo $ait_active_tab == 'further_settings' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'options-general.php?page=sd-settings&tab=further_settings' ); ?>"><?php _e( 'Further settings', 'sd' ); ?> </a>
   	<?php
   }
 
-  add_action( 'ait_settings_content', 'ait_options_page_tab_2' );
+  add_action( 'ait_settings_content', 'ait_another_render_options_page' );
 
-  function ait_options_page_tab_2() {
+  function ait_another_render_options_page() {
   	global $ait_active_tab;
   	if ( 'further_settings' != $ait_active_tab )
   		return;
   	?>
 
   	<h3><?php _e( 'Further settings', 'add-infos-to-the-events-calendar' ); ?></h3>
-		<div class="wrap">
-		<hr>
-
-		<form method="post" action="options.php">
-				<?php
-				settings_fields( 'add_infos_to_tec_settings-group_tab_2' );
-				do_settings_sections( 'add_infos_to_tec_settings-group_tab_2' );
-				// get plugin options from the database
-				$add_infos_to_tec_options_tab_2 = get_option( 'add_infos_to_tec_settings_tab_2' );
-				// save array
-				// Check that user has proper security level
-				if ( !current_user_can( 'manage_options' ) ){
-					 wp_die( __('You do not have permissions to perform this action', 'add-infos-to-the-events-calendar') );
-				}
-				// security (nonce) //
-				wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
-				// $nonce_field = wp_nonce_field('ait_plugin_settings_link', 'ait_tec');
-				// Set options if the options do not yet exist
-				if (empty( $add_infos_to_tec_options_tab_2)) {
-						$add_infos_to_tec_options_tab_2 = ait_set_variablen_tab_2();
-				}
-				$add_infos_to_tec_options_tab_2 = ait_test_array_tab_2($add_infos_to_tec_options_tab_2);
-				?>
-
-				<table class="form-table">
-						<?php var_dump ($add_infos_to_tec_options_tab_2); ?>
-
-						<tr valign="top">
-						<th scope="row"><?php echo __( 'All links as buttons:', 'add-infos-to-the-events-calendar' ); ?></th>
-						<td><input type="checkbox" name="add_infos_to_tec_settings_tab_2[fs_alle_buttons]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options_tab_2['fs_alle_buttons'], 1, true)); ?> />
-						</tr>
-
-						<!-- Diverses -->
-						<tr valign="top">
-						<th scope="row"><?php echo __( 'Font for Copyright:', 'add-infos-to-the-events-calendar' ); ?></th>
-						<td><input type="radio" name="add_infos_to_tec_settings_tab_2[fs_schriftart]" value="1" <?php echo esc_attr(checked(1, $add_infos_to_tec_options_tab_2['fs_schriftart'], true)); ?>><?php echo __( 'italic', 'add-infos-to-the-events-calendar' ); ?>
-						<input type="radio" name="add_infos_to_tec_settings_tab_2[fs_schriftart]" value="2" <?php echo esc_attr(checked(2, $add_infos_to_tec_options_tab_2['fs_schriftart'], true)); ?>><?php echo __( 'bold', 'add-infos-to-the-events-calendar' ); ?>
-						<input type="radio" name="add_infos_to_tec_settings_tab_2[fs_schriftart]" value="3" <?php echo esc_attr(checked(3, $add_infos_to_tec_options_tab_2['fs_schriftart'], true)); ?>><?php echo __( 'normal', 'add-infos-to-the-events-calendar' ); ?></td>
-						</tr>
-
-						<tr valign="top">
-						<th scope="row"><?php echo __( 'Horizontal line above the block:', 'add-infos-to-the-events-calendar' ); ?></th>
-						<td><input type="checkbox" name="add_infos_to_tec_settings_tab_2[fs_linie_oben]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options_tab_2['fs_linie_oben'], 1, true)); ?> />
-						</tr>
-
-						<tr valign="top">
-						<th scope="row"><?php echo __( 'Horizontal line below the block:', 'add-infos-to-the-events-calendar' ); ?></th>
-						<td><input type="checkbox" name="add_infos_to_tec_settings_tab_2[fs_linie_unten]" value="1" <?php echo esc_attr(checked($add_infos_to_tec_options_tab_2['fs_linie_unten'], 1, true)); ?> />
-						</tr>
-
-				</table>
-				<?php
-				submit_button();
-			 ?>
- 			 </form>
-		</div>
-
+  	<!-- Put your content here -->
   	<?php
   }
-	// -------------------------------------------------- //
-	// End: admin area
-	// -------------------------------------------------- //
+// ---------------------------------------- Admin - Area -------------------------------------------- //
 
 	/* Integrate shortcode generator in tinymce editor */
 
@@ -772,5 +854,4 @@ function ait_load_scripts() {
 			// Enqueue the script after localizing
 			wp_enqueue_script( 'ait_js_script', $ait_pfad );
 		}
-
 ?>

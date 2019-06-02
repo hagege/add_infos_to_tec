@@ -63,6 +63,10 @@ screenshot mit dem ICON
   Hinweis in der readme.txt: Bei den zusätzlichen Feldern sollten später keine Änderungen bei der Bezeichnung der Shortcodes vorgenommen werden,
     weil es ansonsten zu Problemen kommt und die Shortcodes nicht mehr korrekt dargestellt werden
 
+  Prüfen:
+  Evtl. wäre es sinnvoll, die Einstellungen der jeweiligen Einstellungsseiten bei zwei Tabs in zwei Arrays zu speichern und diese dann vor der Ausführung des
+  Shortcodes zusammenzuführen (https://www.php.net/manual/de/function.array-merge.php)
+
 
 
 
