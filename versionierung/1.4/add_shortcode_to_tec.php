@@ -571,7 +571,7 @@ function ait_set_variablen_tab_2() {
 				$add_infos_to_tec_options = ait_test_array($add_infos_to_tec_options);
 				?>
 				<table class="form-table">
-						<?php var_dump ($add_infos_to_tec_options); ?>
+						<!-- <?php var_dump ($add_infos_to_tec_options); ?> -->
 						<!-- path-->
 						<tr valign="top">
 						<?php
@@ -632,7 +632,9 @@ function ait_set_variablen_tab_2() {
 
 				</table>
 				<?php
-				submit_button();
+				// Saving only array $add_infos_to_tec_options //
+				$ait_save = __( 'Save Settings', 'add-infos-to-the-events-calendar' );
+				submit_button($ait_save, 'primary', 'ait_settings', true, $add_infos_to_tec_options);
 			 ?>
 				</form>
 		</div>
@@ -685,7 +687,7 @@ function ait_set_variablen_tab_2() {
 				?>
 
 				<table class="form-table">
-						<?php var_dump ($add_infos_to_tec_options_tab_2); ?>
+						<!-- <?php var_dump ($add_infos_to_tec_options_tab_2); ?> -->
 
 						<tr valign="top">
 						<th scope="row"><?php echo __( 'All links as buttons:', 'add-infos-to-the-events-calendar' ); ?></th>
@@ -712,7 +714,9 @@ function ait_set_variablen_tab_2() {
 
 				</table>
 				<?php
-				submit_button();
+				$ait_save = __( 'Save Settings', 'add-infos-to-the-events-calendar' );
+				// Saving only array $add_infos_to_tec_options_tab_2 //
+				submit_button($ait_save, 'primary','ait_settings_tab_2', true, $add_infos_to_tec_options_tab_2);
 			 ?>
  			 </form>
 		</div>
