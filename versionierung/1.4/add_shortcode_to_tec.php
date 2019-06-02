@@ -545,12 +545,12 @@ function ait_set_variablen_tab_2() {
   		return;
   	?>
 
-  	<h3><?php _e( 'Settings for Buttons', 'add-infos-to-the-events-calendar' ); ?></h3>
   	<!-- Put your content here -->
 		<div class="wrap">
 		<h1>Add Infos to The Events Calendar - Version: <?php echo AIT_VERSION ?></h1>
 		<hr>
-
+		<h3><?php _e( 'Settings for Buttons', 'add-infos-to-the-events-calendar' ); ?></h3>
+		<hr>
 		<form method="post" action="options.php">
 				<?php
 				settings_fields( 'add_infos_to_tec_settings-group' );
