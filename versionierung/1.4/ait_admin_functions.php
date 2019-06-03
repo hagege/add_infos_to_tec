@@ -18,44 +18,6 @@
 
 
 
-	add_action('admin_menu', 'ait_add_infos_to_tec_create_menu');
-
-// create custom plugin settings menu
-	function ait_add_infos_to_tec_create_menu() {
-
-		//create new top-level menu: add_menu_page
-		add_submenu_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'administrator', __FILE__, 'ait_admin_settings_page' , plugins_url('/images/icon.png', __FILE__) );
-		add_options_page('Add Infos to TEC Plugin Settings',  __('Add Infos to TEC Settings', 'add-infos-to-the-events-calendar'), 'manage_options', 'ait-settings', 'ait_admin_settings_page');
-		//call register settings function
-		add_action( 'admin_init', 'ait_register_add_infos_to_tec_settings' );
-		/*
-		if (! isset( $_POST['ait_tec'] )	|| ! wp_verify_nonce( $_POST['ait_tec'],	'ait_plugin_settings_link' )) {
-				print 'Sorry, Nonce ist nicht korrekt.';
-				exit;
-		}
-		*/
-}
-
-// Settings in the Plugin List
-	function ait_plugin_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=ait_admin_settings_page">'	. __( 'Settings' ) . '</a>';
-		// check_admin_referer( 'ait_plugin_settings_link', 'ait_tec' );
-		array_push( $links, $settings_link );
-		return $links;
-	}
-	add_filter(
-		'plugin_action_links_' . plugin_basename( __FILE__ ),	'ait_plugin_settings_link'
-	);
-
-//register our settings
-	function ait_register_add_infos_to_tec_settings() {
-		register_setting( 'add_infos_to_tec_settings-group', 'add_infos_to_tec_settings' );
-		//
-		register_setting( 'add_infos_to_tec_settings-group_tab_2', 'add_infos_to_tec_settings_tab_2' );
-	}
-
-
-
 	// Determine path for events and suggest as path if necessary
 	function ait_path_for_tec(){
 	if ( !ait_tec_installed() ) {

@@ -6,6 +6,24 @@ Dateien kopieren:
 2. readme.txt
 
 
+geplant für 1.5:
+1. 2-3 zusätzliche Felder
+2. Codeoptimierung
+3. Sicherheitsprüfung
+
+
+
+geplant für 1.4:
+1. Tabs
+2. 2-3 zusätzliche Felder
+3. Codeoptimierung
+4. Sicherheitsprüfung
+
+Version 1.4 ist mit dem Tabs zwar (fast) fertig, aber grundsätzlich möchte ich doch lieber bei einer Einstellungsseite bleiben.
+Außerdem fehlen die Einstellungen in der Plugin - Liste. Daher wird die Version 4.0 erst mal nicht mehr verfolgt, aber als Arbeitsversion zunächst erhalten.
+
+
+
 
 in readme.txt:
 
