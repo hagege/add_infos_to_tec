@@ -7,9 +7,10 @@ Dateien kopieren:
 
 
 geplant für 1.5:
-1. 2-3 zusätzliche Felder
+1. 2(-3) zusätzliche Felder
 2. Codeoptimierung
 3. Sicherheitsprüfung
+4. ggfs. Icon für Gutenberg
 
 
 
@@ -62,16 +63,79 @@ screenshot mit dem ICON
   https bzw. http automatisch ergänzen, wenn das fehlt - siehe auch entsprechende Vorbereitungen in 1.1  (ait_buttons.js)
 
 29052019.1.
-  3 Felder für eigene Nutzung - das können spezielle Links auf Veranstaltungskategorien sein oder abe allgemeine LINKS
+  2 Felder für eigene Nutzung - das können spezielle Links auf Veranstaltungskategorien sein oder aber allgemeine LINKS
   siehe Zeile 173:
   if ( $werte[$ait_shortcode_wert1] != 'nein' ) {
     $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad_wert1 . ' ' . target="_blank">'. $ait_label_wert1 . '</a></p>';
   }
-  $ait_kurz_wert1         enthält die Bezeichnung für das Feld, z. B. 'fm'
-  $ait_pfad_wert1         enthält den kompletten Pfad, z. B. 'https://aachenerkinder.de/veranstaltungen/kategorie/flohmarkt/Karte/'
-  $ait_label_wert1        enthält die Bezeichnung, die im Button zu sehen ist, z. B. "Weitere Flohmärkte"
+  $ait_kurz_w1         enthält die Bezeichnung für das Feld, z. B. 'fm' - muss entweder manuell eingegeben werden oder wird im Shortcode Generator angezeigt
+  $ait_pfad_w1         enthält den kompletten Pfad, z. B. 'https://aachenerkinder.de/veranstaltungen/kategorie/flohmarkt/Karte/'
+  $ait_label_w1        enthält die Bezeichnung, die im Button zu sehen ist, z. B. "Weitere Flohmärkte"
 
-  d. h. es kommen insgesamt 9 Felder in den Einstellungen dazu. Daher ist es sinnvoll, die Einstellungen auf zwei tabs zu verteilen:
+  d. h. es kommen insgesamt 6 (2 * 3) Felder in den Einstellungen dazu.
+
+  Umsetzung:
+  ait_admin_functions:
+    nach Zeile 79:
+      fs_kurz_w1 = 'fm',      // Beispiel oder leer ?
+      fs_pfad_w1 = 'https://aachenerkinder.de/veranstaltungen/kategorie/flohmarkt/Karte/',
+      fs_label_w1 = 'Weitere Flohmärkte',
+      fs_kurz_w2 = 'ferien',
+      fs_pfad_w2 = 'https://aachenerkinder.de/veranstaltungen/kategorie/ferien',
+      fs_label_w2 = 'Weitere Ferienangebote',
+
+    nach Zeile 172:
+      <tr valign="top">
+      <th scope="row"><?php echo __( 'Short for further link 1:', 'add-infos-to-the-events-calendar' ); ?></th>
+      <td><input type="text" name="add_infos_to_tec_settings[fs_kurz_w1]" size=10 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_kurz_w1']); ?>" /></td>
+      </tr>
+
+      <tr valign="top">
+      <th scope="row"><?php echo __( 'Path for further link 1:', 'add-infos-to-the-events-calendar' ); ?></th>
+      <td><input type="text" name="add_infos_to_tec_settings[fs_pfad_w1]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_pfad_w1']); ?>" /></td>
+      </tr>
+
+      <tr valign="top">
+      <th scope="row"><?php echo __( 'Description for further link 1:', 'add-infos-to-the-events-calendar' ); ?></th>
+      <td><input type="text" name="add_infos_to_tec_settings[fs_label_w1]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_label_w1']); ?>" /></td>
+      </tr>
+
+      <tr valign="top">
+      <th scope="row"><?php echo __( 'Short for further link 2:', 'add-infos-to-the-events-calendar' ); ?></th>
+      <td><input type="text" name="add_infos_to_tec_settings[fs_kurz_w2]" size=10 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_kurz_w2']); ?>" /></td>
+      </tr>
+
+      <tr valign="top">
+      <th scope="row"><?php echo __( 'Path for further link 2:', 'add-infos-to-the-events-calendar' ); ?></th>
+      <td><input type="text" name="add_infos_to_tec_settings[fs_pfad_w2]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_pfad_w2']); ?>" /></td>
+      </tr>
+
+      <tr valign="top">
+      <th scope="row"><?php echo __( 'Description for further link 2:', 'add-infos-to-the-events-calendar' ); ?></th>
+      <td><input type="text" name="add_infos_to_tec_settings[fs_label_w2]" size=30 value="<?php echo esc_attr( $add_infos_to_tec_options['fs_label_w2']); ?>" /></td>
+      </tr>
+
+  add_shortcode_to_tec:
+    nach Zeile 98
+      $werte unklare Lösung
+
+    Zeile 166 ersetzen:
+      if ( $werte[$ait_kurz_w1] != 'nein' ) {
+        $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad_w1 . ' ' . target="_blank">'. $ait_label_w1 . '</a></p>';
+      }
+
+      if ( $werte[$ait_kurz_w2] != 'nein' ) {
+        $fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad_w2 . ' ' . target="_blank">'. $ait_label_w2 . '</a></p>';
+      }
+
+    nach Zeile 384:
+      if (empty( $ait_options['fs_kurz_w1'])) {
+         $ait_options['fs_kurz_w1'] = 'fm ';        // Beispiel oder leer ?
+      }
+
+
+  zunächst zurückgestellt:
+  Daher ist es sinnvoll, die Einstellungen auf zwei tabs zu verteilen:
   a) Gestaltung: mit Farben, etc.
   b) Bezeichnung: mit allen Bezeichnungen, Pfaden und Shortcodebeschriftungen
   siehe hier:
