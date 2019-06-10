@@ -14,6 +14,7 @@ define("AIT_VERSION", "1.5");
 define("AIT_HTTP", "http://");
 define("AIT_HTTPS", "https://");
 define('AIT__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+global $ait_add_options;
 
 // Securing against unauthorized access //
 if ( ! defined( 'ABSPATH' ) ) {
@@ -452,23 +453,20 @@ add_action(
 	/* localization for ait_buttons.js */
 	add_action( 'wp_enqueue_scripts', 'ait_load_scripts' );
 	function ait_load_scripts() {
-				$ait_pfad = plugin_dir_url( __FILE__ ) . 'assets/js/ait_buttons.js';
-				$ait_add_options = 'here';
+				global $ait_add_options;
+				$ait_pfad = plugin_dir_url( __FILE__ ) . '/assets/js/ait_buttons.js';
+				$ait_add_options = array(
+					'external_link' => __( 'Ext. Link', 'add-infos-to-the-events-calendar' ),
+					'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
+					'internal_link' => __( 'Int. Link', 'add-infos-to-the-events-calendar' ),
+					'ackids' => 'here',
+ 			  );
 				// Enqueued script with localized data.
 				wp_register_script('ait_js_script',	$ait_pfad );
-
-				// Localize the script with new data
-				wp_localize_script( 'ait_js_script', 'ait_php_var',
-					array(
-						'external_link' => __( 'Ext. Link', 'add-infos-to-the-events-calendar' ),
-						'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
-						'internal_link' => __( 'Int. Link', 'add-infos-to-the-events-calendar' ),
-						'ackids' => $ait_add_options,
-				)
-				);
-
 				// Enqueue the script after localizing
-				wp_enqueue_script( 'ait_js_script', $ait_pfad );
+				// wp_enqueue_script( 'ait_js_script', $ait_pfad ); //
+				wp_enqueue_script( 'ait_js_script' );
+				// Localize the script with new data
+				wp_localize_script( 'ait_js_script', 'ait_php_var', $ait_add_options );
 			}
-
 ?>

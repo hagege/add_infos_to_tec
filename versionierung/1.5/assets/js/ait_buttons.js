@@ -8,7 +8,7 @@
   var ait_http = 'http://';
   var ait_https = 'https://';
   var ait_test_http = '';
-  // console.log(ait_php_var.ackids);
+  console.log(ait_php_var.ackids);
 
 
     /*
