@@ -455,18 +455,21 @@ add_action(
 	function ait_load_scripts() {
 				global $ait_add_options;
 				$ait_pfad = plugin_dir_url( __FILE__ ) . '/assets/js/ait_buttons.js';
+				// Register the script
+				wp_register_script('ait_js_script',	$ait_pfad );
+				// Enqueued script with localized data.
+				wp_enqueue_script( 'ait_js_script', $ait_pfad );
+				// wp_enqueue_script( 'ait_js_script' ); //
+				// array with new data
 				$ait_add_options = array(
 					'external_link' => __( 'Ext. Link', 'add-infos-to-the-events-calendar' ),
 					'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
 					'internal_link' => __( 'Int. Link', 'add-infos-to-the-events-calendar' ),
 					'ackids' => 'here',
  			  );
-				// Enqueued script with localized data.
-				wp_register_script('ait_js_script',	$ait_pfad );
-				// Enqueue the script after localizing
-				// wp_enqueue_script( 'ait_js_script', $ait_pfad ); //
-				wp_enqueue_script( 'ait_js_script' );
 				// Localize the script with new data
 				wp_localize_script( 'ait_js_script', 'ait_php_var', $ait_add_options );
+
+
 			}
 ?>
