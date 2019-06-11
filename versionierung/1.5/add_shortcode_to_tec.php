@@ -442,7 +442,7 @@ add_action(
 	     return $buttons;
 	}
 
-
+/* this function causes the error */
 	function ait_to_tec_add_tinymce_button( $plugin_array ) {
 	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
 	     return $plugin_array;
@@ -469,7 +469,7 @@ add_action(
  			  );
 				// Localize the script with new data
 				wp_localize_script( 'ait_js_script', 'ait_php_var', $ait_add_options );
-
+				var_dump ($ait_add_options);
 
 			}
 ?>
