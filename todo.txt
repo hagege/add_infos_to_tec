@@ -13,6 +13,19 @@ geplant für 1.5:
 4. ggfs. Icon für Gutenberg
 
 
+Problem mit der Übersetzung bzw. Übergabe der PHP-Variablen, s. a.:
+      https://codex.wordpress.org/Plugin_API/Filter_Reference/mce_buttons,_mce_buttons_2,_mce_buttons_3,_mce_buttons_4
+      https://codex.wordpress.org/Plugin_API/Filter_Reference/mce_external_plugins
+          diese Seite enthält auch den Source zu dem Beispiel-Plugin "My TinyMCE Buttons"
+
+      wenn ich die Zeile 11 auskommentiere, dann wird das Icon angezeigt, aber die Übergabe der Variablen produziert den Fehler (Zeile 38)
+      es bleibt dabei: die Variable aus dem PHP-Script wird nicht an das JS-Script übergeben
+
+      zu überlegen ist, ob ich nicht besser direkt ein Icon für Gutenberg erstelle, siehe hier:
+      https://github.com/fabiankaegy/callout-block/tree/translation
+
+
+
 
 geplant für 1.4:
 1. Tabs

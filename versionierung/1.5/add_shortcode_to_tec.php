@@ -430,6 +430,8 @@ add_action(
 	     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
 				 // check if WYSIWYG is enabled //
 				 if ( get_user_option('rich_editing') == 'true') {
+					 // https://codex.wordpress.org/Plugin_API/Filter_Reference/mce_buttons,_mce_buttons_2,_mce_buttons_3,_mce_buttons_4 //
+					 // sobald ich das plugin "My TinyMCE Buttons" aktiviere, ist der JS-Fehler verschwunden, aber das Icon wird trotzdem nicht angezeigt.
 	          add_filter( 'mce_buttons', 'ait_to_tec_register_tinymce_button' );
 	          add_filter( 'mce_external_plugins', 'ait_to_tec_add_tinymce_button' );
 					}
@@ -468,7 +470,8 @@ add_action(
 					'ackids' => 'here',
  			  );
 				// Localize the script with new data
-				wp_localize_script( 'ait_js_script', 'ait_php_var', $ait_add_options );
+				wp_localize_script( 'ait_js_script', 'ait_php_var_js', $ait_add_options );
+				// wird im Frontend gezeigt:
 				var_dump ($ait_add_options);
 
 			}
