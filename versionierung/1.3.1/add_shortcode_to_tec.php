@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Add infos to the events calendar
  * Description: Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
- * Version:     1.3
+ * Version:     1.3.1
  * Author:      Hans-Gerd Gerhards (haurand.com)
  * Author URI:  https://haurand.com
  * Plugin URI:  https://haurand.com/add-infos-to-the-events-calendar/
@@ -10,7 +10,7 @@
  * Domain Path: /languages
  * License:     GPL2
  */
-define("AIT_VERSION", "1.3");
+define("AIT_VERSION", "1.3.1");
 define("AIT_HTTP", "http://");
 define("AIT_HTTPS", "https://");
 
