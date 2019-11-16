@@ -3,7 +3,7 @@ Contributors: hage
 Tags: The Events Calendar, events, shortcode, button, lightweight
 Donate link: https://haurand.com/wordpress-plugins/
 Requires at least: 4.0
-Tested up to: 5.2.1
+Tested up to: 5.3
 Stable tag: 1.4.1
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -73,6 +73,10 @@ Nowhere - but a donation to a charity that needs the money more urgently than I 
 = Is it possible to customize the button labels ?
 Yes, from version 1.0 on this option is new, see Settings and Changelog
 
+= Is it possible to use this plugin in Gutenberg ?
+Of course, that's not a problem. You can use the shortcode block. More comfortable is the Classic block, because in this case you can click on the icon of the plugin again (see screenshot 8).
+
+
 == Screenshots ==
 1. All options in the settings
 2. Representation of the event in the frontend
@@ -81,6 +85,7 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 5. Call via the icon at the top right of the menu bar. Then click on "Add Infos to the events Calendar".
 6. These fields can currently be filled automatically via the shortcode generator and then appear in the description at the point where the cursor was positioned.
 7. Executing the Shortcodes in Gutenberg
+8. Executing shortcode in classic block (Gutenberg)
 
 == Changelog ==
 = [1.3] 2019-05-30 =
