@@ -73,6 +73,9 @@ Nowhere - but a donation to a charity that needs the money more urgently than I 
 = Is it possible to customize the button labels ?
 Yes, from version 1.0 on this option is new, see Settings and Changelog
 
+= Is it possible to use this plugin in Gutenberg ?
+Of course, that's not a problem. You can use the shortcode block. More comfortable is the Classic block, because in this case you can click on the icon of the plugin again (see screenshot 8).
+
 == Screenshots ==
 1. All options in the settings
 2. Representation of the event in the frontend
@@ -81,10 +84,11 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 5. Call via the icon at the top right of the menu bar. Then click on "Add Infos to the events Calendar".
 6. These fields can currently be filled automatically via the shortcode generator and then appear in the description at the point where the cursor was positioned.
 7. Executing the Shortcodes in Gutenberg
+8. Executing Shortcode in Classic block (Gutenberg)
 
 == Changelog ==
 = [1.3.1] 2019-11-15 =
-* Tested up to WordPress 5.3.
+* Tested up to WordPress 5.3. Documentation updated.
 
 = [1.3] 2019-05-30 =
 * Problem with the version number (1.2) so that no updates are performed automatically from Version 1.02 to 1.2.
