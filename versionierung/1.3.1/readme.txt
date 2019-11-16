@@ -83,8 +83,8 @@ Of course, that's not a problem. You can use the shortcode block. More comfortab
 4. The reference to the photo must be entered in this field (caption).
 5. Call via the icon at the top right of the menu bar. Then click on "Add Infos to the events Calendar".
 6. These fields can currently be filled automatically via the shortcode generator and then appear in the description at the point where the cursor was positioned.
-7. Executing the Shortcodes in Gutenberg
-8. Executing Shortcode in Classic block (Gutenberg)
+7. Executing the shortcodes in Gutenberg
+8. Executing shortcode in classic block (Gutenberg)
 
 == Changelog ==
 = [1.3.1] 2019-11-15 =
