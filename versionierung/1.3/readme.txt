@@ -40,6 +40,8 @@ If the plugin is deleted, the shortcode remains in the posts and events. In this
 3. Upload the folder "add_infos_to_tec" to "/wp-content/plugins/"
 4. Activate the plugin through the "Plugins" menu in WordPress.
 
+https://youtu.be/j9dj3uoacxI
+
 == Frequently Asked Questions ==
 = Who will answer my support request? =
 A webdevelopement staff member of haurand.com.
