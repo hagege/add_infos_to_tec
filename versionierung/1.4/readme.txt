@@ -33,12 +33,15 @@ If the plugin is deleted, the shortcode remains in the posts and events. In this
 (of course the category must exist in The Events Calendar (this is checked by a function). If the category does not exist, the event list will be shown.)
 * [fuss vl="" il="http://internal_link.de/example"] --> always shows picture credits, but no link to external website and at vl="" the link to "more events" and at il="http://internal_link.de/example" the link to another external or internal webesite.
 
+https://youtu.be/j9dj3uoacxI
 
 == Installation ==
 1. Download "add_infos_to_tec.zip" to your local device.
 2. Unzip the file.
 3. Upload the folder "add_infos_to_tec" to "/wp-content/plugins/"
 4. Activate the plugin through the "Plugins" menu in WordPress.
+
+https://youtu.be/j9dj3uoacxI
 
 == Frequently Asked Questions ==
 = Who will answer my support request? =
