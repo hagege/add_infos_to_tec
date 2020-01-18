@@ -1,14 +1,18 @@
 // JavaScript Document
-// alert( ait_php_var.ackids );
+// alert( ait_php_var.ait_cats );
 
 (function() {
   // const { __, } = wp.i18n;
   // var ait_cats = JSON.parse(ait_cat_obj.category);
   // var categories = [];
+  // var external_link = ait_js_script.external_link
+  // var event_category = ait_js_script.event_category
+  // var internal_link = ait_js_script.internal_link  
   var ait_http = 'http://';
   var ait_https = 'https://';
   var ait_test_http = '';
-  // console.log(ait_php_var_js.ackids);
+  //console.log(ait_php_var);
+  // alert(event_category);
 
 
     /*
@@ -28,32 +32,31 @@
                   value: 'Add Infos to the events calendar',
                   onclick : function() {
                       ed.windowManager.open( {
-                         title: 'Add Infos to the events calendar Shortcode Generator',
+                         title: 'TEST: Add Infos to the events calendar Shortcode Generator',
                          body: [
-
                               {
                                  type: 'textbox',
                                  name: 'link',
-                                 label: 'Ext. Link',
-                                 // label: ait_php_var.external_link, //
+                                 //label: 'Ext. Link',
+                                 label: ait_php_var.external_link, 
                                  value:""
                               },
                 							{
-                								type: 'textbox',
+                								type: 'listbox',
                 				        name: 'vl',
-                                label: 'Event Category',
-                				        // label: ait_php_var.event_category, //
-                                values: ""
-                				        // values:categories
+                                //label: 'Event Category',
+                				        label: ait_php_var.event_category, 
+                                values: ait_php_var.ait_categories,
+                                //values: ""
                 							},
                               {
                 								type: 'textbox',
                 				        name: 'il',
-                                label: 'Int. Link',
-                				        // label: ait_php_var.internal_link, //
+                                //label: 'Int. Link',
+                				        label: ait_php_var.internal_link,
                 				        values:""
                 							},
-                              /* for internal use only
+                              /* for internal use only */
                               {
                                 type: 'checkbox',
                                 name: 'kfm',
@@ -72,7 +75,7 @@
                                 label: 'Ferien',
                                 values: ""
                               },
-                              */
+                              
 
         ],
         onsubmit: function( e ) {

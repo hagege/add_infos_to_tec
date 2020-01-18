@@ -461,7 +461,7 @@ add_action(
 	     return $buttons;
 	}
 
-/* this function causes the error */
+/* this function causes the error  */
 	function ait_to_tec_add_tinymce_button( $plugin_array ) {
 	     $plugin_array['my_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ ) ;
 	     return $plugin_array;
@@ -470,26 +470,66 @@ add_action(
 
 
 	/* localization for ait_buttons.js */
-	add_action( 'wp_enqueue_scripts', 'ait_load_scripts' );
+	add_action( 'admin_enqueue_scripts', 'ait_load_scripts' );
 	function ait_load_scripts() {
-				global $ait_add_options;
-				$ait_pfad = plugin_dir_url( __FILE__ ) . '/assets/js/ait_buttons.js';
-				// Register the script
-				wp_register_script('ait_js_script',	$ait_pfad );
-				// Enqueued script with localized data.
-				wp_enqueue_script( 'ait_js_script', $ait_pfad );
-				// wp_enqueue_script( 'ait_js_script' ); //
-				// array with new data
-				$ait_add_options = array(
-					'external_link' => __( 'Ext. Link', 'add-infos-to-the-events-calendar' ),
-					'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
-					'internal_link' => __( 'Int. Link', 'add-infos-to-the-events-calendar' ),
-					'ackids' => 'here',
- 			  );
-				// Localize the script with new data
-				wp_localize_script( 'ait_js_script', 'ait_php_var_js', $ait_add_options );
-				// wird im Frontend gezeigt:
-				var_dump ($ait_add_options);
 
-			}
+		global $pagenow;
+
+		// nur ausführen wenn wir auch wirklich im backend in einem tribe event screen sind
+		if ( 
+			('post.php' === $pagenow && isset($_GET['post']) && 'tribe_events' === get_post_type( $_GET['post'] ) ) ||
+			( 'post-new.php' === $pagenow && isset($_GET['post_type']) && 'tribe_events' === $_GET['post_type'] )
+		) {
+			// array with categories
+			$ait_cats = ait_categories();
+			$ait_add_options = 'here';
+					$ait_pfad = plugin_dir_url( __FILE__ ) . 'assets/js/ait_buttons.js';
+					// Register the script
+					wp_register_script('ait_js_script',	$ait_pfad );
+					// wp_enqueue_script( 'ait_js_script' ); //
+					// array with new data
+					$ait_add_options = array(
+						'external_link'  => __( 'Ext. Link', 'add-infos-to-the-events-calendar' ),
+						'event_category' => __( 'Event Category', 'add-infos-to-the-events-calendar' ),
+						'internal_link'  => __( 'Int. Link', 'add-infos-to-the-events-calendar' ),
+						'ait_ackids'     => 'here',
+						'ait_categories' => $ait_cats
+				);
+					// Localize the script with new data
+					wp_localize_script( 'ait_js_script', 'ait_php_var', $ait_add_options );
+					// Enqueued script with localized data.
+					wp_enqueue_script( 'ait_js_script' );
+					// wird im Frontend gezeigt:
+			// var_dump ($ait_cats);
+			// echo $ait_cats;
+		}
+
+	};
+
+
+
+  /**
+   * Build an array of categories (The Events Calendar)
+   */
+	add_action( 'tribe_events_bar_after_template', 'ait_categories' ); 
+	function ait_categories() {
+		$ait_terms = get_terms( [
+			'taxonomy' => Tribe__Events__Main::TAXONOMY
+		] );
+
+		if ( empty( $ait_terms ) || is_wp_error( $ait_terms ) ) {
+			return;
+		}
+		$ait_zaehler = 0; 
+		foreach ( $ait_terms as $ait_single_term ) {
+			// $url = esc_url( get_term_link( $single_term ) );
+			$ait_categories[$ait_zaehler] = new stdClass();
+			$ait_categories[$ait_zaehler]->text = esc_html( get_term_field( 'name', $ait_single_term ) );
+			$ait_categories[$ait_zaehler]->value = esc_html( get_term_field( 'name', $ait_single_term ) );
+			$ait_zaehler = $ait_zaehler + 1; 
+			// print "<li> <a href='$url'>$name</a> </li>";
+		}	 
+		return $ait_categories;
+	}      
+  
 ?>
