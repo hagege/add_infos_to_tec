@@ -7,7 +7,7 @@
   // var categories = [];
   // var external_link = ait_js_script.external_link
   // var event_category = ait_js_script.event_category
-  // var internal_link = ait_js_script.internal_link  
+  // var internal_link = ait_js_script.internal_link
   var ait_http = 'http://';
   var ait_https = 'https://';
   var ait_test_http = '';
@@ -38,14 +38,14 @@
                                  type: 'textbox',
                                  name: 'link',
                                  //label: 'Ext. Link',
-                                 label: ait_php_var.external_link, 
+                                 label: ait_php_var.external_link,
                                  value:""
                               },
                 							{
                 								type: 'listbox',
                 				        name: 'vl',
                                 //label: 'Event Category',
-                				        label: ait_php_var.event_category, 
+                				        label: ait_php_var.event_category,
                                 values: ait_php_var.ait_categories,
                                 //values: ""
                 							},
@@ -75,7 +75,7 @@
                                 label: 'Ferien',
                                 values: ""
                               },
-                              
+
 
         ],
         onsubmit: function( e ) {
