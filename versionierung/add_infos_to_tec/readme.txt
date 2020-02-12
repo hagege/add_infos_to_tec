@@ -1,10 +1,10 @@
 === Add infos to the events calendar ===
 Contributors: hage
 Tags: The Events Calendar, events, shortcode, button, lightweight
-Donate link: https://haurand.com/plugins
+Donate link: https://haurand.com/wordpress-plugins/
 Requires at least: 4.0
-Tested up to: 5.2
-Stable tag: 0.66
+Tested up to: 5.3.2
+Stable tag: 1.4
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,15 +17,15 @@ The path to the The Events Calendar (TEC) categories is automatically suggested 
 As a rule, the short code (description and examples see below) should be one of the last lines of a single event. However, the short code can also be used in principle in posts. In this case, you should usually not use the option "vl", because this option refers to events, unless you want to link to a specific category in a contribution on events, for example.
 Automatically displays the text from "Caption" (see Media, image details) in italics by default for an event or a post. A copyright notice should be entered in this field.
 
-<strong>Attention</strong>:
+= Attention =
 If the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
 
-<strong>Shortcode - Options</strong>:
+= Shortcode - Options =
 1. link = link e.g. to organizer
 2. vl   = list of events
 3. il   = e.g. used for internal link
 
-<strong>Call Examples</strong>:
+= Call Examples =
 * [fuss link="https://externer_link.de" vl=""] --> always shows picture credits, then more info with the link to external website and at vl="" the link to "more events".
 * [fuss vl=""] --> always shows picture credits, but no link to external website and at vl="" the link to "more events".
 * [fuss] --> always shows picture credits, but no link to external website.
@@ -33,6 +33,7 @@ If the plugin is deleted, the shortcode remains in the posts and events. In this
 (of course the category must exist in The Events Calendar (this is checked by a function). If the category does not exist, the event list will be shown.)
 * [fuss vl="" il="http://internal_link.de/example"] --> always shows picture credits, but no link to external website and at vl="" the link to "more events" and at il="http://internal_link.de/example" the link to another external or internal webesite.
 
+https://youtu.be/j9dj3uoacxI
 
 == Installation ==
 1. Download "add_infos_to_tec.zip" to your local device.
@@ -40,12 +41,15 @@ If the plugin is deleted, the shortcode remains in the posts and events. In this
 3. Upload the folder "add_infos_to_tec" to "/wp-content/plugins/"
 4. Activate the plugin through the "Plugins" menu in WordPress.
 
+https://youtu.be/j9dj3uoacxI
+
 == Frequently Asked Questions ==
 = Who will answer my support request? =
 A webdevelopement staff member of haurand.com.
 
 = Can this plugin also be used for other event plugins ? =
-Basically yes, but it cannot be checked automatically whether the selected category exists for the "vl" option.
+Basically, this plugin can only be used if The Events Calendar is also activated. Of course, you can check if the plugin can also be used if you use another plugin for events. In this case I would be very happy about your feedback, because I would like to include this information in the description here.
+If no Events plugin is used, the plugin can only be used to display the copyright and external as well as internal links via the shortcode.
 
 = Are the shortcodes deleted when the plugin is deleted ?
 No, if the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
@@ -67,15 +71,56 @@ great question :-)
 I already have some more ideas and can tell you that this plugin will definitely be further developed and get some additional features. An important aspect will be that the plugin remains lightweight. If you have any suggestions for further development, I would be very happy if you could tell me. Answer guaranteed, but I can't guarantee that your ideas will be implemented ;-)
 
 = Where can I donate for this plugin?
-Nowhere - but a donation to a charity that needs the money more urgently than I would be great. But I would be very happy about a positive evaluation.
+Nowhere - but a donation to a charity that needs the money more urgently than I would be great. But I would be very happy about a positive review.
+
+= Is it possible to customize the button labels ?
+Yes, from version 1.0 on this option is new, see Settings and Changelog
+
+= Add infos to the events calendar and SEO
+By the way, we have found using of the plugin has positive effects in terms of SEO, i.e. findability and ranking on Google.
+This is also logical because important factors are covered by the plugin:
+The input of an internal and external link as well as the specification of a category when using TEC are very important with regard to SEO.
+In addition, the plugin also encourages you to put more emphasis on creating appropriate input like alternative text for the photo or image.
+As you know, several terms can be entered here.
+In addition, we could notice a significant increase in the number of pages per visitor,
+which is also related to the fact that the corresponding buttons are clicked more often at events and contributions.
+As a rule, if the categories or internal and external links are carefully selected, it is possible to make visitors curious about further information and click on these buttons.
+
 
 == Screenshots ==
 1. All options in the settings
 2. Representation of the event in the frontend
 3. Use in a single event (backend)
 4. The reference to the photo must be entered in this field (caption).
+5. Call via the icon at the top right of the menu bar. Then click on "Add Infos to the events Calendar".
+6. These fields can currently be filled automatically via the shortcode generator and then appear in the description at the point where the cursor was positioned.
+7. Executing the Shortcodes in Gutenberg
 
 == Changelog ==
+= [1.4] 2020-02-15 =
+* Added: If using Classic Editor or Classic Block (Block Editor): After clicking on Icon "Add infos to the events calendar" it is possible to choose a category from the select box. Thanks to Adrian Lambertz from https://pixelbar.be for his great help implementing this option.
+* Added: in settings: Now you can choose whether the categories should be sorted by frequency (default: frequently selected categories first) or by category name.
+* Added: Even if TEC is not installed, this plugin can be used without problems. Now only the options that are necessary in this case are shown.
+* Updated translations
+
+= [1.3] 2019-05-30 =
+* Fixed: Problem with the version number (1.2) so that no updates are performed automatically from Version 1.02 to 1.2.
+
+= [1.2] 2019-05-28 =
+* Added: Icon added to the editor tinycme (Classic Editor), so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog. This option can be used in the Gutenberg Editor (Block Editor: Classic).
+
+= [1.02] 2019-05-18 =
+* Fixed: If The Events Calendar is not installed, in some cases an error message appeared on the page with the short code
+* Added: Automatically adds http:// to a URL before the link, if that is missing
+
+= [1.01] 2019-05-14 =
+* Fixed: With the option "vl" the event list was not displayed correctly if the category was wrong or vl="" was selected.
+
+= [1.0] 2019-05-14 =
+* Added feature: The name of the buttons can now be defined via the settings. It is no longer necessary to have translation files that contain translations of the button names.
+* Added: Display the copyright only if the field is not empty
+* Updated translations
+* Updated design of the settings
 
 = [0.66] 2019-05-10 =
 * Add some infos and update language files
@@ -87,4 +132,6 @@ Nowhere - but a donation to a charity that needs the money more urgently than I 
 * Initial release
 
 == Upgrade Notice ==
-nothing
+= [1.0] =
+* Please have a look at the settings, because from this version on there are settings for the <strong>labeling of the buttons</strong>. This allows the buttons to be labeled individually and you are no longer dependent on whether a translation is available in the respective language file.
+* If the translations are not correct, you have to look into the folder wp-content\languages\plugins and delete the existing translation files add-infos-to-the-events-calendar*.* if necessary. <strong>Attention</strong>: Please always make a backup first.
