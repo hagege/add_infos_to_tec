@@ -3,7 +3,7 @@ Contributors: hage
 Tags: The Events Calendar, events, shortcode, button, lightweight
 Donate link: https://haurand.com/wordpress-plugins/
 Requires at least: 4.0
-Tested up to: 5.2.1
+Tested up to: 5.3.2
 Stable tag: 1.4
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -76,6 +76,17 @@ Nowhere - but a donation to a charity that needs the money more urgently than I 
 = Is it possible to customize the button labels ?
 Yes, from version 1.0 on this option is new, see Settings and Changelog
 
+= Add infos to the events calendar and SEO
+By the way, we have found using of the plugin has positive effects in terms of SEO, i.e. findability and ranking on Google.
+This is also logical because important factors are covered by the plugin:
+The input of an internal and external link as well as the specification of a category when using TEC are very important with regard to SEO.
+In addition, the plugin also encourages you to put more emphasis on creating appropriate input like alternative text for the photo or image.
+As you know, several terms can be entered here.
+In addition, we could notice a significant increase in the number of pages per visitor,
+which is also related to the fact that the corresponding buttons are clicked more often at events and contributions.
+As a rule, if the categories or internal and external links are carefully selected, it is possible to make visitors curious about further information and click on these buttons.
+
+
 == Screenshots ==
 1. All options in the settings
 2. Representation of the event in the frontend
@@ -86,11 +97,17 @@ Yes, from version 1.0 on this option is new, see Settings and Changelog
 7. Executing the Shortcodes in Gutenberg
 
 == Changelog ==
+= [1.4] 2020-02-15 =
+* Added: If using Classic Editor or Classic Block (Block Editor): After clicking on Icon "Add infos to the events calendar" it is possible to choose a category from the select box. Thanks to Adrian Lambertz from https://pixelbar.be for his great help implementing this option.
+* Added: in settings: Now you can choose whether the categories should be sorted by frequency (default: frequently selected categories first) or by category name.
+* Added: Even if TEC is not installed, this plugin can be used without problems. Now only the options that are necessary in this case are shown.
+* Updated translations
+
 = [1.3] 2019-05-30 =
-* Problem with the version number (1.2) so that no updates are performed automatically from Version 1.02 to 1.2.
+* Fixed: Problem with the version number (1.2) so that no updates are performed automatically from Version 1.02 to 1.2.
 
 = [1.2] 2019-05-28 =
-* Added: Icon added to the editor tinycme (Classic Editor), so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog. However, this icon cannot (yet) be used in the Gutenberg Editor.
+* Added: Icon added to the editor tinycme (Classic Editor), so that now the entries for the internal and external link no longer only have to be entered manually directly as short code, but via an additional dialog. This option can be used in the Gutenberg Editor (Block Editor: Classic).
 
 = [1.02] 2019-05-18 =
 * Fixed: If The Events Calendar is not installed, in some cases an error message appeared on the page with the short code

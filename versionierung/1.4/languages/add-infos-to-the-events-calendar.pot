@@ -3,135 +3,158 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Add infos to the events calendar\n"
-"POT-Creation-Date: 2019-05-27 07:10+0200\n"
-"PO-Revision-Date: 2019-04-21 08:43+0200\n"
+"POT-Creation-Date: 2020-01-29 21:51+0100\n"
+"PO-Revision-Date: 2020-01-18 15:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: add_shortcode_to_tec.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: add_shortcode_to_tec.php\n"
-"X-Poedit-SearchPath-1: assets/js/ait_buttons.js\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: add_shortcode_to_tec.php:408 add_shortcode_to_tec.php:409
+#: add_shortcode_to_tec.php:417 add_shortcode_to_tec.php:418
 msgid "Add Infos to TEC Settings"
 msgstr ""
 
-#: add_shortcode_to_tec.php:422
+#: add_shortcode_to_tec.php:431
 msgid "Settings"
 msgstr ""
 
-#: add_shortcode_to_tec.php:470
+#: add_shortcode_to_tec.php:490
+msgid "Ext. Link:"
+msgstr ""
+
+#: add_shortcode_to_tec.php:491
+msgid "Choose Event Category:"
+msgstr ""
+
+#: add_shortcode_to_tec.php:492
+msgid "Int. Link:"
+msgstr ""
+
+#: ait_admin_functions.php:29
 msgid "category"
 msgstr ""
 
-#: add_shortcode_to_tec.php:496
+#: ait_admin_functions.php:56
 msgid "You do not have permissions to perform this action"
 msgstr ""
 
-#: add_shortcode_to_tec.php:531
-msgid ""
-"This could be the path to the categories of The Events Calendar (TEC): "
+#: ait_admin_functions.php:98
+msgid "This could be the path to the categories of The Events Calendar (TEC): "
 msgstr ""
 
-#: add_shortcode_to_tec.php:532
+#: ait_admin_functions.php:99
 msgid ""
 "To be on the safe side, however, you should check this by going to the "
 "relevant event after using the shortcut and checking that the links are "
 "executed correctly."
 msgstr ""
 
-#: add_shortcode_to_tec.php:536
+#: ait_admin_functions.php:101
 msgid ""
 "Path e.g. categories to The Events Calendar (e.g. http://example.com/events/"
 "category/):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:543
+#: ait_admin_functions.php:105
+msgid ""
+"It seems that you do not use The Events Calendar. However, you can still use "
+"this plugin and enter a URL on your website that is particularly important "
+"to you. This URL will be used instead."
+msgstr ""
+
+#: ait_admin_functions.php:107
+msgid "Enter a URL on your website that is particularly important to you:"
+msgstr ""
+
+#: ait_admin_functions.php:116
 msgid "Settings for Buttons:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:547
+#: ait_admin_functions.php:120
 msgid "Background color:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:553
+#: ait_admin_functions.php:126
 msgid "Font color:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:558
+#: ait_admin_functions.php:131
 msgid "Background color when driving over the button (Hover):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:563
+#: ait_admin_functions.php:136
 msgid "Font color when driving over the button (Hover):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:569
+#: ait_admin_functions.php:142
 msgid "Description for external link:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:574
+#: ait_admin_functions.php:151
 msgid "Description for events:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:579
+#: ait_admin_functions.php:157
+msgid "Description for particularly link:"
+msgstr ""
+
+#: ait_admin_functions.php:165
 msgid "Description for internal link:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:584
-msgid "Further settings:"
+#: ait_admin_functions.php:170
+msgid "Setting for design on website:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:587
+#: ait_admin_functions.php:173
 msgid "Rounded corners (values from 0 - 30):"
 msgstr ""
 
-#: add_shortcode_to_tec.php:593
+#: ait_admin_functions.php:179
 msgid "All links as buttons:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:599
+#: ait_admin_functions.php:185
 msgid "Font for Copyright:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:600
+#: ait_admin_functions.php:186
 msgid "italic"
 msgstr ""
 
-#: add_shortcode_to_tec.php:601
+#: ait_admin_functions.php:187
 msgid "bold"
 msgstr ""
 
-#: add_shortcode_to_tec.php:602
+#: ait_admin_functions.php:188
 msgid "normal"
 msgstr ""
 
-#: add_shortcode_to_tec.php:606
+#: ait_admin_functions.php:192
 msgid "Horizontal line above the block:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:611
+#: ait_admin_functions.php:197
 msgid "Horizontal line below the block:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:667
-msgid "Ext. Link"
+#: ait_admin_functions.php:206
+msgid "Further Settings:"
 msgstr ""
 
-#: add_shortcode_to_tec.php:668
-msgid "Event Category"
-msgstr ""
-
-#: add_shortcode_to_tec.php:669
-msgid "Int. Link"
+#: ait_admin_functions.php:209
+msgid ""
+"Sorting categories by occurrence (Frequently selected categories first):"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
@@ -144,10 +167,9 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Provides a shortcode block (image copyright, button with link to events "
-"with a special category, link to the website of the organizer) in "
-"particular to single events for The Events Calendar Free Plugin (by MODERN "
-"TRIBE)"
+"Provides a shortcode block (image copyright, button with link to events with "
+"a special category, link to the website of the organizer) in particular to "
+"single events for The Events Calendar Free Plugin (by MODERN TRIBE)"
 msgstr ""
 
 #. Author of the plugin/theme
