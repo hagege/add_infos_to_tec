@@ -1,6 +1,7 @@
 // JavaScript Document
 
-(function() {
+
+document.addEventListener("DOMContentLoaded", function() {
   var ait_http = 'http://';
   var ait_https = 'https://';
   var ait_test_http = '';
@@ -53,6 +54,7 @@
                               // -------------------------------------------------- //
                               /* for internal use only */
                               // -------------------------------------------------- //
+                              /*
                               {
                                 type: 'checkbox',
                                 name: 'kfm',
@@ -71,7 +73,7 @@
                                 label: 'Ferien:',
                                 values: ""
                               },
-
+                              */
 
         ],
         onsubmit: function( e ) {
@@ -193,12 +195,11 @@ else {
          '[fuss ' + e.data.link + e.data.il + ']'
        );
      }
+     });
+         }
+     }]
+
    });
-       }
-   }]
-
- });
+  });
+  };
 });
-
-}
-})();
