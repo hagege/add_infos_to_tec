@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                               // -------------------------------------------------- //
                               /* for internal use only */
                               // -------------------------------------------------- //
+                              /*
                               {
                                 type: 'checkbox',
                                 name: 'kfm',
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 label: 'Ferien:',
                                 values: ""
                               },
-
+                              */
 
         ],
         onsubmit: function( e ) {
