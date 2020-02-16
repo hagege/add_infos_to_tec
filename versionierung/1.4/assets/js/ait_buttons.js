@@ -1,6 +1,7 @@
 // JavaScript Document
 
-(function() {
+
+document.addEventListener("DOMContentLoaded", function() {
   var ait_http = 'http://';
   var ait_https = 'https://';
   var ait_test_http = '';
@@ -193,12 +194,11 @@ else {
          '[fuss ' + e.data.link + e.data.il + ']'
        );
      }
+     });
+         }
+     }]
+
    });
-       }
-   }]
-
- });
+  });
+  };
 });
-
-}
-})();
