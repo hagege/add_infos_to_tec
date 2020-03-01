@@ -3,7 +3,7 @@ Contributors: hage
 Tags: The Events Calendar, events, shortcode, button, lightweight
 Donate link: https://haurand.com/wordpress-plugins/
 Requires at least: 4.0
-Tested up to: 5.3.2
+Tested up to: 5.4
 Stable tag: 1.4
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -36,18 +36,18 @@ If the plugin is deleted, the shortcode remains in the posts and events. In this
 https://youtu.be/j9dj3uoacxI
 
 == Installation ==
-1. Download "add_infos_to_tec.zip" to your local device.
+1. Download "add_infos_to_the_events_calendar.zip" to your local device.
 2. Unzip the file.
-3. Upload the folder "add_infos_to_tec" to "/wp-content/plugins/"
+3. Upload the folder "add_infos_to_the_events_calendar" to "/wp-content/plugins/"
 4. Activate the plugin through the "Plugins" menu in WordPress.
 
 https://youtu.be/j9dj3uoacxI
 
 == Frequently Asked Questions ==
 = Who will answer my support request? =
-A webdevelopement staff member of haurand.com.
+A developement staff member of haurand.com.
 
-= Can this plugin also be used for other event plugins ? =
+= Is it possible to use this plugin also for other event plugins or without any event plugin? =
 Basically, this plugin can only be used if The Events Calendar is also activated. Of course, you can check if the plugin can also be used if you use another plugin for events. In this case I would be very happy about your feedback, because I would like to include this information in the description here.
 If no Events plugin is used, the plugin can only be used to display the copyright and external as well as internal links via the shortcode.
 
@@ -98,9 +98,9 @@ As a rule, if the categories or internal and external links are carefully select
 
 == Changelog ==
 = [1.4] 2020-02-15 =
-* Added: If using Classic Editor or Classic Block (Block Editor): After clicking on Icon "Add infos to the events calendar" it is possible to choose a category from the select box. Thanks to Adrian Lambertz from https://pixelbar.be for his great help implementing this option.
-* Added: in settings: Now you can choose whether the categories should be sorted by frequency (default: frequently selected categories first) or by category name.
-* Added: Even if TEC is not installed, this plugin can be used without problems. Now only the options that are necessary in this case are shown.
+* Added feature: If using Classic Editor or Classic Block (Block Editor): After clicking on Icon "Add infos to the events calendar" it is possible to choose a category from the select box. Thanks to Adrian Lambertz from https://pixelbar.be for his great help implementing this option.
+* Added feature: Settings: Now you can choose whether the categories should be sorted by frequency (default: frequently selected categories first) or by category name.
+* Added: Even if The Events Calendar or any other event plugin is not installed, this plugin can be used without problems. Now only the options that are necessary in this case are shown.
 * Updated translations
 
 = [1.3] 2019-05-30 =
