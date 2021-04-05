@@ -1,0 +1,49 @@
+/* Absatz für Button im shortcode fuss*/
+p.fuss_button-absatz {
+    margin:30px 10px 30px 0px !important;
+    display:inline-flex;
+}
+
+a.fuss_button-beitrag {
+    padding: 10px;
+    color: #ffffff;
+    font-size: 1.0em;
+    background-color: #77BCC7;
+    /* keine runden Ecken */
+    /* border-radius: 4px; */
+    text-decoration: none!important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 840px) {
+  .fuss_button-beitrag {
+      font-size: 0.8em;
+  }
+}
+
+
+a.fuss_button-beitrag:visited{
+  color: #fff!important;
+  text-decoration: none;
+}
+
+/* Hintergrund: gelb */
+a.fuss_button-beitrag:hover{
+  color: #fff;
+  background-color: #F9B81E;
+  text-decoration: none!important;
+}
+
+a.fuss_button-beitrag:focus{
+  color: #fff!important;
+  text-decoration: none;
+}
+
+/* Tabelle für Einstellungen */
+table.einstellungen {
+  width:100%;
+}
+td.einstellungen {
+  border:1px solid;
+  overflow:hidden;
+  vertical-align:top;
+}
