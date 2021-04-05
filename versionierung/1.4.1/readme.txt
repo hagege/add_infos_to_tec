@@ -98,7 +98,7 @@ As a rule, if the categories or internal and external links are carefully select
 
 == Changelog ==
 = [1.4.1] 2021-04-05 =
-* Enhancement: Improved and secure call for external links and improvement related to the Web Vitals.
+* Enhancement: Improved and secure call for external links and improvement related to Web Vitals.
 
 = [1.4] 2020-02-15 =
 * Added feature: If using Classic Editor or Classic Block (Block Editor): After clicking on Icon "Add infos to the events calendar" it is possible to choose a category from the select box. Thanks to Adrian Lambertz from https://pixelbar.be for his great help implementing this option.
