@@ -150,6 +150,7 @@ function ait_fs_beitrags_fuss_pi($atts) {
 			if (esc_attr($add_infos_to_tec_options['fs_alle_buttons']) == 1){
 				$fs_ausgabe = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . ait_check_http_https($werte['link']) . ' target="_blank">' . $button_externer_link . '</a></p><br>';
 			} else {
+                // external Links with noopener noreferrer 
 				$fs_ausgabe = $fs_ausgabe . '<a href=' . ait_check_http_https($werte['link']) . ' target="_blank" rel="noopener noreferrer">'. $button_externer_link . '</a><br>';
 			}
 		}
