@@ -1,15 +1,15 @@
-=== Add infos to the events calendar ===
-Contributors: hage
+=== Add infos to The Events Calendar ===
+Contributors: hage, threadi
 Tags: The Events Calendar, events, shortcode, button, lightweight
 Donate link: https://haurand.com/wordpress-plugins/
 Requires at least: 4.0
-Tested up to: 5.7
-Stable tag: 1.4.1
-Requires PHP: 5.6
+Tested up to: 6.7
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 1.5.1
 
-“Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
+“Add infos to the events calendar” provides a shortcode block to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
 
 == Description ==
 The lightweight plugin “Add infos to the events calendar” provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
@@ -97,6 +97,14 @@ As a rule, if the categories or internal and external links are carefully select
 7. Executing the Shortcodes in Gutenberg
 
 == Changelog ==
+= [1.5.1] 2024-12-08
+* Fixed potential error during loading of settings
+
+= [1.5.0] 2024-11-30 =
+* Compatible with WordPress Coding Standards
+* Only compatible with PHP 7.4 or newer (incl. PHP 8.4)
+* Updated translations
+
 = [1.4.1] 2021-04-05 =
 * Enhancement: Improved and secure call for external links and improvement related to Web Vitals.
 
