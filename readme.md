@@ -8,8 +8,8 @@ This repository provides the features of WordPress plugin _Add Infos to The Even
 
 ### for users
 
-Download the plugin [from the WordPress Repository](https://wordpress.org/plugins/next-meetup-hint/).
-Or download the lastest release ZIP [from GitHub](https://github.com/threadi/next-meetup-hint/releases).
+Download the plugin [from the WordPress Repository](https://wordpress.org/plugins/add-infos-to-the-events-calendar/).
+Or download the lastest release ZIP [from GitHub](https://github.com/hagege/add_infos_to_tec/releases).
 
 ### for developers
 
