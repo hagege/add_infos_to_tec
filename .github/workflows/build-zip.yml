@@ -25,4 +25,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ${{ github.event.repository.name }}.zip
+          files: add-infos-to-the-events-calendar.zip
