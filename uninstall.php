@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package    add-infos-to-the-events-calendar
+ * @package add-infos-to-the-events-calendar
  */
 
 // if uninstall.php is not called by WordPress, die.
