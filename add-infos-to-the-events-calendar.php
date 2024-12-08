@@ -16,7 +16,7 @@ if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 }
 
 // set version.
-const AIT_VERSION = '1.5.0';
+const AIT_VERSION = '1.5.1';
 
 /**
  * Load language files.
@@ -50,26 +50,26 @@ function ait_fs_style_fuss_plugin_scripts(): void {
 
 	// variables for button design.
 	$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-    if( ! is_array( $add_infos_to_tec_options ) ) {
-        $add_infos_to_tec_options = array();
-    }
+	if ( ! is_array( $add_infos_to_tec_options ) ) {
+		$add_infos_to_tec_options = array();
+	}
 	$button_hintergrund       = ! empty( $add_infos_to_tec_options['fs_hintergrundfarbe_button'] ) ? $add_infos_to_tec_options['fs_hintergrundfarbe_button'] : '';
 	$button_vordergrund       = ! empty( $add_infos_to_tec_options['fs_vordergrundfarbe_button'] ) ? $add_infos_to_tec_options['fs_vordergrundfarbe_button'] : '';
 	$button_hover_hintergrund = ! empty( $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button'] ) ? $add_infos_to_tec_options['fs_hover_hintergrundfarbe_button'] : '';
 	$button_hover_vordergrund = ! empty( $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button'] ) ? $add_infos_to_tec_options['fs_hover_vordergrundfarbe_button'] : '';
 	$button_rund              = ! empty( $add_infos_to_tec_options['fs_runder_button'] ) ? $add_infos_to_tec_options['fs_runder_button'] : '';
-	$custom_css               = "
+	$custom_css               = '
         a.fuss_button-beitrag {
-            color: " . esc_attr( $button_vordergrund ) ."!important;
-            background-color: " . esc_attr( $button_hintergrund ) ."!important;
+            color: ' . esc_attr( $button_vordergrund ) . '!important;
+            background-color: ' . esc_attr( $button_hintergrund ) . '!important;
                 text-decoration: none!important;
-                border-radius: " . absint( $button_rund ) ."px;
+                border-radius: ' . absint( $button_rund ) . 'px;
         }
         a.fuss_button-beitrag:hover{
-          color: " . esc_attr( $button_hover_vordergrund ) ."!important;
-          background-color: " . esc_attr( $button_hover_hintergrund ) ."!important;
+          color: ' . esc_attr( $button_hover_vordergrund ) . '!important;
+          background-color: ' . esc_attr( $button_hover_hintergrund ) . '!important;
             text-decoration: none!important;
-        }";
+        }';
 	wp_add_inline_style( 'ait', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'ait_fs_style_fuss_plugin_scripts' );
@@ -284,13 +284,13 @@ add_action( 'tribe_events_before_template', 'ait_cliff_get_events_taxonomies' );
 /**
  * Set default values for not existing entries in the settings.
  *
- * @param array $ait_options The settings array.
+ * @param mixed $ait_options The settings array.
  * @return array
  */
 function ait_set_default_settings( mixed $ait_options ): array {
-    if( ! is_array( $ait_options ) ) {
-        $ait_options = array();
-    }
+	if ( ! is_array( $ait_options ) ) {
+		$ait_options = array();
+	}
 	if ( empty( $ait_options['fs_alle_buttons'] ) ) {
 		$ait_options['fs_alle_buttons'] = '0';
 	}
@@ -619,14 +619,14 @@ function ait_add_infos_to_tec_settings_page(): void {
 							<th scope="row"><label for="fs_option_pfad"><?php echo esc_html__( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add-infos-to-the-events-calendar' ); ?></label></th>
 							<?php
 					} else {
-                        ?>
-                        <th colspan="2">
-                        <?php
+						?>
+						<th colspan="2">
+						<?php
 						echo esc_html__( 'It seems that you do not use The Events Calendar. However, you can still use this plugin and enter a URL on your website that is particularly important to you. This URL will be used instead.', 'add-infos-to-the-events-calendar' );
 						?>
-                        </th>
-                        </tr>
-                        <tr>
+						</th>
+						</tr>
+						<tr>
 								<th scope="row"><label for="fs_option_pfad"><?php echo esc_html__( 'Enter a URL on your website that is particularly important to you:', 'add-infos-to-the-events-calendar' ); ?></label></th>
 							<?php
 					}
