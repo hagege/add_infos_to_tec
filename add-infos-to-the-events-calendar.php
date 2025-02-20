@@ -153,10 +153,27 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 		$fs_schriftart_aus = '</strong>';
 	}
 
-	// Display the copyright if the field is not empty.
-	$fs_copyright = get_post( get_post_thumbnail_id() )->post_excerpt;
-	if ( ! empty( $fs_copyright ) ) {
-		$fs_ausgabe .= '<p class="fuss_button-absatz">' . $fs_schriftart_ein . $fs_copyright . $fs_schriftart_aus . '</p><br>';
+	/**
+	 * Display the copyright of the thumbnail / feature image if the field is not empty.
+	 */
+	// get the thumbnail ID.
+	$thumbnail_id = get_post_thumbnail_id();
+
+	// get the excerpt only if a thumbnail id is given.
+	if( $thumbnail_id > 0 ) {
+		// get the attachment as object.
+		$thumbnail_attachment = get_post( $thumbnail_id );
+
+		// get the excerpt, if object could be loaded.
+		if( $thumbnail_attachment instanceof WP_Post ) {
+			// get the excerpt.
+			$fs_copyright = $thumbnail_attachment->post_excerpt;
+
+			// add the excerpt if it is set.
+			if ( ! empty( $fs_copyright ) ) {
+				$fs_ausgabe .= '<p class="fuss_button-absatz">' . $fs_schriftart_ein . $fs_copyright . $fs_schriftart_aus . '</p><br>';
+			}
+		}
 	}
 
 	// only internal for special use.

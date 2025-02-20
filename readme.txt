@@ -97,6 +97,9 @@ As a rule, if the categories or internal and external links are carefully select
 7. Executing the Shortcodes in Gutenberg
 
 == Changelog ==
+= [1.5.2] 2025-02-20
+* Fixed potential warning regarding thumbnails of events
+
 = [1.5.1] 2024-12-08
 * Fixed potential error during loading of settings
 
