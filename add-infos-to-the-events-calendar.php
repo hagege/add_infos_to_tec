@@ -16,7 +16,7 @@ if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 }
 
 // set version.
-const AIT_VERSION = '1.5.1';
+const AIT_VERSION = '1.5.2';
 
 /**
  * Load language files.

@@ -7,7 +7,7 @@ Tested up to: 6.7
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 
 “Add infos to The Events Calendar” provides a shortcode block to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
 
