@@ -15,6 +15,14 @@ Or download the lastest release ZIP [from GitHub](https://github.com/hagege/add_
 
 Checkout this repository in your development environment.
 
+#### How to release
+
+1. Add a new release in this GitHub repository.
+2. Let the action create the release ZIP.
+3. Download the resulting ZIP which is added to the release in GitHub as .zip-file.
+
+Hint: check in the action if the task "Run WordPress Coding Standard fixes" does show any errors.
+
 ## Check for WordPress Coding Standards
 
 ### Initialize
