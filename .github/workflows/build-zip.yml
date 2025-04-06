@@ -23,10 +23,10 @@ jobs:
 
       - name: Run WordPress Coding Standard fixes
         continue-on-error: true
-        run: vendor/bin/phpcbf --extensions=php --ignore=*/vendor/*,*/svn/*,add_shortcode_to_tec.php --standard=ruleset.xml .
+        run: vendor/bin/phpcbf --extensions=php --ignore=*/vendor/*,*/svn/*,add_shortcode_to_tec.php --standard=WordPress .
 
       - name: Run WordPress Coding Standard checks
-        run: vendor/bin/phpcs --extensions=php --ignore=*/vendor/*,*/svn/*,add_shortcode_to_tec.php --standard=ruleset.xml .
+        run: vendor/bin/phpcs --extensions=php --ignore=*/vendor/*,*/svn/*,add_shortcode_to_tec.php --standard=WordPress .
 
       - name: Set version number 1
         uses: richardrigutins/replace-in-files@v2
