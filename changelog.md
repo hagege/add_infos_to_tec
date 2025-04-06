@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added support for each permalink-format for categories
+- Added some hooks incl. documentation of them
 - Now using new changelog hosted on GitHub
 
 ### Changed
@@ -11,10 +13,12 @@
 - Cleaned up the readme.txt
 - Set compatibility with WordPress 6.8
 - Optimized GitHub action for any new release
+- Optimized loading of our own CSS- and JS-scripts
 
 ### Removed
 
 - Removed language files from release and repository
+- Removed usage of category URL in settings, except "The Events Calendar" is not installed
 
 ## [1.5.2] 2025-02-20
 

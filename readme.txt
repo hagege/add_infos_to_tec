@@ -50,19 +50,16 @@ https://youtu.be/j9dj3uoacxI
 
 == Frequently Asked Questions ==
 
-= Who will answer my support request? =
-A developement staff member of haurand.com.
-
 = Is it possible to use this plugin also for other event plugins or without any event plugin? =
 
-Basically, this plugin can only be used if The Events Calendar is also activated. Of course, you can check if the plugin can also be used if you use another plugin for events. In this case I would be very happy about your feedback, because I would like to include this information in the description here.
+Basically, this plugin can only be used if "The Events Calendar" is also activated. Of course, you can check if the plugin can also be used if you use another plugin for events. In this case I would be very happy about your feedback, because I would like to include this information in the description here.
 If no Events plugin is used, the plugin can only be used to display the copyright and external as well as internal links via the shortcode.
 
 = Are the shortcodes deleted when the plugin is deleted ? =
 
 No, if the plugin is deleted, the shortcode remains in the posts and events. In this case use a plugin to delete the shortcodes, e.g. Shortcode Cleaner Lite (see wordpress.org). However, there is no guarantee that all shortcodes will be deleted correctly.
 
-= Where can I find the path to the categories of The Events Calendar ? =
+= Where can I find the path to the categories of The Events Calendar? =
 
 When installing the plugin, the path to the categories of TEC is automatically recognized by the plugin. Under the heading you will see the following hint:
 "This could be the path to the categories of The Events Calendar (TEC): (URL)
@@ -76,7 +73,7 @@ Then copy the URL in the settings of "Add Infos to the events calendar" into the
 It is extremely important to note the copyright notice in the text of photos. I had always done this by copying and pasting the caption from the featured image, but I'd already forgotten it.
 The Shortcodes gets this information automatically from this field. I also wanted to place some additional and more visually appealing buttons. This is now also possible with the plugin (see examples).
 
-= What about the further development of the plugin ? =
+= What about the further development of the plugin? =
 
 great question :-)
 I already have some more ideas and can tell you that this plugin will definitely be further developed and get some additional features. An important aspect will be that the plugin remains lightweight. If you have any suggestions for further development, I would be very happy if you could tell me. Answer guaranteed, but I can't guarantee that your ideas will be implemented ;-)
@@ -85,7 +82,7 @@ I already have some more ideas and can tell you that this plugin will definitely
 
 Nowhere - but a donation to a charity that needs the money more urgently than I would be great. But I would be very happy about a positive review.
 
-= Is it possible to customize the button labels ? =
+= Is it possible to customize the button labels? =
 
 Yes, from version 1.0 on this option is new, see Settings and Changelog
 
