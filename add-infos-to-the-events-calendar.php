@@ -6,6 +6,8 @@
  */
 
 // securing against unauthorized access.
+use addInfosToTheEventsCalendar\Helper;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -339,7 +341,7 @@ function ait_set_default_settings( mixed $ait_options ): array {
  */
 function ait_add_infos_to_tec_create_menu(): void {
 	add_options_page(
-		'Add Infos to TEC Plugin Settings',
+		__( 'Add Infos to TEC Plugin Settings', 'add-infos-to-the-events-calendar' ),
 		__( 'Add Infos to TEC Settings', 'add-infos-to-the-events-calendar' ),
 		'manage_options',
 		'ait_add_infos_to_tec_settings_page',
@@ -782,3 +784,47 @@ function ait_fs_beitrags_fuss( string $output, array $shortcode_attributes ): st
 	return $output;
 }
 add_filter( 'ait_fs_beitrags_fuss', 'ait_fs_beitrags_fuss', 10, 2 );
+
+/**
+ * Add links in row meta in plugin list.
+ *
+ * @param array  $links List of links.
+ * @param string $file The requested plugin file name.
+ *
+ * @return array
+ */
+function ait_add_plugin_row_meta_links( array $links, string $file ): array {
+	// bail if this is not our plugin.
+	if ( 'add-infos-to-the-events-calendar/add_shortcode_to_tec.php' !== $file ) {
+		return $links;
+	}
+
+	// add our custom links.
+	$row_meta = array(
+		'support' => '<a href="' . esc_url( Helper::get_plugin_support_url() ) . '" target="_blank" title="' . esc_attr__( 'Support Forum', 'add-infos-to-the-events-calendar' ) . '">' . esc_html__( 'Support Forum', 'add-infos-to-the-events-calendar' ) . '</a>',
+	);
+
+	/**
+	 * Filter the links in row meta of our plugin in plugin list.
+	 *
+	 * @since 1.6.0 Available since 1.6.0.
+	 * @param array $row_meta List of links.
+	 */
+	$row_meta = apply_filters( 'ait_plugin_row_meta', $row_meta );
+
+	// return the resulting list of links.
+	return array_merge( $links, $row_meta );
+}
+add_filter( 'plugin_row_meta', 'ait_add_plugin_row_meta_links', 10, 2 );
+
+/**
+ * Add link to plugin-settings in plugin-list.
+ *
+ * @param array $links List of links.
+ * @return array
+ */
+function ait_add_plugin_row_links( array $links ): array {
+	$links[] = "<a href='" . esc_url( Helper::get_settings_url() ) . "'>" . __( 'Settings', 'add-infos-to-the-events-calendar' ) . '</a>';
+	return $links;
+}
+add_filter( 'plugin_action_links_add-infos-to-the-events-calendar/add_shortcode_to_tec.php', 'ait_add_plugin_row_links' );

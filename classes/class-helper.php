@@ -42,4 +42,25 @@ class Helper {
 		 */
 		return apply_filters( 'ait_file_version', $plugin_version, $filepath );
 	}
+
+	/**
+	 * Return the plugin support url: the forum on WordPress.org.
+	 *
+	 * @return string
+	 */
+	public static function get_plugin_support_url(): string {
+		return 'https://wordpress.org/support/plugin/add-infos-to-the-events-calendar/';
+	}
+
+	/**
+	 * Return the settings-URL.
+	 *
+	 * @return string
+	 */
+	public static function get_settings_url(): string {
+		$params = array(
+			'page' => 'ait_add_infos_to_tec_settings_page',
+		);
+		return add_query_arg( $params, get_admin_url() . 'options-general.php' );
+	}
 }

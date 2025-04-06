@@ -6,6 +6,7 @@
 
 - Added support for each permalink-format for categories
 - Added some hooks incl. documentation of them
+- Added links to settings and support forum in plugin list
 - Now using new changelog hosted on GitHub
 
 ### Changed
