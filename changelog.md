@@ -9,6 +9,7 @@
 ### Changed
 
 - Cleaned up the readme.txt
+- Set compatibility with WordPress 6.8
 
 ### Removed
 
