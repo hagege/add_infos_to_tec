@@ -19,22 +19,6 @@ if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 const AIT_VERSION = '1.5.2';
 
 /**
- * Load language files.
- *
- * TODO remove and replace with translate.wordpress.org.
- *
- * @return void
- */
-function ait_meine_textdomain_laden(): void {
-	load_plugin_textdomain(
-		'add-infos-to-the-events-calendar',
-		false,
-		basename( __DIR__ ) . '/languages'
-	);
-}
-add_action( 'init', 'ait_meine_textdomain_laden' );
-
-/**
  * Get the color settings from style_fuss.css for the design of the buttons
  *
  * @return void
