@@ -13,6 +13,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Setup WP-CLI
+        uses: godaddy-wordpress/setup-wp-cli@1
+
+      - name: Run package installs and builds
+        run: |
+          composer install
+          composer update
+
+      - name: Run WordPress Coding Standard fixes
+        continue-on-error: true
+        run: vendor/bin/phpcbf --extensions=php --ignore=*/vendor/*,*/svn/*,add_shortcode_to_tec.php --standard=ruleset.xml .
+
+      - name: Run WordPress Coding Standard checks
+        run: vendor/bin/phpcs --extensions=php --ignore=*/vendor/*,*/svn/*,add_shortcode_to_tec.php --standard=ruleset.xml .
+
+      - name: Set version number 1
+        uses: richardrigutins/replace-in-files@v2
+        with:
+          files: 'add_shortcode_to_tec.php'
+          search-text: '@@VersionNumber@@'
+          replacement-text: ${{ github.ref_name }}
+
+      - name: Set version number 2
+        uses: richardrigutins/replace-in-files@v2
+        with:
+          files: 'add-infos-to-the-events-calendar.php'
+          search-text: '@@VersionNumber@@'
+          replacement-text: ${{ github.ref_name }}
+
+      - name: Set version number 3
+        uses: richardrigutins/replace-in-files@v2
+        with:
+          files: 'readme.txt'
+          search-text: '@@VersionNumber@@'
+          replacement-text: ${{ github.ref_name }}
+
       - name: ZIP plugin
         run: |
           cd ..

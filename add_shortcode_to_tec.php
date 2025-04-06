@@ -3,7 +3,7 @@
  * Plugin Name:     Add infos to The Events Calendar
  * Description:     Provides a shortcode block (image copyright, button with link to events with a special category, link to the website of the organizer) in particular to single events for The Events Calendar Free Plugin (by MODERN TRIBE)
  * Requires PHP:    7.4
- * Version:         1.5.2
+ * Version:         @@VersionNumber@@
  * Author:          Hans-Gerd Gerhards (haurand.com)
  * Author URI:      https://haurand.com
  * Plugin URI:      https://haurand.com/add-infos-to-the-events-calendar/
