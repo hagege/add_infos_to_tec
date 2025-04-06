@@ -16,7 +16,7 @@ if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 }
 
 // set version.
-const AIT_VERSION = '1.5.2';
+const AIT_VERSION = '@@VersionNumber@@';
 
 /**
  * Get the color settings from style_fuss.css for the design of the buttons
@@ -34,7 +34,7 @@ function ait_fs_style_fuss_plugin_scripts(): void {
 
 	// variables for button design.
 	$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-	if ( ! is_array( $add_infos_to_tec_options ) ) {
+	if ( ! is_array( $add_infos_to_tec_options) ) {
 		$add_infos_to_tec_options = array();
 	}
 	$button_hintergrund       = ! empty( $add_infos_to_tec_options['fs_hintergrundfarbe_button'] ) ? $add_infos_to_tec_options['fs_hintergrundfarbe_button'] : '';
@@ -144,12 +144,12 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 	$thumbnail_id = get_post_thumbnail_id();
 
 	// get the excerpt only if a thumbnail id is given.
-	if( $thumbnail_id > 0 ) {
+	if ( $thumbnail_id > 0 ) {
 		// get the attachment as object.
 		$thumbnail_attachment = get_post( $thumbnail_id );
 
 		// get the excerpt, if object could be loaded.
-		if( $thumbnail_attachment instanceof WP_Post ) {
+		if ( $thumbnail_attachment instanceof WP_Post ) {
 			// get the excerpt.
 			$fs_copyright = $thumbnail_attachment->post_excerpt;
 
