@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added support for each permalink-format for categories
 - Now using new changelog hosted on GitHub
 
 ### Changed

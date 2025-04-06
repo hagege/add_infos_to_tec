@@ -111,11 +111,11 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 	$ait_pfad = ! empty( $add_infos_to_tec_options['fs_option_pfad'] ) ? $add_infos_to_tec_options['fs_option_pfad'] : '';
 
 	// get categories used by TEC.
-	$kategorien = ait_cliff_get_events_taxonomies();
+	$categories = ait_get_tribe_categories();
 
 	// caption for buttons - 12.05.2019.
 	$button_externer_link = $add_infos_to_tec_options['fs_bezeichnung_externer_link'];
-	$button_events_link   = $add_infos_to_tec_options['fs_bezeichnung_events_link'];
+	$button_events_title   = $add_infos_to_tec_options['fs_bezeichnung_events_link'];
 	$button_interner_link = $add_infos_to_tec_options['fs_bezeichnung_interner_link'];
 
 	if ( '' !== $werte['link'] ) {
@@ -164,48 +164,50 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 	}
 
 	// only internal for special use.
+	// TODO ersetzen durch hooks, danach ait_pfad entfernen.
 	if ( 'nein' !== $werte['fm'] ) {
-		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt target="_blank">Weitere Flohmärkte</a></p>';
+		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . $ait_pfad . 'flohmarkt" target="_blank">Weitere Flohmärkte</a></p>';
 	}
 	if ( 'nein' !== $werte['kfm'] ) {
-		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'flohmarkt/Karte target="_blank">Weitere Kinderflohmärkte</a></p>';
+		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . $ait_pfad . 'flohmarkt/Karte" target="_blank">Weitere Kinderflohmärkte</a></p>';
 	}
 	if ( 'nein' !== $werte['ferien'] ) {
-		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href=' . $ait_pfad . 'ferien target="_blank">Weitere Ferienveranstaltungen</a></p>';
+		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . $ait_pfad . 'ferien" target="_blank">Weitere Ferienveranstaltungen</a></p>';
 	}
 
 	// check if TEC is installed.
 	if ( ait_tec_installed() ) {
-		$veranstaltungen = esc_url( tribe_get_listview_link() );
-		$vergleichswert  = '';
-		if ( 'nein' !== $werte['vl'] ) {
-			if ( ! empty( trim( $werte['vl'] ) ) ) {
-				// Space characters are replaced by "-" if necessary (security measure when entering categories that contain space characters, e.g. "nature and wood").
-				$vergleichswert = $werte['vl'];
+		// get default link for any category.
+		$category_url =  tribe_get_listview_link();
 
-				// search in array with categories.
-				$ait_key = array_search( $vergleichswert, array_column( $kategorien, 'Kategorie' ), true );
+		// if "vl" is set show the configured category as button.
+		if ( ! empty( $werte['vl'] ) && 'nein' !== $werte['vl'] && ! empty( $categories ) ) {
+			// convert term list in list ID => name.
+			$categories_list = wp_list_pluck( $categories, 'name' );
 
-				// if value has been found.
-				if ( $ait_key > -1 ) {
-					// get the slug out of the associative array.
-					$ait_slug = remove_accents( $kategorien[ $ait_key ]['Slug'] );
+			// get the term used in attribute value.
+			$ait_key = array_search( $werte['vl'], $categories_list );
 
-					// get path.
-					$veranstaltungen = $ait_pfad . str_replace( ' ', '-', $ait_slug );
+			// if value has been found.
+			if ( $ait_key > -1 ) {
+				// get the term of the category.
+				$category_term = $categories[ $ait_key ];
 
-					// Space and colon behind the name, because the category appear behind it.
-					$button_events_link = $button_events_link . ': ';
-				} else {
-					$vergleichswert = '';
-				}
+				// get path.
+				$category_url = get_term_link( $category_term->term_id, $category_term->taxonomy );
+
+				// get name.
+				$category_name = $category_term->name;
+
+				// set the button title.
+				$button_events_title = $button_events_title . ': ' . $category_name;
 			}
-			$fs_ausgabe .= '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">' . $button_events_link . $vergleichswert . '</a></p>';
+			$fs_ausgabe .= '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . esc_url( $category_url ) . ' target="_blank">' . $button_events_title . '</a></p>';
 		}
 	} else {
-		// TEC not installed - may be another Event-Plugin installed (19.5.2019).
-		$veranstaltungen = esc_url_raw( $add_infos_to_tec_options['fs_option_pfad'] );
-		$fs_ausgabe      = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . $veranstaltungen . ' target="_blank">' . $button_events_link . '</a></p>';
+		// if TEC is not installed use the configured path.
+		$category_url = $add_infos_to_tec_options['fs_option_pfad'];
+		$fs_ausgabe      = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . esc_url( $category_url ) . ' target="_blank">' . $button_events_title . '</a></p>';
 	}
 
 	// internal link (can also be an external link).
@@ -241,6 +243,35 @@ function ait_tec_installed(): bool {
  * @return array
  */
 function ait_cliff_get_events_taxonomies(): array {
+	// get all categories.
+	$events_cats = ait_get_tribe_categories();
+
+	// bail if list is empty.
+	if( empty( $events_cats ) ) {
+		return array();
+	}
+
+	// array to collect the categories.
+	$events_cats_names = array();
+	foreach ( $events_cats as $value ) {
+		// slug instead of name.
+		$events_cats_names[] = array(
+			'Slug'      => $value->slug,
+			'Kategorie' => $value->name,
+		);
+	}
+
+	// return resulting list of categories.
+	return $events_cats_names;
+}
+add_action( 'tribe_events_before_template', 'ait_cliff_get_events_taxonomies' );
+
+/**
+ * Return all tribe categories.
+ *
+ * @return array
+ */
+function ait_get_tribe_categories(): array {
 	// bail if tribe events does not exist.
 	if ( ! class_exists( 'Tribe__Events__Main' ) ) {
 		return array();
@@ -270,20 +301,9 @@ function ait_cliff_get_events_taxonomies(): array {
 		return array();
 	}
 
-	// array to collect the categories.
-	$events_cats_names = array();
-	foreach ( $events_cats as $value ) {
-		// slug instead of name.
-		$events_cats_names[] = array(
-			'Slug'      => $value->slug,
-			'Kategorie' => $value->name,
-		);
-	}
-
 	// return resulting list of categories.
-	return $events_cats_names;
+	return $events_cats;
 }
-add_action( 'tribe_events_before_template', 'ait_cliff_get_events_taxonomies' );
 
 /**
  * Set default values for not existing entries in the settings.
@@ -508,26 +528,29 @@ function ait_get_color_chooser(): void {
 add_action( 'admin_enqueue_scripts', 'ait_get_color_chooser' );
 
 /**
- * Return path for events and suggest path if necessary.
+ * Return path for event categories.
  *
  * @return string
  */
 function ait_path_for_tec(): string {
-	// show default URL is TEC is not installed.
+	// define default return value.
+	$default_path = 'http://that_is_my_website/interesting_post/';
+
+	// bail if The Events Calendar is not installed.
 	if ( ! ait_tec_installed() ) {
-		// The Events Calendar is not installed.
-		return 'http://that_is_my_website/interesting_post/';
+		return $default_path;
 	}
 
-	// get the list view link from tribe.
-	$ait_path = tribe_get_listview_link();
+	// get the taxonomy from tribe category.
+	$taxonomy = get_taxonomy( 'tribe_events_cat' );
 
-	// delete last.
-	$ait_path     = substr( $ait_path, 0, strlen( $ait_path ) - 1 );
-	$tec_category = __( 'category', 'the-events-calendar' );
-	$tec_category = strtolower( $tec_category );
-	// show the path without the kind of view.
-	return substr( $ait_path, 0, strrpos( $ait_path, '/' ) ) . '/' . $tec_category . '/';
+	// bail if taxonomy could not be loaded.
+	if( ! $taxonomy instanceof WP_Taxonomy ) {
+		return $default_path;
+	}
+
+	// return the slug of this taxonomy.
+	return trailingslashit( get_option( 'siteurl' ) ) . trailingslashit( $taxonomy->rewrite['slug'] );
 }
 
 /**
