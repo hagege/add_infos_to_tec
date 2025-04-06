@@ -41,6 +41,10 @@
 - Only compatible with PHP 7.4 or newer (incl. PHP 8.4)
 - Updated translations
 
+### Fixed
+
+- Fixed XSS vulnerability (thanks to [Peter Thaleikis](https://github.com/spekulatius))
+
 ## [1.4.1] 2021-04-05
 
 ### Changed
