@@ -18,6 +18,9 @@ if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 // set version.
 const AIT_VERSION = '@@VersionNumber@@';
 
+// embed classes.
+require_once __DIR__ . '/classes/class-helper.php';
+
 /**
  * Get the color settings from style_fuss.css for the design of the buttons
  *
@@ -27,9 +30,9 @@ function ait_fs_style_fuss_plugin_scripts(): void {
 	// include css file.
 	wp_enqueue_style(
 		'ait',
-		plugin_dir_url( __FILE__ ) . 'assets/css/ait_style_fuss.css',
+		plugin_dir_url( __FILE__ ) . 'css/ait_style_fuss.css',
 		array(),
-		AIT_VERSION,
+		\addInfosToTheEventsCalendar\Helper::get_file_version( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'css/ait_style_fuss.css' ),
 	);
 
 	// variables for button design.
@@ -384,7 +387,7 @@ function ait_to_tec_register_tinymce_button( array $buttons ): array {
  * @return array
  */
 function ait_to_tec_add_tinymce_button( array $plugin_array ): array {
-	$plugin_array['ait_button_script'] = plugins_url( '/assets/js/ait_buttons.js', __FILE__ );
+	$plugin_array['ait_button_script'] = plugins_url( '/js/ait_buttons.js', __FILE__ );
 	return $plugin_array;
 }
 
@@ -414,9 +417,9 @@ function ait_load_scripts(): void {
 	// register our custom script.
 	wp_register_script(
 		'ait',
-		plugin_dir_url( __FILE__ ) . 'assets/js/ait_buttons.js',
+		plugin_dir_url( __FILE__ ) . 'js/ait_buttons.js',
 		array(),
-		AIT_VERSION,
+		\addInfosToTheEventsCalendar\Helper::get_file_version( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/ait_buttons.js' ),
 		true
 	);
 
@@ -496,9 +499,9 @@ function ait_get_color_chooser(): void {
 	wp_enqueue_style( 'wp-color-picker' );
 	wp_enqueue_script(
 		'ait-color-chooser',
-		plugins_url( 'assets/js/ait_script.js', __FILE__ ),
+		plugins_url( '/js/ait_script.js', __FILE__ ),
 		array( 'jquery', 'wp-color-picker' ),
-		AIT_VERSION,
+		\addInfosToTheEventsCalendar\Helper::get_file_version( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'js/ait_script.js' ),
 		false
 	);
 }

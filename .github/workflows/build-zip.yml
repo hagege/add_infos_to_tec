@@ -53,7 +53,7 @@ jobs:
         run: |
           cd ..
           mv ${{ github.event.repository.name }} add-infos-to-the-events-calendar
-          zip -r -q add-infos-to-the-events-calendar.zip add-infos-to-the-events-calendar/* -x "*/.git/*" "*/.github/*" "*/phpcs.xml" "*/composer.json" "*/composer.lock" "*/readme.md" "*/.gitignore" "*/vendor/*" "*/svn/*" "*/releases/*"
+          zip -r -q add-infos-to-the-events-calendar.zip add-infos-to-the-events-calendar/* -x "*/.git/*" "*/.github/*" "*/phpcs.xml" "*/composer.json" "*/composer.lock" "*/readme.md" "*/.gitignore" "*/vendor/*" "*/svn/*" "*/releases/*" "*/assets/*"
           cp add-infos-to-the-events-calendar.zip add-infos-to-the-events-calendar/
           mv add-infos-to-the-events-calendar ${{ github.event.repository.name }}
 
