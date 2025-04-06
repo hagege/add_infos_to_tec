@@ -759,7 +759,7 @@ function ait_fs_beitrags_fuss( string $output, array $shortcode_attributes ): st
 			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Flohmärkte</a></p>';
 		}
 	}
-	if ( empty( $shortcode_attributes['kfm'] ) && 'nein' !== $shortcode_attributes['kfm'] ) {
+	if ( ! empty( $shortcode_attributes['kfm'] ) && 'nein' !== $shortcode_attributes['kfm'] ) {
 		// get the category.
 		$term = get_term_by( 'slug', 'karte', 'tribe_events_cat' );
 
@@ -768,7 +768,7 @@ function ait_fs_beitrags_fuss( string $output, array $shortcode_attributes ): st
 			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Kinderflohmärkte</a></p>';
 		}
 	}
-	if ( empty( $shortcode_attributes['kfm'] ) && 'nein' !== $shortcode_attributes['ferien'] ) {
+	if ( ! empty( $shortcode_attributes['ferien'] ) && 'nein' !== $shortcode_attributes['ferien'] ) {
 		// get the category.
 		$term = get_term_by( 'slug', 'ferien', 'tribe_events_cat' );
 
