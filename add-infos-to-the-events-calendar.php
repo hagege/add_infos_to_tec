@@ -37,7 +37,7 @@ function ait_fs_style_fuss_plugin_scripts(): void {
 
 	// variables for button design.
 	$add_infos_to_tec_options = get_option( 'add_infos_to_tec_settings' );
-	if ( ! is_array( $add_infos_to_tec_options) ) {
+	if ( ! is_array( $add_infos_to_tec_options ) ) {
 		$add_infos_to_tec_options = array();
 	}
 	$button_hintergrund       = ! empty( $add_infos_to_tec_options['fs_hintergrundfarbe_button'] ) ? $add_infos_to_tec_options['fs_hintergrundfarbe_button'] : '';
@@ -109,7 +109,7 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 
 	// caption for buttons - 12.05.2019.
 	$button_externer_link = $add_infos_to_tec_options['fs_bezeichnung_externer_link'];
-	$button_events_title   = $add_infos_to_tec_options['fs_bezeichnung_events_link'];
+	$button_events_title  = $add_infos_to_tec_options['fs_bezeichnung_events_link'];
 	$button_interner_link = $add_infos_to_tec_options['fs_bezeichnung_interner_link'];
 
 	if ( '' !== $werte['link'] ) {
@@ -169,7 +169,7 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 	// check if TEC is installed.
 	if ( ait_tec_installed() ) {
 		// get default link for any category.
-		$category_url =  tribe_get_listview_link();
+		$category_url = tribe_get_listview_link();
 
 		// if "vl" is set show the configured category as button.
 		if ( ! empty( $werte['vl'] ) && 'nein' !== $werte['vl'] && ! empty( $categories ) ) {
@@ -177,7 +177,7 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 			$categories_list = wp_list_pluck( $categories, 'name' );
 
 			// get the term used in attribute value.
-			$ait_key = array_search( $werte['vl'], $categories_list );
+			$ait_key = array_search( $werte['vl'], $categories_list, true );
 
 			// if value has been found.
 			if ( $ait_key > -1 ) {
@@ -198,7 +198,7 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 	} else {
 		// if TEC is not installed use the configured path.
 		$category_url = $add_infos_to_tec_options['fs_option_pfad'];
-		$fs_ausgabe      = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . esc_url( $category_url ) . ' target="_blank">' . $button_events_title . '</a></p>';
+		$fs_ausgabe   = $fs_ausgabe . '<p class="fuss_button-absatz"> <a class="fuss_button-beitrag" href=' . esc_url( $category_url ) . ' target="_blank">' . $button_events_title . '</a></p>';
 	}
 
 	// internal link (can also be an external link).
@@ -238,7 +238,7 @@ function ait_cliff_get_events_taxonomies(): array {
 	$events_cats = ait_get_tribe_categories();
 
 	// bail if list is empty.
-	if( empty( $events_cats ) ) {
+	if ( empty( $events_cats ) ) {
 		return array();
 	}
 
@@ -536,7 +536,7 @@ function ait_path_for_tec(): string {
 	$taxonomy = get_taxonomy( 'tribe_events_cat' );
 
 	// bail if taxonomy could not be loaded.
-	if( ! $taxonomy instanceof WP_Taxonomy ) {
+	if ( ! $taxonomy instanceof WP_Taxonomy ) {
 		return $default_path;
 	}
 
@@ -755,7 +755,7 @@ function ait_fs_beitrags_fuss( string $output, array $shortcode_attributes ): st
 		$term = get_term_by( 'slug', 'flohmarkt', 'tribe_events_cat' );
 
 		// check if term could be loaded.
-		if( $term instanceof WP_Term ) {
+		if ( $term instanceof WP_Term ) {
 			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Flohmärkte</a></p>';
 		}
 	}
@@ -764,7 +764,7 @@ function ait_fs_beitrags_fuss( string $output, array $shortcode_attributes ): st
 		$term = get_term_by( 'slug', 'karte', 'tribe_events_cat' );
 
 		// check if term could be loaded.
-		if( $term instanceof WP_Term ) {
+		if ( $term instanceof WP_Term ) {
 			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Kinderflohmärkte</a></p>';
 		}
 	}
@@ -773,7 +773,7 @@ function ait_fs_beitrags_fuss( string $output, array $shortcode_attributes ): st
 		$term = get_term_by( 'slug', 'ferien', 'tribe_events_cat' );
 
 		// check if term could be loaded.
-		if( $term instanceof WP_Term ) {
+		if ( $term instanceof WP_Term ) {
 			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Ferienveranstaltungen</a></p>';
 		}
 	}
