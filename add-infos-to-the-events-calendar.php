@@ -73,10 +73,7 @@ add_action( 'wp_enqueue_scripts', 'ait_fs_style_fuss_plugin_scripts' );
  * [fuss] --> always shows picture credits, but no link to external website.
  * [fuss link="https://externer_link.de" vl="nature"] --> always shows picture credits, then more info with the link to external website and at vl="Nature" the link to "more events: nature".
  * -> (of course the category must exist in The Events Calendar (this is checked by a function). If the category does not exist, the event list will be shown.)
- * [fuss vl="" il="http://internal_link.de/example"] --> always shows picture credits, but no link to external website and at vl="" the link to "more events" and at il="http://internal_link.de/example" the link to another external or internal webesite.
- * -> internal used: fm, kfm, ferien
- *
- * TODO using hooks for internal things.
+ * [fuss vl="" il="http://internal_link.de/example"] --> always shows picture credits, but no link to external website and at vl="" the link to "more events" and at il="http://internal_link.de/example" the link to another external or internal website.
  *
  * @param array $attributes List of attributes.
  * @return string
@@ -106,9 +103,6 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 	if ( 1 === absint( $add_infos_to_tec_options['fs_linie_oben'] ) ) {
 		$fs_ausgabe .= '<hr>';
 	}
-
-	// get path from the settings.
-	$ait_pfad = ! empty( $add_infos_to_tec_options['fs_option_pfad'] ) ? $add_infos_to_tec_options['fs_option_pfad'] : '';
 
 	// get categories used by TEC.
 	$categories = ait_get_tribe_categories();
@@ -163,17 +157,14 @@ function ait_fs_beitrags_fuss_pi( array $attributes ): string {
 		}
 	}
 
-	// only internal for special use.
-	// TODO ersetzen durch hooks, danach ait_pfad entfernen.
-	if ( 'nein' !== $werte['fm'] ) {
-		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . $ait_pfad . 'flohmarkt" target="_blank">Weitere Flohmärkte</a></p>';
-	}
-	if ( 'nein' !== $werte['kfm'] ) {
-		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . $ait_pfad . 'flohmarkt/Karte" target="_blank">Weitere Kinderflohmärkte</a></p>';
-	}
-	if ( 'nein' !== $werte['ferien'] ) {
-		$fs_ausgabe .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . $ait_pfad . 'ferien" target="_blank">Weitere Ferienveranstaltungen</a></p>';
-	}
+	/**
+	 * Filter the output in footer.
+	 *
+	 * @since 1.6.0 Available since 1.6.0.
+	 * @param string $fs_ausgabe The output string.
+	 * @param array $werte The shortcode attributes.
+	 */
+	$fs_ausgabe = apply_filters( 'ait_fs_beitrags_fuss', $fs_ausgabe, $werte );
 
 	// check if TEC is installed.
 	if ( ait_tec_installed() ) {
@@ -628,39 +619,23 @@ function ait_add_infos_to_tec_settings_page(): void {
 			// output.
 			?>
 			<table class="form-table">
-				<tr>
-					<?php
-					$tec_path = '';
-					if ( ait_tec_installed() ) {
-						// this should be the path to The Events Calendar.
-						$tec_path = ait_path_for_tec();
-						?>
-						<th colspan="2">
-						<?php
-							echo esc_html__( 'This could be the path to the categories of The Events Calendar (TEC): ', 'add-infos-to-the-events-calendar' ) . '<strong style="color: #FF0000">' . esc_url( $tec_path ) . '</strong><br />';
-							echo esc_html__( 'To be on the safe side, however, you should check this by going to the relevant event after using the shortcut and checking that the links are executed correctly.', 'add-infos-to-the-events-calendar' );
-						?>
-						</th>
-						</tr>
-						<tr>
-							<th scope="row"><label for="fs_option_pfad"><?php echo esc_html__( 'Path e.g. categories to The Events Calendar (e.g. http://example.com/events/category/):', 'add-infos-to-the-events-calendar' ); ?></label></th>
-							<?php
-					} else {
-						?>
+				<?php
+				if ( ! ait_tec_installed() ) {
+					?>
+					<tr>
 						<th colspan="2">
 						<?php
 						echo esc_html__( 'It seems that you do not use The Events Calendar. However, you can still use this plugin and enter a URL on your website that is particularly important to you. This URL will be used instead.', 'add-infos-to-the-events-calendar' );
 						?>
 						</th>
-						</tr>
-						<tr>
-								<th scope="row"><label for="fs_option_pfad"><?php echo esc_html__( 'Enter a URL on your website that is particularly important to you:', 'add-infos-to-the-events-calendar' ); ?></label></th>
-							<?php
-					}
-					?>
-					<td><input type="text" name="add_infos_to_tec_settings[fs_option_pfad]" class="widefat" id="fs_option_pfad" value="<?php echo esc_url_raw( $add_infos_to_tec_options['fs_option_pfad'] ); ?>" /></td>
-				</tr>
-
+					</tr>
+					<tr>
+						<th scope="row"><label for="fs_option_pfad"><?php echo esc_html__( 'Enter a URL on your website that is particularly important to you:', 'add-infos-to-the-events-calendar' ); ?></label></th>
+						<td><input type="text" name="add_infos_to_tec_settings[fs_option_pfad]" class="widefat" id="fs_option_pfad" value="<?php echo esc_url_raw( $add_infos_to_tec_options['fs_option_pfad'] ); ?>" /></td>
+					</tr>
+					<?php
+				}
+				?>
 				<tr>
 					<th colspan="2"><h3><?php echo esc_html__( 'Settings for Buttons:', 'add-infos-to-the-events-calendar' ); ?></h3></th>
 				</tr>
@@ -765,3 +740,45 @@ function ait_add_infos_to_tec_settings_page(): void {
 </div>
 	<?php
 }
+
+/**
+ * Additional usage of shortcode attributes to add custom categories.
+ *
+ * @param string $output The output.
+ * @param array  $shortcode_attributes The shortcode attributes.
+ *
+ * @return string
+ */
+function ait_fs_beitrags_fuss( string $output, array $shortcode_attributes ): string {
+	if ( ! empty( $shortcode_attributes['fm'] ) && 'nein' !== $shortcode_attributes['fm'] ) {
+		// get the category.
+		$term = get_term_by( 'slug', 'flohmarkt', 'tribe_events_cat' );
+
+		// check if term could be loaded.
+		if( $term instanceof WP_Term ) {
+			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Flohmärkte</a></p>';
+		}
+	}
+	if ( empty( $shortcode_attributes['kfm'] ) && 'nein' !== $shortcode_attributes['kfm'] ) {
+		// get the category.
+		$term = get_term_by( 'slug', 'karte', 'tribe_events_cat' );
+
+		// check if term could be loaded.
+		if( $term instanceof WP_Term ) {
+			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Kinderflohmärkte</a></p>';
+		}
+	}
+	if ( empty( $shortcode_attributes['kfm'] ) && 'nein' !== $shortcode_attributes['ferien'] ) {
+		// get the category.
+		$term = get_term_by( 'slug', 'ferien', 'tribe_events_cat' );
+
+		// check if term could be loaded.
+		if( $term instanceof WP_Term ) {
+			$output .= '<p class="fuss_button-absatz"><a class="fuss_button-beitrag" href="' . esc_url( get_term_link( $term->term_id, $term->taxonomy ) ) . '" target="_blank">Weitere Ferienveranstaltungen</a></p>';
+		}
+	}
+
+	// return resulting string.
+	return $output;
+}
+add_filter( 'ait_fs_beitrags_fuss', 'ait_fs_beitrags_fuss', 10, 2 );

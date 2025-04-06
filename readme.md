@@ -44,3 +44,7 @@ Hint: this check runs against the VIP-GO-platform which is not our target for th
 ### Run
 
 `vendor/bin/phpcs --extensions=php --ignore=*/vendor/*,*/svn/* --standard=WordPress-VIP-Go .`
+
+### Generate documentation
+
+`vendor/bin/wp-documentor parse . --exclude=vendor --exclude=svn --format=markdown --output=docs/hooks.md --prefix=ait_`
